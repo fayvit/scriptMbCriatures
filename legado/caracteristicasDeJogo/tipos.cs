@@ -1,0 +1,89 @@
+﻿[System.Serializable]
+public class tipos  {
+
+	[UnityEngine.SerializeField]private float _mod;
+	[UnityEngine.SerializeField]private string _nome;
+
+    public static tipos[] AplicaContraTipos(nomeTipos nomeDoTipo)
+    {
+        tipos[] retorno = new tipos[System.Enum.GetValues(typeof(nomeTipos)).Length];
+
+        switch (nomeDoTipo)
+        {
+            case nomeTipos.Agua:
+                retorno = new tipos[]
+                    {
+                        new tipos (){ Nome = nomeTipos.Agua.ToString(),    Mod = 1},
+                        new tipos (){ Nome = nomeTipos.Fogo.ToString(),    Mod = 0.25f},
+                        new tipos (){ Nome = nomeTipos.Planta.ToString(),  Mod = 1.75f},
+                        new tipos (){ Nome = nomeTipos.Gelo.ToString(),    Mod = 2},
+                        new tipos (){ Nome = nomeTipos.Terra.ToString(),   Mod = 0.5f},
+                        new tipos (){ Nome = nomeTipos.Pedra.ToString(),   Mod = 0.5f},
+                        new tipos (){ Nome = nomeTipos.Psiquico.ToString(),Mod = 1.75f},
+                        new tipos (){ Nome = nomeTipos.Eletrico.ToString(),Mod = 2f},
+                        new tipos (){ Nome = nomeTipos.Normal.ToString(),  Mod = 1},
+                        new tipos (){ Nome = nomeTipos.Veneno.ToString(),  Mod = 1},
+                        new tipos (){ Nome = nomeTipos.Inseto.ToString(),  Mod = 1},
+                        new tipos (){ Nome = nomeTipos.Voador.ToString(),  Mod = 1},
+                        new tipos (){ Nome = nomeTipos.Gas.ToString(),     Mod = 1}
+                    };
+
+                break;
+            case nomeTipos.Planta:
+                retorno = new tipos[]
+                    {
+                        new tipos (){ Nome = nomeTipos.Agua.ToString(),    Mod = 0.25f},
+                        new tipos (){ Nome = nomeTipos.Fogo.ToString(),    Mod = 2f},
+                        new tipos (){ Nome = nomeTipos.Planta.ToString(),  Mod = 1f},
+                        new tipos (){ Nome = nomeTipos.Gelo.ToString(),    Mod = 1.25f},
+                        new tipos (){ Nome = nomeTipos.Terra.ToString(),   Mod = 0.75f},
+                        new tipos (){ Nome = nomeTipos.Pedra.ToString(),   Mod = 0.75f},
+                        new tipos (){ Nome = nomeTipos.Psiquico.ToString(),Mod = 1.25f},
+                        new tipos (){ Nome = nomeTipos.Eletrico.ToString(),Mod = 1f},
+                        new tipos (){ Nome = nomeTipos.Normal.ToString(),  Mod = 1},
+                        new tipos (){ Nome = nomeTipos.Veneno.ToString(),  Mod = 1},
+                        new tipos (){ Nome = nomeTipos.Inseto.ToString(),  Mod = 1.25f},
+                        new tipos (){ Nome = nomeTipos.Voador.ToString(),  Mod = 1.25f},
+                        new tipos (){ Nome = nomeTipos.Gas.ToString(),     Mod = 1}
+                    };
+
+                break;
+        }
+        return retorno;
+    }
+
+    public tipos()
+	{
+		_mod = 1.0f;
+		_nome = "";
+	}
+
+	public float Mod
+	{
+		get{return _mod;}
+		set{_mod = value;}
+	}
+
+	public string Nome
+	{
+		get{return _nome;}
+		set{_nome = value;}
+	}
+}
+
+public enum nomeTipos
+{
+	Agua,
+	Fogo,
+	Planta,
+	Gelo,
+	Terra,
+	Pedra,
+	Psiquico,
+	Eletrico,
+	Normal,
+	Veneno,
+	Inseto,
+	Voador,
+	Gas
+}
