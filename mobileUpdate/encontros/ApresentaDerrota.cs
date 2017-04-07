@@ -9,6 +9,7 @@ public class ApresentaDerrota
     private FaseDaDerrota fase = FaseDaDerrota.emEspera;
     private CharacterManager manager;
     private CreatureManager inimigoDerrotado;
+    private ReplaceManager replace;
 
     private const float TEMPO_PARA_MOSTRAR_MENSAGEM_INICIAL = 0.25F;
 
@@ -20,6 +21,13 @@ public class ApresentaDerrota
         entrandoUmNovo
     }
 
+    public enum RetornoDaDerrota
+    {
+        atualizando,
+        voltarParaPasseio,
+        deVoltaAoArmagedom
+    }
+
     public ApresentaDerrota(CharacterManager manager, CreatureManager inimigoDerrotado)
     {
         this.manager = manager;
@@ -28,7 +36,7 @@ public class ApresentaDerrota
         fase = FaseDaDerrota.abreMensagem;
     }
 
-    public void Update()
+    public RetornoDaDerrota Update()
     {
         switch (fase)
         {
@@ -53,18 +61,31 @@ public class ApresentaDerrota
                     }
                     else
                     {
-
+                        // Aqui vamos de volta para o armagedom
                     }
                 }
             break;
             case FaseDaDerrota.entrandoUmNovo:
-
+                if (replace.Update())
+                {
+                    manager.AoCriature(inimigoDerrotado);
+                    GameController.g.HudM.AtualizeHud (manager, inimigoDerrotado.MeuCriatureBase);
+                    fase = FaseDaDerrota.emEspera;
+                    return RetornoDaDerrota.voltarParaPasseio;
+                }
             break;
         }
+
+        return RetornoDaDerrota.atualizando;
     }
 
     public void AoEscolherUmCriature(int qual)
     {
-
+        manager.Dados.criatureSai = qual;
+        fase = FaseDaDerrota.entrandoUmNovo;        
+        replace = new ReplaceManager(manager,manager.CriatureAtivo.transform,FluxoDeRetorno.criature);
+        GameController.g.HudM.EntraCriatures.FinalizarHud();
+        PainelMensCriature.p.EsconderMensagem();
+        
     }
 }

@@ -25,4 +25,16 @@ public class GerenciadorDeGolpes
 
         return retorno;
     }
+
+    public GolpePersonagem VerificaGolpeDoNivel(nomesCriatures nome, int nivel)
+    {
+        GolpePersonagem retorno = new GolpePersonagem();
+        listaDeGolpes = ListaDeGolpesAtualizada(nome);
+
+        for (int i = 0; i < listaDeGolpes.Count; i++)
+            if (listaDeGolpes[i].NivelDoGolpe == nivel)
+                retorno = listaDeGolpes[i];
+
+        return retorno;
+    }
 }

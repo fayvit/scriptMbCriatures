@@ -78,4 +78,10 @@ public class GameController : MonoBehaviour
     {
         manager.Dados.criaturesAtivos[0].CaracCriature.meusAtributos.PV.Corrente = 1;
     }
+
+    public void UmXpParaNivel()
+    {
+        IGerenciadorDeExperiencia gXP = manager.Dados.criaturesAtivos[0].CaracCriature.mNivel;
+        gXP.XP = gXP.ParaProxNivel - 1;
+    }
 }

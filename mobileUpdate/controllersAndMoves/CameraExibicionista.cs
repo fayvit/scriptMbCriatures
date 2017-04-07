@@ -37,4 +37,24 @@ public class CameraExibicionista
             transform.rotation = baseDeMovimento.rotation;
         }
     }
+
+    public bool MostrarFixa(float velocidadeDeFoco)
+    {
+        Vector3 posAlvo = foco.position + foco.forward * 6 + Vector3.up * alturaDoPersonagem;
+        Vector3 dirAlvo = foco.position - transform.position;
+        if (transform)
+        {
+            transform.position = Vector3.Lerp(transform.position, posAlvo, velocidadeDeFoco * Time.deltaTime);
+            transform.rotation = Quaternion.LookRotation(
+                Vector3.Lerp(transform.forward, dirAlvo, velocidadeDeFoco * Time.deltaTime)
+                );
+
+            if (Vector3.Distance(transform.position, posAlvo) < 0.5f && Vector3.Distance(transform.forward, dirAlvo) < 7.5f)
+                return  true;
+        }
+        else
+            Debug.LogError("A camera não foi setada corretamente");
+
+        return false;
+    }
 }

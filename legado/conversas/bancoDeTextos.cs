@@ -40,8 +40,14 @@ public class bancoDeTextos{
                 {
                     ChaveDeTexto.criatureParaMostrador,new List<string>()
                     {
-                        "Você tem certeza que quer colocar {0} para continuar a luta?",
+                        "Você tem certeza que quer colocar <color=orange>{0}</color> para continuar a luta?",
                         "O criature {0} não está em condições para entrar na luta"
+                    }
+                },
+                {
+                    ChaveDeTexto.passouDeNivel,new List<string>()
+                    {
+                        "{0} conseguiu alcançar o <color=yellow>nível {1}</color>"
                     }
                 }
             }
@@ -2623,5 +2629,6 @@ public enum ChaveDeTexto
     usoDeGolpe,
     apresentaFim,
     apresentaDerrota,
-    criatureParaMostrador
+    criatureParaMostrador,
+    passouDeNivel
 }

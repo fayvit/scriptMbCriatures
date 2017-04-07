@@ -22,7 +22,8 @@ public class AplicadorDeGolpe :MonoBehaviour
     {
         tempoDecorrido += Time.deltaTime;
 
-        if (tempoDecorrido > 0 && tempoDecorrido > esseGolpe.TempoDeMoveMin && gerente.Estado == CreatureManager.CreatureState.aplicandoGolpe)
+        if (tempoDecorrido > esseGolpe.TempoDeMoveMin
+            && gerente.Estado == CreatureManager.CreatureState.aplicandoGolpe)
         {
             esseGolpe.UpdateGolpe(gameObject);
         }

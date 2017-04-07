@@ -60,7 +60,9 @@ public class CreatureManager : MonoBehaviour
         {
             estado = CreatureState.aplicandoGolpe;
             retorno = true;
-        }
+        }else
+            Debug.LogError("estado indefinido");
+
         return retorno;
     }
     public bool LiberaMovimento(CreatureState esseEstado)

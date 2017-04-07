@@ -15,9 +15,7 @@ public class CriatureParaMostrador : MonoBehaviour
     [SerializeField]private Text txtStausLabel;
     [SerializeField]private Text txtListaDeStatus;
 
-    private AoClique cliqueDoPersonagem;
-
-    public delegate void AoClique(int indice);
+    private System.Action<int> cliqueDoPersonagem;
 
 
     // Use this for initialization
@@ -65,7 +63,7 @@ public class CriatureParaMostrador : MonoBehaviour
         }
     }
 
-    public void SetarCriature(CriatureBase C,AoClique ao)
+    public void SetarCriature(CriatureBase C,System.Action<int> ao)
     {
         cliqueDoPersonagem += ao;
 

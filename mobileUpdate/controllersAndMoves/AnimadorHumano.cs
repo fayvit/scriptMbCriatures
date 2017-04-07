@@ -18,22 +18,22 @@ public class AnimadorHumano
 
     public void ResetaEnvia()
     {
-        animator.SetBool("animaEnvia", false);
+        animator.SetBool("envia", false);
     }
     public void ResetaTroca()
     {
-        animator.SetBool("animaBraco", false);
+        animator.SetBool("chama", false);
     }
 
-    void AnimaEnvia()
+    public void AnimaEnvia()
     {
-        animator.SetBool("animaEnvia", true);
+        animator.SetBool("envia", true);
     }
 
-    void AnimaTroca()
+    public void AnimaTroca()
     {
-        animator.Play("animaTroca");
-        animator.SetBool("animaBraco", true);
+        //animator.Play("animaTroca");
+        animator.SetBool("chama", true);
     }    
 
     public void PararAnimacao()

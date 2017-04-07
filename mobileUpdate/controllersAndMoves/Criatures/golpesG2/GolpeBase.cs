@@ -167,4 +167,9 @@ public class GolpeBase : IGolpeBase
     {
         throw new NotImplementedException();
     }
+
+    public static string NomeEmLinguas(nomesGolpes nome)
+    {
+        return nome.ToString();
+    }
 }

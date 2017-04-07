@@ -8,6 +8,7 @@ public class EncounterManager
     private ApresentadorDeAdversario apresentaAdv;
     private ApresentaFim apresentaFim;
     private ApresentaDerrota apresentaDerrota;
+    private PassouDeNivelEmLuta passou;
     private CreatureManager inimigo;
     private CharacterManager manager;
     private EncounterState estado = EncounterState.emEspera;
@@ -25,8 +26,6 @@ public class EncounterManager
         vitoriaNaLuta,
         VoltarParaPasseio,
         morreuEmLuta,
-        fimDaApresentacaoDaMorte,
-        irParaDepoisDaMorte,
         passouDeNivel,
         gerenciaGolpe,
         aprendeuEsse
@@ -87,15 +86,24 @@ public class EncounterManager
                 retorno = true;                
             break;
             case EncounterState.morreuEmLuta:
-                apresentaDerrota.Update();
+                ApresentaDerrota.RetornoDaDerrota R = apresentaDerrota.Update();
+                if (R!=ApresentaDerrota.RetornoDaDerrota.atualizando)
+                {
+                    if (R == ApresentaDerrota.RetornoDaDerrota.voltarParaPasseio)
+                        estado = EncounterState.verifiqueVida;
+                    else
+                    if (R == ApresentaDerrota.RetornoDaDerrota.deVoltaAoArmagedom)
+                        estado = EncounterState.emEspera;
+                }
+            break;
+            case EncounterState.passouDeNivel:
+                if (passou.Update())
+                {
+                    estado = EncounterState.VoltarParaPasseio;
+                }
             break;
         }
         return retorno;
-    }
-
-    void VoltarParaPasseio()
-    {
-        //mbemben
     }
 
     void RecebePontosDaVitoria()
@@ -104,6 +112,9 @@ public class EncounterManager
         G_XP.XP += (int)((float)aDoI.PV.Maximo/2);
         if (G_XP.VerificaPassaNivel())
         {
+            G_XP.AplicaPassaNivel(aDoH);
+            GameController.g.HudM.AtualizeHud(manager, inimigo.MeuCriatureBase);
+            passou = new PassouDeNivelEmLuta(manager.CriatureAtivo.MeuCriatureBase);
             estado = EncounterState.passouDeNivel;
         }
         else

@@ -31,6 +31,11 @@ public class MovimentacaoBasica
         get { return pulo; }
     }
 
+    public AnimadorHumano Animador
+    {
+        get { return elementos.animador; }
+    }
+
     public MovimentacaoBasica(CaracteristicasDeMovimentacao caracMov, ElementosDeMovimentacao elementos)
     {
         this.caracMov = caracMov;

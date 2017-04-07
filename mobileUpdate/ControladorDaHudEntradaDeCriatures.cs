@@ -1,40 +1,26 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 
 [System.Serializable]
-public class ControladorDaHudEntradaDeCriatures
+public class ControladorDaHudEntradaDeCriatures : UiDeOpcoes
 {
-    [SerializeField]private GameObject itemDoContainer;
-    [SerializeField]private RectTransform painelDeTamanhoVariavel;
+    private DadosDoPersonagem dados;
+    private System.Action<int> aoClique;
 
-   
-    public void IniciarEssaHUD(DadosDoPersonagem dados)
+    public void IniciarEssaHUD(DadosDoPersonagem dados,System.Action<int> AoEscolherUmCriature)
     {
-        painelDeTamanhoVariavel.parent.parent.gameObject.SetActive(true);
-
-        itemDoContainer.SetActive(true);
-
-        painelDeTamanhoVariavel.sizeDelta 
-            = new Vector2(0, dados.criaturesAtivos.Count* itemDoContainer.GetComponent<LayoutElement>().preferredHeight);
-
-        for (int i = 0; i < dados.criaturesAtivos.Count; i++)
-        {
-            GameObject G = MonoBehaviour.Instantiate(itemDoContainer);
-            RectTransform T = G.GetComponent<RectTransform>();
-            T.SetParent(painelDeTamanhoVariavel.transform);
-            G.GetComponent<CriatureParaMostrador>().SetarCriature(dados.criaturesAtivos[i], AoEscolherUmCriature);
-            T.localScale = new Vector3(1, 1, 1);
-
-            T.offsetMax = Vector2.zero;
-            T.offsetMin = Vector2.zero;
-        }
-
-        itemDoContainer.SetActive(false);
+        this.dados = dados;
+        aoClique += AoEscolherUmCriature;
+        IniciarHUD(dados.criaturesAtivos.Count);
     }
 
-    public void AoEscolherUmCriature(int qual)
+    public override void SetarComponenteAdaptavel(GameObject G,int indice)
     {
+        G.GetComponent<CriatureParaMostrador>().SetarCriature(dados.criaturesAtivos[indice], aoClique);
+    }
 
+    public override void FinalizarEspecifico()
+    {
+        aoClique = null;
     }
 }

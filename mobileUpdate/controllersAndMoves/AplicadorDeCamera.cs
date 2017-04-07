@@ -12,7 +12,8 @@ public class AplicadorDeCamera : MonoBehaviour
     {
         passeio,
         luta,
-        mostrandoUmCriature
+        mostrandoUmCriature,
+        focandoPonto
     }
 
     public CameraBasica Basica
@@ -59,5 +60,11 @@ public class AplicadorDeCamera : MonoBehaviour
         cDeLuta.Start(transform,alvo.transform,alvo.MeuCriatureBase.alturaCameraLuta,alvo.MeuCriatureBase.distanciaCameraLuta);
         cDeLuta.T_Inimigo = inimigo;
         estilo = EstiloDeCamera.luta;
+    }
+
+    public bool FocarPonto(float velocidadeDeFoco)
+    {
+        estilo = EstiloDeCamera.focandoPonto;
+        return cExibe.MostrarFixa(velocidadeDeFoco);
     }
 }

@@ -63,20 +63,30 @@ public class CharacterManager : MonoBehaviour {
         
 	}
 
+    public void AoCriature(CreatureManager inimigo = null)
+    {
+        estado = EstadoDePersonagem.comMeuCriature;
+        criatureAtivo = GameObject.Find("CriatureAtivo").GetComponent<CreatureManager>();
+        GameController.g.HudM.Btns.BotoesDoCriature(this);
+        MbAlternancia.AoCriature(criatureAtivo,inimigo);
+    }
+
+    public void AoHeroi()
+    {
+        MbAlternancia.AoHeroi(criatureAtivo, this);
+        GameController.g.HudM.Btns.BotoesDoHeroi(this);
+        estado = EstadoDePersonagem.aPasseio;
+    }
+
     public void BotaoAlternar()
     {
         if (estado == EstadoDePersonagem.aPasseio)
         {
-            estado = EstadoDePersonagem.comMeuCriature;
-            criatureAtivo = GameObject.Find("CriatureAtivo").GetComponent<CreatureManager>();
-            GameController.g.HudM.Btns.BotoesDoCriature(this);            
-            MbAlternancia.AoCriature(criatureAtivo);
+            AoCriature();
         }
         else if (estado == EstadoDePersonagem.comMeuCriature)
         {
-            MbAlternancia.AoHeroi(criatureAtivo,this);
-            GameController.g.HudM.Btns.BotoesDoHeroi(this);
-            estado = EstadoDePersonagem.aPasseio;
+            AoHeroi();
         }
     }
 
