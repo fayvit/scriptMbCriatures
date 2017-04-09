@@ -12,6 +12,7 @@ public class HudManager
 
     [SerializeField]private BtnsManager btns;
     [SerializeField]private ControladorDaHudEntradaDeCriatures entraCriatures;
+    [SerializeField]private MenuDeImagens menuDeI;
 
     [SerializeField]private PainelUmaMensagem umaMensagem;
     [SerializeField]private PainelDeConfirmacao confirmacao;
@@ -34,6 +35,11 @@ public class HudManager
     public ControladorDaHudEntradaDeCriatures EntraCriatures
     {
         get { return entraCriatures; }
+    }
+
+    public MenuDeImagens MenuDeI
+    {
+        get { return menuDeI; }
     }
 
     public HudVida HudCriatureAtivo
@@ -87,6 +93,11 @@ public class HudManager
     {
         AtualizaDadosDaHud(hudInimigo, inimigo);
         AtualizaDadosDaHud(HudCriatureAtivo, manager.Dados.criaturesAtivos[0]);
+    }
+
+    public void AtualizaHudHeroi(CriatureBase C)
+    {
+        AtualizaDadosDaHud(HudCriatureAtivo, C);
     }
 }
 

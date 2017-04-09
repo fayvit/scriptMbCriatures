@@ -6,7 +6,7 @@ public class DadosDoPersonagem
 {
     public List<CriatureBase> criaturesAtivos = new List<CriatureBase>();
     public List<CriatureBase> criaturesArmagedados = new List<CriatureBase>();
-    public List<item> itens = new List<item>();
+    public List<MbItens> itens = new List<MbItens>();
     public int criatureSai = 1;
     public int itemSai = 0;
     public int cristais = 1021;
@@ -20,6 +20,11 @@ public class DadosDoPersonagem
              new CriatureBase(nomesCriatures.Florest)
         };
 
+        itens = new List<MbItens>()
+        {
+            new MbMaca(13)
+        };
+        /*
         itens.Add(new item(nomeIDitem.maca) { estoque = 20 });
         itens.Add(new item(nomeIDitem.cartaLuva) { estoque = 3 });
         itens.Add(new item(nomeIDitem.pergArmagedom) { estoque = 7 });
@@ -29,6 +34,7 @@ public class DadosDoPersonagem
         itens.Add(new item(nomeIDitem.pergGosmaAcida) { estoque = 8 });
         itens.Add(new item(nomeIDitem.pergMultiplicar) { estoque = 7 });
         itens.Add(new item(nomeIDitem.estatuaMisteriosa) { estoque = 1 });
+        */
 
 
     }

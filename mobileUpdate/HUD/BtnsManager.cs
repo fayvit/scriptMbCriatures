@@ -24,7 +24,7 @@ public class BtnsManager
 
     void AlternaBotoes(CharacterManager manager,bool heroi)
     {
-        btnPauseMenu.gameObject.SetActive(heroi);
+        //btnPauseMenu.gameObject.SetActive(heroi);
         btnMaisAtaques.gameObject.SetActive(!heroi);
         btnAtaque.gameObject.SetActive(!heroi);
 

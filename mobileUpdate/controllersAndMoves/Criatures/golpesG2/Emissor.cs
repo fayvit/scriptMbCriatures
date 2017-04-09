@@ -11,7 +11,7 @@ public class Emissor
         if (GameController.g.estaEmLuta && G.name=="CriatureAtivo")
         {
             G.transform.rotation = Quaternion.LookRotation(
-                GameController.g.InimigoAtivo.position-G.transform.position
+                GameController.g.InimigoAtivo.transform.position-G.transform.position
                 );
         }
 

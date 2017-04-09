@@ -19,7 +19,7 @@ public class ControladorDaHudEntradaDeCriatures : UiDeOpcoes
         G.GetComponent<CriatureParaMostrador>().SetarCriature(dados.criaturesAtivos[indice], aoClique);
     }
 
-    public override void FinalizarEspecifico()
+    protected override void FinalizarEspecifico()
     {
         aoClique = null;
     }

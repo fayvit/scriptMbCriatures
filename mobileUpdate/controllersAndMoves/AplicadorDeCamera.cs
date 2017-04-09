@@ -51,6 +51,8 @@ public class AplicadorDeCamera : MonoBehaviour
 
     public void InicializaCameraExibicionista(Transform doFoco,float altura)
     {
+        if (cExibe != null)
+            cExibe.OnDestroy();
         cExibe = new CameraExibicionista(transform, doFoco, altura);
         estilo = EstiloDeCamera.mostrandoUmCriature;
     }    

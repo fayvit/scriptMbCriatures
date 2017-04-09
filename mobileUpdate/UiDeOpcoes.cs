@@ -8,7 +8,7 @@ public abstract class UiDeOpcoes
     [SerializeField]protected RectTransform painelDeTamanhoVariavel;
 
     public abstract void SetarComponenteAdaptavel(GameObject G,int indice);
-    public abstract void FinalizarEspecifico();
+    protected abstract void FinalizarEspecifico();
 
     protected void IniciarHUD(int quantidade)
     {

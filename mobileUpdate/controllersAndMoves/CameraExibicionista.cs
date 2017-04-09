@@ -10,6 +10,12 @@ public class CameraExibicionista
 
     private Transform baseDeMovimento;
 
+    public void OnDestroy()
+    {
+        if(baseDeMovimento!=null)
+            MonoBehaviour.Destroy(baseDeMovimento.gameObject);
+    }
+
     public CameraExibicionista(Transform daCamera,Transform doFoco,float altura)
     {
         transform = daCamera;
@@ -17,6 +23,7 @@ public class CameraExibicionista
         alturaDoPersonagem = altura;
         baseDeMovimento = (new GameObject()).transform;
         baseDeMovimento.position = daCamera.position;
+        baseDeMovimento.name = "baseDeMovimentoExibicionista";
     }
     public void MostrandoUmCriature()
     {
@@ -40,6 +47,7 @@ public class CameraExibicionista
 
     public bool MostrarFixa(float velocidadeDeFoco)
     {
+        //Debug.Log(foco);
         Vector3 posAlvo = foco.position + foco.forward * 6 + Vector3.up * alturaDoPersonagem;
         Vector3 dirAlvo = foco.position - transform.position;
         if (transform)

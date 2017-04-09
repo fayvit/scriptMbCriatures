@@ -36,7 +36,6 @@ public class CriatureBase : ICloneable
             caracCriature.incrementaNivel(nivel);
 
         gerenteG.meusGolpes = new List<GolpeBase>();
-        Debug.Log("nivel= "+nivel+" lista de golpes: "+ gerenteG.listaDeGolpes);
         gerenteG.meusGolpes.AddRange(GolpesAtivos(nivel, gerenteG.listaDeGolpes.ToArray()));
 
 

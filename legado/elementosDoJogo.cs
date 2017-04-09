@@ -68,6 +68,15 @@ public class elementosDoJogo : LuvaDeGuarde {
         return retornaMini(nome.ToString(),"criature");
     }
 
+    public Texture2D RetornaMini(nomeIDitem nome)
+    {
+        return retornaMini(nome.ToString(), "itens");
+    }
+    public Texture2D RetornaMini(nomesGolpes nome)
+    {
+        return retornaMini(nome.ToString(), "golpe");
+    }
+
     public Texture2D retornaMini(string ele,string oQ)
 	{
 

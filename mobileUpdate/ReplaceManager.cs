@@ -42,5 +42,6 @@ public class ReplaceManager
 public enum FluxoDeRetorno
 {
     heroi,
-    criature
+    criature,
+    menu
 }

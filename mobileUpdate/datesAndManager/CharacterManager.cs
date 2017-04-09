@@ -26,7 +26,11 @@ public class CharacterManager : MonoBehaviour {
 
     public CreatureManager CriatureAtivo
     {
-        get { return criatureAtivo; }
+        get {
+            if(criatureAtivo==null)
+                criatureAtivo = GameObject.Find("CriatureAtivo").GetComponent<CreatureManager>();
+
+            return criatureAtivo; }
     }
 
     public MovimentacaoBasica Mov
@@ -73,7 +77,7 @@ public class CharacterManager : MonoBehaviour {
 
     public void AoHeroi()
     {
-        MbAlternancia.AoHeroi(criatureAtivo, this);
+        MbAlternancia.AoHeroi(this);
         GameController.g.HudM.Btns.BotoesDoHeroi(this);
         estado = EstadoDePersonagem.aPasseio;
     }

@@ -86,7 +86,7 @@ public class AnimaBraco
                     estadoEnvia = EstadoDoAnimaEnvia.Instancia;
                     tempoDecorrido = 0;
                 }
-                break;
+            break;
             case EstadoDoAnimaEnvia.Instancia:
                 if (tempoDecorrido > TEMPO_PARA_INSTANCIAR_CRIATURE)
                 {
@@ -106,7 +106,7 @@ public class AnimaBraco
                     tempoDecorrido = 0;
                     estadoEnvia = EstadoDoAnimaEnvia.AumentaEscala;
                 }
-                break;
+            break;
             case EstadoDoAnimaEnvia.AumentaEscala:
                 if (C.transform.localScale.sqrMagnitude < 2.5f)
                 {
@@ -173,7 +173,10 @@ public class AnimaBraco
                         estado = EstadoDoAnimaBraco.DiminuiEscalaDoCriature;
                     else
                     {
-                       // mCamera.BomFoco = false;
+                       
+                        mCamera.InicializaCameraExibicionista(alvo.transform, alvo.GetComponent<CharacterController>().height);
+                        
+                        
                         estado = EstadoDoAnimaBraco.TerminaORaio;
                     }
                     tempoDecorrido = 0;
@@ -185,7 +188,7 @@ public class AnimaBraco
                     alvo.transform.localScale = Vector3.Lerp(alvo.transform.localScale, Vector3.zero, 2 * Time.deltaTime);
                 }
                 else
-                {
+                {                    
                     estado = EstadoDoAnimaBraco.TerminaORaio;
                     tempoDecorrido = 0;
                 }
@@ -205,7 +208,7 @@ public class AnimaBraco
                 }
 
                 if (eItem)
-                {
+                {                
                     if (mCamera.FocarPonto(VELOCIDADE_DE_MOVIMENTO_DE_CAMERA *
                         Mathf.Max(Vector3.Distance(gerente.transform.position, alvo.transform.position),
                     VELOCIDADE_MINIMA_PARA_MOVIMENTO_DE_CAMERA)))

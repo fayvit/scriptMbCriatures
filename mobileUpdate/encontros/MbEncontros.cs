@@ -21,9 +21,9 @@ public class MbEncontros
         get{return luta;}
     }
 
-    public Transform InimigoAtivo
+    public CreatureManager InimigoAtivo
     {
-        get { return gerenteDeEncontro.Inimigo.transform; }
+        get { return gerenteDeEncontro.Inimigo; }
     }
     // Use this for initialization
     public void Start()
@@ -54,13 +54,8 @@ public class MbEncontros
 
             if (!luta && andado >= proxEncontro)
             {
-                
-                proxEncontro = SorteiaPassosParaEncontro();                
-                encontrado = criatureEncontrado();
-                InsereElementosDoEncontro.encontroPadrao(manager);
-                gerenteDeEncontro.InicializarEncounterManager(InsereInimigoEmCampo.RetornaInimigoEmCampo(encontrado, manager),manager);  
-                luta = true;
-                andado = 0;
+
+                IniciaEncontro();
             }
 
             if (gerenteDeEncontro.Update() && luta)
@@ -74,13 +69,27 @@ public class MbEncontros
         }
     }
 
+    void IniciaEncontro()
+    {
+        luta = true;
+        andado = 0;
+        proxEncontro = SorteiaPassosParaEncontro();
+        encontrado = criatureEncontrado();
+        gerenteDeEncontro.InicializarEncounterManager(InsereInimigoEmCampo.RetornaInimigoEmCampo(encontrado, manager), manager);
+        GameController.g.HudM.MenuDeI.FinalizarHud();
+        GameController.g.HudM.Btns.btnParaCriature.interactable = false;
+        InsereElementosDoEncontro.encontroPadrao(manager);
+    }
+
     void RetornaParaModoPasseio()
     {
         MonoBehaviour.Destroy(GameObject.Find("cilindroEncontro"));
-        luta = false;
+        GameController.g.HudM.Btns.btnParaCriature.interactable = true;
         heroi.emLuta = false;
+        luta = false;        
         manager.BotaoAlternar();        
         manager.transform.position = posHeroi;
+        
     }
 
     protected virtual bool lugarSeguro()

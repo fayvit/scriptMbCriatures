@@ -5,6 +5,7 @@ public class GameController : MonoBehaviour
 {
     public static GameController g;
     private CharacterManager manager;
+    private MbUsoDeItem usoDeItens;
 
     [SerializeField]private MbEncontros encontros;
     [SerializeField]private HudManager hudM;
@@ -19,7 +20,7 @@ public class GameController : MonoBehaviour
         get { return encontros.Luta; }
     }
 
-    public Transform InimigoAtivo
+    public CreatureManager InimigoAtivo
     {
         get { return encontros.InimigoAtivo; }
     }
@@ -30,6 +31,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         g = this;
+        usoDeItens = new MbUsoDeItem();
         VerificaSetarManager();
         encontros.Start();
     }
@@ -37,7 +39,9 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        usoDeItens.Update();
         encontros.Update();
+        HudM.MenuDeI.Update();
     }
 
     void VerificaSetarManager()
@@ -64,6 +68,59 @@ public class GameController : MonoBehaviour
         manager.BotaoAtacar();
     }
 
+    bool PodeAbrirMenuDeImagem(TipoDeDado tipo)
+    {
+        
+        if (HudM.MenuDeI.Aberto)
+        {
+            hudM.MenuDeI.FinalizarHud();
+            if (hudM.MenuDeI.Tipo == tipo)
+                return false;
+        }
+
+        if (usoDeItens.EstouUsandoItem)
+            return false;
+
+        return true;
+    }
+
+    public void BotaoMaisAtaques()
+    {
+        if (PodeAbrirMenuDeImagem(TipoDeDado.golpe))
+        {
+            VerificaSetarManager();
+            hudM.MenuDeI.IniciarHud(manager.Dados, TipoDeDado.golpe, manager.Dados.criaturesAtivos[0].GerenteDeGolpes.meusGolpes.Count,
+                (int i) =>
+                {
+                    manager.Dados.criaturesAtivos[0].GerenteDeGolpes.golpeEscolhido = i;
+                    hudM.MenuDeI.FinalizarHud();
+                },5
+                );
+        }
+    }
+
+    public void BotaItens()
+    {
+        if (PodeAbrirMenuDeImagem(TipoDeDado.item))
+        {
+            VerificaSetarManager();
+            hudM.MenuDeI.IniciarHud(manager.Dados, TipoDeDado.item, manager.Dados.itens.Count,FuncaoDoUseiItem, 15);
+        }
+    }
+
+    void FuncaoDoUseiItem(int indice)
+    {
+        if (!usoDeItens.EstouUsandoItem)
+        {
+            hudM.MenuDeI.FinalizarHud();
+
+            usoDeItens.Start(manager,
+                manager.Estado == EstadoDePersonagem.comMeuCriature
+                ? FluxoDeRetorno.criature
+                : FluxoDeRetorno.heroi);
+        }
+    }
+
     public void EncontroAgora()
     {
         encontros.ZerarPassosParaProxEncontro();
@@ -77,6 +134,7 @@ public class GameController : MonoBehaviour
     public void MeuCriatureComUmPV()
     {
         manager.Dados.criaturesAtivos[0].CaracCriature.meusAtributos.PV.Corrente = 1;
+        hudM.AtualizaHudHeroi(manager.Dados.criaturesAtivos[0]);
     }
 
     public void UmXpParaNivel()

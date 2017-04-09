@@ -1157,6 +1157,19 @@ public class bancoDeTextos{
 					"Perg. GosmaAcida","Perg.Multiplicar","Perg. Ventânia",
 					"Perg. Ventos Cortantes","Perg. Olhar Paralisante","Perg.Olhar Mal","Condecoração Beta","Perg. do Furacão de Folhas","Explosivos","Medalhão das Águas"
 				}},
+                {"listaDeGolpes",new List<string>()
+                {
+                    "Rajada de Agua","Turbo de Agua","Bola de Fogo","Rajada de Fogo","Lamina de Folha",
+                    "Furacão de Folhas","Chifre","Tapa","Garra","Chicote de mão","Dentada","Bico","Ventânia",
+                    "Ventos Cortantes","Gosma de Inseto","Gosma Acida","Chicote de Calda","Halter","Eletricidade",
+                    "Eletricidade Concentrada","Agulha Venenosa","Onda Venenosa","Chute","Espada","Sobre Salto",
+                    "Cascalho","Pedregulho","Rajada de Terra","Energia de Garras","Vingança da Terra","Psicose",
+                    "Hidro Bomba","Bola Psiquica","Toste Ataque","Tempestade de Folhas",
+                    "Chuva Venenosa","Multiplicar","Tempestade Eletrica","Avalanche","Anel do Olhar",
+                    "Olhar Mal","Cortina de Terra","Teletransporte","Sobrevoo","Olhar Paralisante",
+                    "Bomba de Gás","Rajada de Gás","Cortina de fumaça","Bastão","Sabre de Asas","Sabre de Bastão",
+                    "Sabre de Nadadeira","Sabre de Espadas","Tesoura","Ataque em giro"
+                }},
 				{"shopInfoItem",new List<string>()
 				{
 					" Maçã recupera 10 PV de um Criature",

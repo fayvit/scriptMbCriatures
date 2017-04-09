@@ -126,7 +126,12 @@ public class golpe: pontosBasicos{
 		aG.facaDestroy(aG);
 	}
 
-	public static string nomeEmLinguas(golpe nomeGolpe)
+    public static string nomeEmLinguas(nomesGolpes nomeGolpe)
+    {
+        return bancoDeTextos.falacoes[heroi.lingua]["listaDeGolpes"][(int)nomeGolpe];
+    }
+
+    public static string nomeEmLinguas(golpe nomeGolpe)
 	{
 
 		//		Debug.Log(itemX.ID);

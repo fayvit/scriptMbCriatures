@@ -16,7 +16,7 @@ public class heroi:MonoBehaviour{
 	public float tempoDoUltimoUsoDeItem = -100;
 	public float intervaloParaUsarItem = 30;
 	public static float tempoNoJogo = 0;
-	public static string lingua= "en-google";
+	public static string lingua= "pt-br";
     public static idioma linguaChave = idioma.pt_br;
     public static bool contraTreinador = false;
 	public static bool emLuta = false;
