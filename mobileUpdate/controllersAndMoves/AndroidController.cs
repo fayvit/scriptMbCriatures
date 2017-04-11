@@ -9,6 +9,8 @@ using System.Collections;
 /// </summary>
 public class AndroidController:MonoBehaviour
 {
+    public static AndroidController a;
+
     [SerializeField]private RectTransform joyImage;
     [SerializeField]private RectTransform pai;
     [SerializeField]private float deslJoy = 10;
@@ -23,6 +25,7 @@ public class AndroidController:MonoBehaviour
     // Use this for initialization
     public void Start()
     {
+        a = this;
         anchoredOriginal = pai.anchoredPosition;
         
         anchoredCentral = joyImage.anchoredPosition;
@@ -128,6 +131,16 @@ public class AndroidController:MonoBehaviour
             jId--;
         }
         
+    }
+
+    public void DesligarControlador()
+    {
+        pai.gameObject.SetActive(false);
+    }
+
+    public void LigarControlador()
+    {
+        pai.gameObject.SetActive(true);
     }
 
     /*

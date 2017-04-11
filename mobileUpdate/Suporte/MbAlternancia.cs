@@ -15,9 +15,10 @@ public class MbAlternancia
         else
         {
             MonoBehaviour.FindObjectOfType<AplicadorDeCamera>().FocarBasica(C.transform, C.MeuCriatureBase.alturaCamera, C.MeuCriatureBase.distanciaCamera);
-            C.Estado = CreatureManager.CreatureState.aPasseio;
-            C.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+            C.Estado = CreatureManager.CreatureState.aPasseio;                        
         }
+
+        C.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
     }
 
     public static void AoHeroi(CharacterManager manager)

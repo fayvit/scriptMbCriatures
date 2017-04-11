@@ -60,7 +60,10 @@ public class MbMaca : MbItens
         else
         {
             Estado = EstadoDeUsoDeItem.finalizaUsaItem;
-            Debug.Log("Você não precisa usar esse item nesse momento");
+            if (!ItemQuantitativo.UsaItemDeRecuperacao(CriatureAlvoDoItem.MeuCriatureBase))
+                PainelMensCriature.p.AtivarNovaMens(string.Format(
+                    bancoDeTextos.falacoes[heroi.lingua]["mensLuta"][2], 
+                    CriatureAlvoDoItem.MeuCriatureBase.NomeEmLinguas),30,5);
         }
     }
 
@@ -71,6 +74,7 @@ public class MbMaca : MbItens
 
         Manager.Estado = EstadoDePersonagem.parado;
         Manager.CriatureAtivo.Estado = CreatureManager.CreatureState.parado;
+        Manager.Mov.Animador.PararAnimacao();
 
         if (GameController.g.estaEmLuta)
             GameController.g.InimigoAtivo.Estado = CreatureManager.CreatureState.parado;

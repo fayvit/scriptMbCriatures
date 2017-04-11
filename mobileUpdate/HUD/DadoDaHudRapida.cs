@@ -27,6 +27,11 @@ public class DadoDaHudRapida : MonoBehaviour
                 imgDoDado.texture = elementosDoJogo.el.RetornaMini(nomeG);
                 txtDoDado.text = golpe.nomeEmLinguas(nomeG);
             break;
+            case TipoDeDado.criature:
+                containerDaQuantidade.SetActive(false);
+                imgDoDado.texture = elementosDoJogo.el.RetornaMini(dados.criaturesAtivos[indice+1].NomeID);
+                txtDoDado.text = dados.criaturesAtivos[indice+1].NomeEmLinguas;
+            break;
         }
     }
 

@@ -51,25 +51,8 @@ public class IA_Base
 
     protected virtual void AplicaIaDeAtaque()
     {
-        //para IA agressiva
-    }
-
-    /*
-    public void GerenciadorDeAcoes()
-    {
-        switch (estado)
-        {
-            case EstadoDeIA.atacando:
-                AplicaIaDeAtaque();
-            break;
-            case EstadoDeIA.perseguindo:
-
-            break;
-            case EstadoDeIA.regredirAGuarda:
-
-            break;
-        }
-    }*/
+        //sobrecarregado pela IA agressiva
+    }    
 
     public void ProcuraCriatureDoJogador()
     {
@@ -89,54 +72,10 @@ public class IA_Base
 
     }
 
-    /*
-    public void GerenciadorDeEstado()
+    public void SuspendeNav()
     {
-        switch (comportamento)
-        {
-            case ComportamentoDeIA.neutro:
-                // Ataque apenas se for atacado
-            break;
-            case ComportamentoDeIA.fugitivo:
-                //fugir quando personagem proximo
-            break;
-            case ComportamentoDeIA.agressivo:
-                if (Vector3.Distance(meuCriature.transform.position, criatureDoJogador.transform.position) < distanciaDeAgressao)
-                {
-                    estado = EstadoDeIA.atacando;
-                }
-            break;
-            case ComportamentoDeIA.guardiao:
-                if (Vector3.Distance(meuCriature.transform.position, criatureDoJogador.transform.position) >= distanciaDoGuardiao)
-                {
-                    estado = EstadoDeIA.regredirAGuarda;
-                } else
-                if (Vector3.Distance(meuCriature.transform.position, criatureDoJogador.transform.position) < distanciaDeAgressao)
-                {
-                    estado = EstadoDeIA.atacando;
-                }
-            break;
-        }
-    }*/
-    
+        siga.PareAgora();
+    }
+
 }
 
-/*
-public enum EstadoDeIA
-{
-    naoIniciado,
-    aPasseio,
-    brincando,
-    fugindo,
-    atacando,
-    perseguindo,
-    regredirAGuarda
-}
-
-public enum ComportamentoDeIA
-{
-    neutro,
-    agressivo,
-    fugitivo,
-    guardiao
-}*/

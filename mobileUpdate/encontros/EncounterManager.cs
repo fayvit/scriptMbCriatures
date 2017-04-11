@@ -145,12 +145,15 @@ public class EncounterManager
         inimigo.Estado = CreatureManager.CreatureState.parado;
         apresentaDerrota = new ApresentaDerrota(manager, inimigo);
         estado = EncounterState.morreuEmLuta;
+        GameController.g.HudM.MenuDeI.FinalizarHud();
     }
 
     public void VerificaContainerDeAtributos()
     {
         aDoI = inimigo.MeuCriatureBase.CaracCriature.meusAtributos;
-        aDoH = manager.CriatureAtivo.MeuCriatureBase.CaracCriature.meusAtributos;
+
+        if(manager.CriatureAtivo)
+            aDoH = manager.CriatureAtivo.MeuCriatureBase.CaracCriature.meusAtributos;
     }
 
     void UmaVitoria()

@@ -86,6 +86,5 @@ public class ApresentaDerrota
         replace = new ReplaceManager(manager,manager.CriatureAtivo.transform,FluxoDeRetorno.criature);
         GameController.g.HudM.EntraCriatures.FinalizarHud();
         PainelMensCriature.p.EsconderMensagem();
-        
     }
 }

@@ -6,18 +6,19 @@ public class GameController : MonoBehaviour
     public static GameController g;
     private CharacterManager manager;
     private MbUsoDeItem usoDeItens;
+    private ReplaceManager replace;
 
     [SerializeField]private MbEncontros encontros;
     [SerializeField]private HudManager hudM;
 
-    public HudManager HudM
-    {
-        get { return hudM; }
-    }
-
     public bool estaEmLuta
     {
         get { return encontros.Luta; }
+    }
+
+    public HudManager HudM
+    {
+        get { return hudM; }
     }
 
     public CreatureManager InimigoAtivo
@@ -25,7 +26,13 @@ public class GameController : MonoBehaviour
         get { return encontros.InimigoAtivo; }
     }
 
-
+    public CharacterManager Manager
+    {
+        get {
+            VerificaSetarManager();
+            return manager;
+        }
+    }
 
     // Use this for initialization
     void Start()
@@ -42,6 +49,20 @@ public class GameController : MonoBehaviour
         usoDeItens.Update();
         encontros.Update();
         HudM.MenuDeI.Update();
+
+        if (replace != null)
+            if (replace.Update())
+            {
+                if (replace.Fluxo == FluxoDeRetorno.criature)
+                {
+                    if (estaEmLuta)
+                        encontros.InimigoAtivo.Estado = CreatureManager.CreatureState.selvagem;
+
+                    manager.AoCriature(encontros.InimigoAtivo);
+                    GameController.g.HudM.AtualizaHudHeroi(manager.CriatureAtivo.MeuCriatureBase);
+                    replace = null;
+                }
+            }
     }
 
     void VerificaSetarManager()
@@ -52,20 +73,17 @@ public class GameController : MonoBehaviour
 
     public void BotaoPulo()
     {
-        VerificaSetarManager();
-        manager.IniciaPulo(); 
+        Manager.IniciaPulo(); 
     }
 
     public void BotaoAlternar()
     {
-        VerificaSetarManager();
-        manager.BotaoAlternar();
+        Manager.BotaoAlternar();
     }
 
     public void BotaoAtaque()
     {
-        VerificaSetarManager();
-        manager.BotaoAtacar();
+        Manager.BotaoAtacar();
     }
 
     bool PodeAbrirMenuDeImagem(TipoDeDado tipo)
@@ -80,6 +98,9 @@ public class GameController : MonoBehaviour
 
         if (usoDeItens.EstouUsandoItem)
             return false;
+
+        if (replace != null)
+            return !replace.EstouTrocandoDeCriature;
 
         return true;
     }
@@ -108,6 +129,32 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void BotaoMaisCriature()
+    {
+        if (PodeAbrirMenuDeImagem(TipoDeDado.criature))
+        {
+            VerificaSetarManager();
+            hudM.MenuDeI.IniciarHud(manager.Dados, TipoDeDado.criature, manager.Dados.criaturesAtivos.Count - 1,FuncaoTrocarCriature, 5);
+        }
+    }
+
+    void FuncaoTrocarCriature(int indice)
+    {
+        if (estaEmLuta)
+        {
+            encontros.InimigoAtivo.Estado = CreatureManager.CreatureState.parado;
+            //encontros.InimigoAtivo.Mov.Animador.PararAnimacao();
+        }
+
+        manager.Dados.criatureSai = indice+1;
+        hudM.MenuDeI.FinalizarHud();
+        PainelMensCriature.p.EsconderMensagem();
+        FluxoDeRetorno fluxo = manager.Estado == EstadoDePersonagem.comMeuCriature?FluxoDeRetorno.criature:FluxoDeRetorno.heroi;
+        replace = new ReplaceManager(manager, manager.CriatureAtivo.transform, fluxo);
+        manager.Estado = EstadoDePersonagem.parado;
+
+    }
+
     void FuncaoDoUseiItem(int indice)
     {
         if (!usoDeItens.EstouUsandoItem)
@@ -118,9 +165,12 @@ public class GameController : MonoBehaviour
                 manager.Estado == EstadoDePersonagem.comMeuCriature
                 ? FluxoDeRetorno.criature
                 : FluxoDeRetorno.heroi);
+
+            manager.Estado = EstadoDePersonagem.parado;
         }
     }
 
+    #region botões de teste
     public void EncontroAgora()
     {
         encontros.ZerarPassosParaProxEncontro();
@@ -133,13 +183,19 @@ public class GameController : MonoBehaviour
 
     public void MeuCriatureComUmPV()
     {
-        manager.Dados.criaturesAtivos[0].CaracCriature.meusAtributos.PV.Corrente = 1;
+        Manager.Dados.criaturesAtivos[0].CaracCriature.meusAtributos.PV.Corrente = 1;
+        hudM.AtualizaHudHeroi(manager.Dados.criaturesAtivos[0]);
+    }
+    public void MeuCriatureComUZeroPE()
+    {
+        Manager.Dados.criaturesAtivos[0].CaracCriature.meusAtributos.PE.Corrente = 0;
         hudM.AtualizaHudHeroi(manager.Dados.criaturesAtivos[0]);
     }
 
     public void UmXpParaNivel()
     {
-        IGerenciadorDeExperiencia gXP = manager.Dados.criaturesAtivos[0].CaracCriature.mNivel;
+        IGerenciadorDeExperiencia gXP = Manager.Dados.criaturesAtivos[0].CaracCriature.mNivel;
         gXP.XP = gXP.ParaProxNivel - 1;
     }
+    #endregion
 }

@@ -6,13 +6,24 @@ public class ReplaceManager
     private AnimaBraco animaB;
     private FluxoDeRetorno fluxo;
     private CharacterManager manager;
+    private bool estouTrocandoDeCriature = false;
 
+    public FluxoDeRetorno Fluxo
+    {
+        get { return fluxo; }
+    }
+
+    public bool EstouTrocandoDeCriature
+    {
+        get { return estouTrocandoDeCriature; }
+    }
     public ReplaceManager(CharacterManager manager,Transform alvo,FluxoDeRetorno fluxo)
     {
         this.fluxo = fluxo;
         this.manager = manager;
         List<CriatureBase> lista = manager.Dados.criaturesAtivos;
         CriatureBase temp = lista[0];
+        estouTrocandoDeCriature = true;
         lista[0] = lista[manager.Dados.criatureSai];
         lista[manager.Dados.criatureSai] = temp;
         animaB = new AnimaBraco(manager, alvo);
@@ -20,22 +31,25 @@ public class ReplaceManager
 
     public bool Update()
     {
-        if (!animaB.AnimaTroca())
+        if (estouTrocandoDeCriature)
         {
-            if (!animaB.AnimaEnvia())
+            if (!animaB.AnimaTroca())
             {
-                if (fluxo == FluxoDeRetorno.heroi)
+                if (!animaB.AnimaEnvia())
                 {
-                    manager.AoHeroi();
+                    if (fluxo == FluxoDeRetorno.heroi)
+                    {
+                        manager.AoHeroi();
+                    }
+
+                    manager.Mov.Animador.ResetaTroca();
+                    manager.Mov.Animador.ResetaEnvia();
+                    estouTrocandoDeCriature = false;
                 }
-                
-                manager.Mov.Animador.ResetaTroca();
-                manager.Mov.Animador.ResetaEnvia();
-                return true;
             }
         }
 
-        return false;
+        return !estouTrocandoDeCriature;
     }
 }
 

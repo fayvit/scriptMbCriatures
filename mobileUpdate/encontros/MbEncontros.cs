@@ -54,13 +54,11 @@ public class MbEncontros
 
             if (!luta && andado >= proxEncontro)
             {
-
                 IniciaEncontro();
             }
 
             if (gerenteDeEncontro.Update() && luta)
-            {
-                
+            {                
                 RetornaParaModoPasseio();
             }
 

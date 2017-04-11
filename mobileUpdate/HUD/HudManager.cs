@@ -16,7 +16,12 @@ public class HudManager
 
     [SerializeField]private PainelUmaMensagem umaMensagem;
     [SerializeField]private PainelDeConfirmacao confirmacao;
+    [SerializeField]private PauseMenu pauseM;
 
+    public PauseMenu PauseM
+    {
+        get { return pauseM; }
+    }
     public PainelUmaMensagem UmaMensagem
     {
         get { return umaMensagem; }
@@ -98,6 +103,18 @@ public class HudManager
     public void AtualizaHudHeroi(CriatureBase C)
     {
         AtualizaDadosDaHud(HudCriatureAtivo, C);
+    }
+
+    public void DesligaControladores()
+    {
+        containerDoInimigo.transform.parent.gameObject.SetActive(false);
+        btns.btnAtaque.transform.parent.gameObject.SetActive(false);
+    }
+
+    public void ligarControladores()
+    {
+        containerDoInimigo.transform.parent.gameObject.SetActive(true);
+        btns.btnAtaque.transform.parent.gameObject.SetActive(true);
     }
 }
 

@@ -27,10 +27,14 @@ public class CharacterManager : MonoBehaviour {
     public CreatureManager CriatureAtivo
     {
         get {
-            if(criatureAtivo==null)
-                criatureAtivo = GameObject.Find("CriatureAtivo").GetComponent<CreatureManager>();
-
-            return criatureAtivo; }
+            if (criatureAtivo == null)
+            {
+                GameObject G = GameObject.Find("CriatureAtivo");
+                if(G)
+                    criatureAtivo = G.GetComponent<CreatureManager>();
+            }
+            return criatureAtivo;
+        }
     }
 
     public MovimentacaoBasica Mov

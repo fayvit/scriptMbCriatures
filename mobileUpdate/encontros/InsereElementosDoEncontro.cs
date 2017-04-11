@@ -41,7 +41,7 @@ public class InsereElementosDoEncontro
 
     protected static void alternanciaParaCriature(CharacterManager manager)
     {
-        manager.BotaoAlternar();
+        manager.AoCriature();
     }
 
     protected static void impedeMovimentoDoCriature(CreatureManager C)
