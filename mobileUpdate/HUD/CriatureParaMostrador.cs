@@ -50,7 +50,7 @@ public class CriatureParaMostrador : MonoBehaviour
         if (int.Parse(txtPVnum.text.Split('/')[0]) > 0)
         {
             GameController.g.HudM.Confirmacao.AtivarPainelDeConfirmacao(QueroColocarEsse, DeVoltaAoMenu,
-                string.Format(bancoDeTextos.RetornaTextoDoIdioma(ChaveDeTexto.criatureParaMostrador)[0], nomeCriature.text)
+                string.Format(bancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.criatureParaMostrador)[0], nomeCriature.text)
                 );
             //if (cliqueDoPersonagem != null)
             //    cliqueDoPersonagem(transform.GetSiblingIndex() - 1);
@@ -58,7 +58,7 @@ public class CriatureParaMostrador : MonoBehaviour
         else
         {
             GameController.g.HudM.UmaMensagem.ConstroiPainelUmaMensagem(DeVoltaAoMenu,
-                string.Format(bancoDeTextos.RetornaTextoDoIdioma(ChaveDeTexto.criatureParaMostrador)[1], nomeCriature.text)
+                string.Format(bancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.criatureParaMostrador)[1], nomeCriature.text)
                 );
         }
     }

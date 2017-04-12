@@ -53,15 +53,23 @@ public class GameController : MonoBehaviour
         if (replace != null)
             if (replace.Update())
             {
-                if (replace.Fluxo == FluxoDeRetorno.criature)
+                if (replace.Fluxo == FluxoDeRetorno.criature || replace.Fluxo==FluxoDeRetorno.menuCriature)
                 {
                     if (estaEmLuta)
                         encontros.InimigoAtivo.Estado = CreatureManager.CreatureState.selvagem;
 
-                    manager.AoCriature(encontros.InimigoAtivo);
-                    GameController.g.HudM.AtualizaHudHeroi(manager.CriatureAtivo.MeuCriatureBase);
-                    replace = null;
+                    manager.AoCriature(encontros.InimigoAtivo);                    
+                    
                 }
+
+                if (replace.Fluxo == FluxoDeRetorno.menuCriature || replace.Fluxo == FluxoDeRetorno.menuHeroi)
+                {
+                    hudM.PauseM.PausarJogo();
+                    hudM.PauseM.BotaoCriature();
+                }
+
+                replace = null;
+                GameController.g.HudM.AtualizaHudHeroi(manager.CriatureAtivo.MeuCriatureBase);
             }
     }
 
@@ -134,39 +142,78 @@ public class GameController : MonoBehaviour
         if (PodeAbrirMenuDeImagem(TipoDeDado.criature))
         {
             VerificaSetarManager();
-            hudM.MenuDeI.IniciarHud(manager.Dados, TipoDeDado.criature, manager.Dados.criaturesAtivos.Count - 1,FuncaoTrocarCriature, 5);
+            hudM.MenuDeI.IniciarHud(
+                manager.Dados, 
+                TipoDeDado.criature, 
+                manager.Dados.criaturesAtivos.Count - 1,
+                FuncaoTrocarCriatureSemMenu, 5);
         }
     }
 
-    void FuncaoTrocarCriature(int indice)
+    public bool EmEstadoDeAcao(bool chao = false)
     {
-        if (estaEmLuta)
+        bool foi = false;
+        EstadoDePersonagem estadoP = Manager.Estado;
+        CreatureManager.CreatureState estadoC = manager.CriatureAtivo.Estado;
+
+
+        if (estadoP == EstadoDePersonagem.comMeuCriature && !chao)
+            chao = Manager.CriatureAtivo.Mov.NoChao(Manager.CriatureAtivo.MeuCriatureBase.CaracCriature.distanciaFundamentadora);
+        else if (estadoP == EstadoDePersonagem.aPasseio && !chao)
+            chao = Manager.Mov.NoChao(0.01f);
+
+        if (estadoP == EstadoDePersonagem.comMeuCriature && 
+            chao &&
+            (estadoC == CreatureManager.CreatureState.emLuta 
+            || estadoC == CreatureManager.CreatureState.aPasseio)
+            )
+            foi = true;
+        else if (estadoP == EstadoDePersonagem.aPasseio&& chao)
+            foi = true;
+
+        return foi;
+    }
+
+    void FuncaoTrocarCriatureSemMenu(int indice)
+    {
+        FluxoDeRetorno fluxo = manager.Estado == EstadoDePersonagem.comMeuCriature ? FluxoDeRetorno.criature : FluxoDeRetorno.heroi;
+        FuncaoTrocarCriature(indice, fluxo);
+    }
+
+    public void FuncaoTrocarCriature(int indice, FluxoDeRetorno fluxo, bool bugDoTesteChao = false)
+    {
+        if (EmEstadoDeAcao(bugDoTesteChao))
         {
-            encontros.InimigoAtivo.Estado = CreatureManager.CreatureState.parado;
-            //encontros.InimigoAtivo.Mov.Animador.PararAnimacao();
+            if (estaEmLuta)
+            {
+                encontros.InimigoAtivo.Estado = CreatureManager.CreatureState.parado;
+                //encontros.InimigoAtivo.Mov.Animador.PararAnimacao();
+            }
+
+            manager.Dados.criatureSai = indice;
+            
+            replace = new ReplaceManager(manager, manager.CriatureAtivo.transform, fluxo);
         }
 
-        manager.Dados.criatureSai = indice+1;
-        hudM.MenuDeI.FinalizarHud();
-        PainelMensCriature.p.EsconderMensagem();
-        FluxoDeRetorno fluxo = manager.Estado == EstadoDePersonagem.comMeuCriature?FluxoDeRetorno.criature:FluxoDeRetorno.heroi;
-        replace = new ReplaceManager(manager, manager.CriatureAtivo.transform, fluxo);
-        manager.Estado = EstadoDePersonagem.parado;
-
     }
+
+
 
     void FuncaoDoUseiItem(int indice)
     {
-        if (!usoDeItens.EstouUsandoItem)
+        if (EmEstadoDeAcao())
         {
-            hudM.MenuDeI.FinalizarHud();
+            if (!usoDeItens.EstouUsandoItem)
+            {
+                hudM.MenuDeI.FinalizarHud();
 
-            usoDeItens.Start(manager,
-                manager.Estado == EstadoDePersonagem.comMeuCriature
-                ? FluxoDeRetorno.criature
-                : FluxoDeRetorno.heroi);
+                usoDeItens.Start(manager,
+                    manager.Estado == EstadoDePersonagem.comMeuCriature
+                    ? FluxoDeRetorno.criature
+                    : FluxoDeRetorno.heroi);
 
-            manager.Estado = EstadoDePersonagem.parado;
+                manager.Estado = EstadoDePersonagem.parado;
+            }
         }
     }
 

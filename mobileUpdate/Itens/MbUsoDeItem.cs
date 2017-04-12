@@ -32,7 +32,8 @@ public class MbUsoDeItem
             case FluxoDeRetorno.heroi:
                 esseItem.IniciaUsoDeHeroi(gerente.gameObject);
             break;
-            case FluxoDeRetorno.menu:
+            case FluxoDeRetorno.menuHeroi:
+            case FluxoDeRetorno.menuCriature:
                 esseItem.IniciaUsoDeMenu(gerente.gameObject);
             break;
         }
@@ -51,7 +52,8 @@ public class MbUsoDeItem
                 case FluxoDeRetorno.heroi:
                     retorno = !esseItem.AtualizaUsoDeHeroi();
                 break;
-                case FluxoDeRetorno.menu:
+                case FluxoDeRetorno.menuHeroi:
+                case FluxoDeRetorno.menuCriature:
                     retorno = !esseItem.AtualizaUsoDeMenu();
                 break;
             }
@@ -68,7 +70,8 @@ public class MbUsoDeItem
                         Debug.Log("ola");
                         gerente.AoHeroi();
                     break;
-                    case FluxoDeRetorno.menu:
+                    case FluxoDeRetorno.menuHeroi:
+                    case FluxoDeRetorno.menuCriature:
 
                     break;
                 }

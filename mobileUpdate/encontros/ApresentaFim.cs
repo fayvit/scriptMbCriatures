@@ -52,7 +52,7 @@ public class ApresentaFim
                 {
                     Atributos A = inimigoDerrotado.MeuCriatureBase.CaracCriature.meusAtributos;
                     PainelMensCriature.p.AtivarNovaMens(
-                        string.Format(bancoDeTextos.RetornaTextoDoIdioma(ChaveDeTexto.apresentaFim)[0],
+                        string.Format(bancoDeTextos.RetornaFraseDoIdioma(ChaveDeTexto.apresentaFim),
                         criatureDoJogador.MeuCriatureBase.NomeID,
                         (int)((float)A.PV.Maximo / 2),
                         A.PV.Maximo), 20);

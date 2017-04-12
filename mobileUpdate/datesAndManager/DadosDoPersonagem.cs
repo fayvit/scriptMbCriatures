@@ -14,8 +14,8 @@ public class DadosDoPersonagem
     public void InicializadorDosDados()
     {
         criaturesAtivos = new List<CriatureBase>() {
-             new CriatureBase(nomesCriatures.Florest),
-              new CriatureBase(nomesCriatures.Xuash),
+             new CriatureBase(nomesCriatures.Xuash),
+              new CriatureBase(nomesCriatures.Florest),
               new CriatureBase(nomesCriatures.Xuash),
              new CriatureBase(nomesCriatures.Florest)
         };

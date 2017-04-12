@@ -109,7 +109,8 @@ public class CreatureManager : MonoBehaviour
                     dir = controle.ValorParaEixos();
                     if (estado == CreatureState.emLuta)
                         dir = direcaoInduzida(dir.x, dir.z);
-                }
+                }else
+                    controle = FindObjectOfType<AndroidController>();
 
                 if (mov == null)
                 {
@@ -121,8 +122,6 @@ public class CreatureManager : MonoBehaviour
                            transform = transform
                        }
                         );
-
-                    controle = FindObjectOfType<AndroidController>();
                 }
                 else
                 {
@@ -150,7 +149,7 @@ public class CreatureManager : MonoBehaviour
         
         if (!DisparadorDoGolpe.Dispara(meuCriatureBase,gameObject))
         {
-            string[] textos = bancoDeTextos.RetornaTextoDoIdioma(ChaveDeTexto.usoDeGolpe).ToArray();
+            string[] textos = bancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.usoDeGolpe).ToArray();
             if (gg.UltimoUso + gg.TempoDeReuso >= Time.time)
                 PainelMensCriature.p.AtivarNovaMens(
                     string.Format(textos[0], comandos.mostradorDeTempo(gg.UltimoUso - (Time.time - gg.TempoDeReuso)))

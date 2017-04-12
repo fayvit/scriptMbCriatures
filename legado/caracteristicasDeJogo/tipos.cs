@@ -69,6 +69,11 @@ public class tipos  {
 		get{return _nome;}
 		set{_nome = value;}
 	}
+
+    public static string NomeEmLinguas(nomeTipos nome)
+    {
+        return nome.ToString();
+    }
 }
 
 public enum nomeTipos

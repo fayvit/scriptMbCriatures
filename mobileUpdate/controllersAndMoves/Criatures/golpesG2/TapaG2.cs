@@ -3,6 +3,14 @@
 [System.Serializable]
 public class TapaG2 : GolpeBase
 {
+    private AtualizadorDeImpactos aImpacto = new AtualizadorDeImpactos();
+    private CaracteristicasDeImpacto carac = new CaracteristicasDeImpacto()
+    {
+        noImpacto = "impactoComum",
+        nomeTrail = "umCuboETrail",
+        parentearNoOsso = true
+    };
+
     public TapaG2() : base(new ContainerDeCaracteristicasDeGolpe()
     {
         nome = nomesGolpes.tapa,
@@ -12,7 +20,7 @@ public class TapaG2 : GolpeBase
         potenciaCorrente = 1,
         potenciaMaxima = 8,
         potenciaMinima = 1,
-        tempoDeReuso = 5,        
+        tempoDeReuso = 3.5f,        
         TempoNoDano = 0.25f,
         distanciaDeRepulsao = 45f,
         velocidadeDeRepulsao = 23,
@@ -24,14 +32,6 @@ public class TapaG2 : GolpeBase
     {
 
     }
-
-    private AtualizadorDeImpactos aImpacto = new AtualizadorDeImpactos();
-    private CaracteristicasDeImpacto carac = new CaracteristicasDeImpacto()
-    {
-        noImpacto = "impactoComum",
-        nomeTrail = "umCuboETrail",
-        parentearNoOsso = true
-    };
 
     public override void IniciaGolpe(GameObject G)
     {

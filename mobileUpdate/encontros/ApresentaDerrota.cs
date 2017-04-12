@@ -32,7 +32,7 @@ public class ApresentaDerrota
     {
         this.manager = manager;
         this.inimigoDerrotado = inimigoDerrotado;
-        textos = bancoDeTextos.RetornaTextoDoIdioma(ChaveDeTexto.apresentaDerrota).ToArray();
+        textos = bancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.apresentaDerrota).ToArray();
         fase = FaseDaDerrota.abreMensagem;
     }
 

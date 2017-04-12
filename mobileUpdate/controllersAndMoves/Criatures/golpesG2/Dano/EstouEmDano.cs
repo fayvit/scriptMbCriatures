@@ -48,7 +48,7 @@ public class EstouEmDano : MonoBehaviour
         if (tempoDeDano > tempoNoDano)
         {
 
-          //  gerente.LiberaMovimento(EstadoCriature.emDano);    
+            gerente.LiberaMovimento(CreatureManager.CreatureState.emDano);    
             animator.SetBool("dano1", false);
             Destroy(this);
         }

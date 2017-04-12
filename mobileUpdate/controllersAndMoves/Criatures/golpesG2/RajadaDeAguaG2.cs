@@ -14,7 +14,7 @@ public class RajadaDeAguaG2 : GolpeBase
         tempoDeMoveMax = 1 ,
         tempoDeMoveMin = 0,
         tempoDeDestroy = 2,
-        TempoNoDano = 0.75f       
+        TempoNoDano = 1.75f       
     }
         )
     {

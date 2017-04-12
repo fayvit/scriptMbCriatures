@@ -19,7 +19,7 @@ public class PassouDeNivelEmLuta
     {
         this.oNivelado = oNivelado;
         PainelMensCriature.p.AtivarNovaMens(
-            string.Format(bancoDeTextos.RetornaTextoDoIdioma(ChaveDeTexto.passouDeNivel)[0],
+            string.Format(bancoDeTextos.RetornaFraseDoIdioma(ChaveDeTexto.passouDeNivel),
             oNivelado.NomeEmLinguas,
             oNivelado.CaracCriature.mNivel.Nivel)
             , 20);

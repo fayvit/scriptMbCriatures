@@ -37,7 +37,7 @@ public class DadoDaHudRapida : MonoBehaviour
 
     public void FuncaoDoBotao()
     {
-        aoClique(transform.GetSiblingIndex() - 1);
+        aoClique(transform.GetSiblingIndex());
     }
 }
 

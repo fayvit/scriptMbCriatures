@@ -38,6 +38,7 @@ public class Dano
 
     public static void AplicaDano(CreatureManager doAtacado,GameObject atacante,IGolpeBase golpe,Vector3 dirDano)
     {
+        doAtacado.Estado = CreatureManager.CreatureState.emDano;
         //Transform T = doAtacado.transform;
         Animator animatorDoAtacado = doAtacado.GetComponent<Animator>();
       //  doAtacado.MudaEmDano();

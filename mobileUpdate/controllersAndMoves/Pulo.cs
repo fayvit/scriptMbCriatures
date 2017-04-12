@@ -9,6 +9,7 @@ public class Pulo
     float ultimoYFundamentado = 0;
     float tempoDePulo = 0;
     bool EstouSubindo = false;
+
     public Pulo(CaracteristicasDePulo caracteristicas, ElementosDeMovimentacao elementos)
     {
         this.caracteristicas = caracteristicas;

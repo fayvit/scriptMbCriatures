@@ -7,9 +7,11 @@ public class MovimentacaoBasica
 
     [SerializeField]private CaracteristicasDeMovimentacao caracMov;
     [SerializeField]private ElementosDeMovimentacao elementos;
+
     private Pulo pulo;
     private Vector3 direcaoMovimento = Vector3.zero;
     private bool gravidadeAplicavel = true;
+    private bool noChao = false;
     private float velocidadeDescendo = 0;
 
     private float targetSpeed = 0;
@@ -43,6 +45,8 @@ public class MovimentacaoBasica
         pulo = new Pulo(caracMov.caracPulo, elementos);
     }
 
+
+
     /*
     public Vector3 DirecaoAlvoControlada(EstadoDeCamera estadoC)
     {
@@ -60,10 +64,17 @@ public class MovimentacaoBasica
         return (h * right + v * forward);
     }
     */
+    public bool NoChao(float distanciaFundamentadora)
+    {
+        if (Time.timeScale > 0)
+            noChao = comandos.noChaoS(elementos.controle, distanciaFundamentadora);
+
+        return noChao;
+    }
 
     public void AplicadorDeMovimentos(Vector3 dir,float distanciaFundamentadora = 0.01f,Acoes acaoNaMovimentacao = null)
     {
-        if (comandos.noChaoS(elementos.controle, distanciaFundamentadora))
+        if (NoChao(distanciaFundamentadora))
         {
             movimentacao(dir);
             if (acaoNaMovimentacao != null)

@@ -20,7 +20,7 @@ public class GarraG2 : GolpeBase
         potenciaCorrente = 1,
         potenciaMaxima = 8,
         potenciaMinima = 1,
-        tempoDeReuso = 5,
+        tempoDeReuso = 3.5f,
         TempoNoDano = 0.25f,
         velocidadeDeGolpe = 15f,
         distanciaDeRepulsao = 45f,

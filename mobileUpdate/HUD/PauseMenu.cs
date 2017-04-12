@@ -5,6 +5,7 @@ using System.Collections;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField]private Text cristais;
+    [SerializeField]private PainelStatus pStatus;
     void OnEnable()
     {
         cristais.text = "Cristais:\t\t " + GameController.g.Manager.Dados.cristais;
@@ -14,7 +15,7 @@ public class PauseMenu : MonoBehaviour
     {
 
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -23,12 +24,14 @@ public class PauseMenu : MonoBehaviour
 
     public void PausarJogo()
     {
+        
         gameObject.SetActive(true);
         Time.timeScale = 0;
-        pausaJogo.pause = true;            
-        PainelMensCriature.p.AtivarNovaMens("Jogo Pausado",30);
+        pausaJogo.pause = true;
+        PainelMensCriature.p.AtivarNovaMens(bancoDeTextos.RetornaFraseDoIdioma(ChaveDeTexto.jogoPausado), 30);
         GameController.g.HudM.DesligaControladores();
         AndroidController.a.DesligarControlador();
+        
     }
 
     public void VoltarAoJogo()
@@ -39,6 +42,11 @@ public class PauseMenu : MonoBehaviour
         PainelMensCriature.p.EsconderMensagem();
         GameController.g.HudM.ligarControladores();
         AndroidController.a.LigarControlador();
+    }
+
+    public void BotaoCriature()
+    {
+        pStatus.gameObject.SetActive(true);
     }
 
     public void CriaturesStatus()

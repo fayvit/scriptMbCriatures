@@ -49,6 +49,19 @@ public class bancoDeTextos{
                     {
                         "{0} conseguiu alcançar o <color=yellow>nível {1}</color>"
                     }
+                },
+                {
+                    ChaveDeTexto.naoPodeEssaAcao,new List<string>()
+                    {
+                        "<color=orange>Seu personagem não está em condições de realizar essa ação</color>",
+                        "<color=orange>O Criature {0} já está em campo</color>"
+                    }
+                },
+                {
+                    ChaveDeTexto.jogoPausado,new List<string>()
+                    {
+                        "Jogo Pausado"
+                    }
                 }
             }
         }
@@ -2617,12 +2630,17 @@ public class bancoDeTextos{
         }
     }
 
-    public static List<string> RetornaTextoDoIdioma(ChaveDeTexto chave)
+    public static List<string> RetornaListaDeTextoDoIdioma(ChaveDeTexto chave)
     {
         return falacoesComChave[heroi.linguaChave][chave];
     }
 
-	/*
+    public static string RetornaFraseDoIdioma(ChaveDeTexto chave)
+    {
+        return falacoesComChave[heroi.linguaChave][chave][0];
+    }
+
+    /*
 	public Dictionary<string,Dictionary<string,int>> nome 
 	= new Dictionary<string, Dictionary<string,int>>()
 		{{"nome",
@@ -2643,5 +2661,7 @@ public enum ChaveDeTexto
     apresentaFim,
     apresentaDerrota,
     criatureParaMostrador,
-    passouDeNivel
+    passouDeNivel,
+    naoPodeEssaAcao,
+    jogoPausado
 }
