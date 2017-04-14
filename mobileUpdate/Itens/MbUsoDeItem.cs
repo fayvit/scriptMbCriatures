@@ -54,7 +54,7 @@ public class MbUsoDeItem
                 break;
                 case FluxoDeRetorno.menuHeroi:
                 case FluxoDeRetorno.menuCriature:
-                    retorno = !esseItem.AtualizaUsoDeMenu();
+                    retorno = !esseItem.AtualizaUsoDeMenu();// parece desnecessario
                 break;
             }
 
@@ -67,12 +67,11 @@ public class MbUsoDeItem
                         gerente.AoCriature(GameController.g.InimigoAtivo);
                     break;
                     case FluxoDeRetorno.heroi:
-                        Debug.Log("ola");
                         gerente.AoHeroi();
                     break;
                     case FluxoDeRetorno.menuHeroi:
                     case FluxoDeRetorno.menuCriature:
-
+                        //GameController.g.HudM.PauseM.FinalizaUsoDeItemComMenu();
                     break;
                 }
 

@@ -54,13 +54,27 @@ public class bancoDeTextos{
                     ChaveDeTexto.naoPodeEssaAcao,new List<string>()
                     {
                         "<color=orange>Seu personagem não está em condições de realizar essa ação</color>",
-                        "<color=orange>O Criature {0} já está em campo</color>"
+                        "<color=orange>O Criature {0} já está em campo</color>",
+                        "<color=orange>Selecione um item antes de clicar no botão usar</color>"
                     }
                 },
                 {
                     ChaveDeTexto.jogoPausado,new List<string>()
                     {
                         "Jogo Pausado"
+                    }
+                },
+                {
+                    ChaveDeTexto.selecioneParaOrganizar,new List<string>()
+                    {
+                        "Selecione o item para ser reposicionado",
+                        "Selecione o item para trocar de posição com {0}"
+                    }
+                },
+                {
+                    ChaveDeTexto.emQuem,new List<string>()
+                    {
+                        "<color=yellow>Em qual criature você irá usar o item {0}</color>"
                     }
                 }
             }
@@ -1149,7 +1163,9 @@ public class bancoDeTextos{
 					"O Criature {0} não pode aprender o golpe {1}",
 					"{0} não usou o item {1}",
 					"Tem certeza que deseja usar o item {0} ?",
-					" Cesar Corean não pode usar esse item nesse local"
+					" Cesar Corean não pode usar esse item nesse local",
+                    "{0} não precisa usar esse item nesse momento",
+                    "Você não pode usar itens pelo menu enquanto estiver em luta"
 				}},
 				{"apresentaInimigo",new List<string>()
 				{
@@ -2663,5 +2679,7 @@ public enum ChaveDeTexto
     criatureParaMostrador,
     passouDeNivel,
     naoPodeEssaAcao,
-    jogoPausado
+    jogoPausado,
+    selecioneParaOrganizar,
+    emQuem
 }

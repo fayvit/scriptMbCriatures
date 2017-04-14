@@ -55,11 +55,11 @@ public class ParticulasDeSubstituicao
 
         if (direito)
             return meuHeroi
-                .transform.Find(nomeEsqueleto + "/hips/spine/chest/shoulder_R/upper_arm_R/forearm_R/hand_R")
+                .transform.Find(nomeEsqueleto + "/hips/spine/chest/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_02_R")
                     .transform.position;
         else
             return meuHeroi
-            .transform.Find(nomeEsqueleto + "/hips/spine/chest/shoulder_L/upper_arm_L/forearm_L/hand_L")
+            .transform.Find(nomeEsqueleto + "/hips/spine/chest/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_02_L")
                 .transform.position;
 
     }

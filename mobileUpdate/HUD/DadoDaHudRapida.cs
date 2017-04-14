@@ -5,11 +5,18 @@ using System.Collections;
 public class DadoDaHudRapida : MonoBehaviour
 {
     [SerializeField]private RawImage imgDoDado;
+    [SerializeField]private Image daSelecao;
     [SerializeField]private Text txtDoDado;
     [SerializeField]private Text quantidade;
     [SerializeField]private GameObject containerDaQuantidade;
 
     private System.Action<int> aoClique;
+
+    public Image DaSelecao
+    {
+        get { return daSelecao; }
+        set { daSelecao = value; }
+    }
 
     public void SetarDados(DadosDoPersonagem dados,int indice,TipoDeDado tipo,System.Action<int> ao)
     {
@@ -37,7 +44,7 @@ public class DadoDaHudRapida : MonoBehaviour
 
     public void FuncaoDoBotao()
     {
-        aoClique(transform.GetSiblingIndex());
+        aoClique(transform.GetSiblingIndex()-1);
     }
 }
 

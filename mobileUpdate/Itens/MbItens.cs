@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MbItens
+public class MbItens:System.ICloneable
 {
     [SerializeField]private nomeIDitem nomeID;
     [SerializeField]private bool usavel;
@@ -113,7 +113,11 @@ public class MbItens
     }
 
 
-    public static bool RetirarUmItem(CharacterManager gerente, MbItens nomeItem, int quantidade = 1)
+    public static bool RetirarUmItem(
+        CharacterManager gerente, 
+        MbItens nomeItem, 
+        int quantidade = 1,
+        FluxoDeRetorno fluxo = FluxoDeRetorno.heroi)
     {
         int indice = gerente.Dados.itens.IndexOf(nomeItem);
         if (indice > -1)
@@ -123,11 +127,27 @@ public class MbItens
                 if (gerente.Dados.itens[indice].Estoque == 0)
                 {
                     gerente.Dados.itens.Remove(gerente.Dados.itens[indice]);
+
+                    if (fluxo == FluxoDeRetorno.menuCriature || fluxo == FluxoDeRetorno.menuHeroi)
+                    {
+                        GameController.g.StartCoroutine(VoltarDosItensQuandoNaoTemMais());
+                    }
                 }
                 return true;
             }
 
         return false;
+    }
+
+    static IEnumerator VoltarDosItensQuandoNaoTemMais()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+        GameController.g.HudM.P_EscolheUsoDeItens.VoltarDosItens();
+    }
+
+    public object Clone()
+    {
+        return PegaUmItem.Retorna(nomeID, estoque);
     }
 }
 

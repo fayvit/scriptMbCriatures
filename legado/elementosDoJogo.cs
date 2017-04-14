@@ -147,7 +147,9 @@ public enum DoJogo
     GiraCubo,
     particulaLuvaDeGuarde,
     raioDeLuvaDeGuarde,
-    acaoDeCura1
+    acaoDeCura1,
+    particulasCoisasBoasUI,
+    particulasUpeiDeNivel
 }
 
 /// <summary>

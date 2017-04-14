@@ -17,6 +17,7 @@ public class HudManager
     [SerializeField]private PainelUmaMensagem umaMensagem;
     [SerializeField]private PainelDeConfirmacao confirmacao;
     [SerializeField]private PauseMenu pauseM;
+    [SerializeField]private PainelStatus pEscolheUsoDeItens;
 
     public PauseMenu PauseM
     {
@@ -50,6 +51,11 @@ public class HudManager
     public HudVida HudCriatureAtivo
     {
         get { return hudCriatureAtivo; }
+    }
+
+    public PainelStatus P_EscolheUsoDeItens
+    {
+        get { return pEscolheUsoDeItens; }
     }
 
     /*

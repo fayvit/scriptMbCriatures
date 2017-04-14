@@ -32,7 +32,12 @@ public class MenuDeImagens : UiDeOpcoes
         G.GetComponent<DadoDaHudRapida>().SetarDados(dados, indice, tipo, acao);
     }
 
-    public void IniciarHud(DadosDoPersonagem dados,TipoDeDado tipo,int quantidade,System.Action<int> acao,float tempoParaFechar)
+    public void IniciarHud(
+        DadosDoPersonagem dados,
+        TipoDeDado tipo,
+        int quantidade,System.Action<int> acao,
+        float tempoParaFechar,
+        TipoDeRedimensionamento tipoDeR = TipoDeRedimensionamento.vertical)
     {
         this.dados = dados;
         this.tipo = tipo;
@@ -40,7 +45,7 @@ public class MenuDeImagens : UiDeOpcoes
         this.tempoParaFechar = tempoParaFechar;
         contadorDeTempo = 0;
         aberto = true;        
-        IniciarHUD(quantidade);
+        IniciarHUD(quantidade,tipoDeR);
     }
 
     public void Update()

@@ -20,7 +20,32 @@ public class MbMaca : MbItens
 
     public override void IniciaUsoDeMenu(GameObject dono)
     {
+        GameController.g.HudM.P_EscolheUsoDeItens.AtivarParaItem(EscolhiEmQuemUsar);
+        PainelMensCriature.p.AtivarNovaMens(string.Format(
+            bancoDeTextos.RetornaFraseDoIdioma(ChaveDeTexto.emQuem),
+            item.nomeEmLinguas(ID)
+            ), 26);
+    }
 
+    void EscolhiEmQuemUsar(int indice)
+    {
+        CharacterManager manager = GameController.g.Manager;
+        CriatureBase C = manager.Dados.criaturesAtivos[indice];
+        Atributos A = C.CaracCriature.meusAtributos;
+
+        if (ItemQuantitativo.UsaItemDeRecuperacao(C))
+        {
+            RetirarUmItem(manager, this, 1,FluxoDeRetorno.menuHeroi);
+            ItemQuantitativo.AplicacaoDoItemComMenu(manager,C,TipoQuantitativo.PV,10);            
+        }
+        else if (A.PV.Corrente <= 0)
+        {
+            MensDeUsoDeItem.MensDeMorto(C.NomeEmLinguas);
+        }
+        else if (A.PV.Corrente >= A.PV.Maximo)
+        {
+            MensDeUsoDeItem.MensDeNaoPrecisaDesseItem(C.NomeEmLinguas);
+        }
     }
 
     public override bool AtualizaUsoDeMenu()

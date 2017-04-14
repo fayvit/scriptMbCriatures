@@ -22,7 +22,11 @@ public class DadosDoPersonagem
 
         itens = new List<MbItens>()
         {
-            new MbMaca(13)
+            PegaUmItem.Retorna(nomeIDitem.maca,1),
+            PegaUmItem.Retorna(nomeIDitem.maca,11),
+            PegaUmItem.Retorna(nomeIDitem.maca,2),
+            PegaUmItem.Retorna(nomeIDitem.maca,3),
+            PegaUmItem.Retorna(nomeIDitem.maca,93),
         };
         /*
         itens.Add(new item(nomeIDitem.maca) { estoque = 20 });

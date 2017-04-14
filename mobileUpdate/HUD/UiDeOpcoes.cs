@@ -10,13 +10,16 @@ public abstract class UiDeOpcoes
     public abstract void SetarComponenteAdaptavel(GameObject G,int indice);
     protected abstract void FinalizarEspecifico();
 
-    protected void IniciarHUD(int quantidade)
+    protected void IniciarHUD(int quantidade,TipoDeRedimensionamento tipo = TipoDeRedimensionamento.vertical)
     {
         painelDeTamanhoVariavel.parent.parent.gameObject.SetActive(true);
 
         itemDoContainer.SetActive(true);
 
-        RedimensionarUI.NaVertical(painelDeTamanhoVariavel, itemDoContainer, quantidade);
+        if(tipo==TipoDeRedimensionamento.vertical)
+            RedimensionarUI.NaVertical(painelDeTamanhoVariavel, itemDoContainer, quantidade);
+        else if(tipo==TipoDeRedimensionamento.emGrade)
+            RedimensionarUI.EmGrade(painelDeTamanhoVariavel, itemDoContainer, quantidade);
 
         for (int i = 0; i < quantidade; i++)
         {

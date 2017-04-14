@@ -14,6 +14,7 @@ public class PainelStatus : MonoBehaviour
     [SerializeField]private ScrollRect sRect;
 
     private int indiceDoSelecionado = 0;
+    private System.Action<int> acaoDeUsoDeItem;
 
     [System.Serializable]
     public class DadosDoPainelPrincipal
@@ -115,6 +116,28 @@ public class PainelStatus : MonoBehaviour
         indiceDoSelecionado = indice;
     }
 
+    public void AtivarParaItem(System.Action<int> a)
+    {
+        gameObject.SetActive(true);
+        acaoDeUsoDeItem += a;
+    }
+    public void DesativarParaItem()
+    {
+        acaoDeUsoDeItem = null;
+        gameObject.SetActive(false);
+        GameController.g.HudM.PauseM.ReligarBotoesDoPainelDeItens();
+    }
+
+    public void DesligarMeusBotoes()
+    {
+        BtnsManager.DesligarBotoes(gameObject);
+    }
+
+    public void ReligarMeusBotoes()
+    {
+        BtnsManager.ReligarBotoes(gameObject);
+    }
+
     public void BtnMeuOutro(int indice)
     {
         InserirDadosNoPainelPrincipal(GameController.g.Manager.Dados.criaturesAtivos[indice]);
@@ -141,7 +164,7 @@ public class PainelStatus : MonoBehaviour
         else if (indiceDoSelecionado != 0)
         {
             PainelMensCriature.p.AtivarNovaMens(bancoDeTextos.RetornaFraseDoIdioma(ChaveDeTexto.naoPodeEssaAcao), 30);
-            StartCoroutine(VoltaTextoPause());
+            StartCoroutine(PauseMenu.VoltaTextoPause());
         }
         else if (indiceDoSelecionado == 0)
         {
@@ -150,15 +173,17 @@ public class PainelStatus : MonoBehaviour
                     bancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.naoPodeEssaAcao)[1],
                     GameController.g.Manager.CriatureAtivo.MeuCriatureBase.NomeEmLinguas)
                     , 30);
-            StartCoroutine(VoltaTextoPause());
-        }
-        
+            StartCoroutine(PauseMenu.VoltaTextoPause());
+        }        
     }
 
-    IEnumerator VoltaTextoPause()
+    public void VoltarDosItens()
     {
-        yield return new WaitForSecondsRealtime(2);
-        if(pausaJogo.pause)
-            PainelMensCriature.p.AtivarNovaMens(bancoDeTextos.RetornaFraseDoIdioma(ChaveDeTexto.jogoPausado), 30);
+        DesativarParaItem();
+    }
+
+    public void UsarNeste()
+    {        
+        acaoDeUsoDeItem(indiceDoSelecionado);        
     }
 }

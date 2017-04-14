@@ -86,6 +86,7 @@ public class GameController : MonoBehaviour
 
     public void BotaoAlternar()
     {
+        HudM.MenuDeI.FinalizarHud();
         Manager.BotaoAlternar();
     }
 
@@ -96,7 +97,7 @@ public class GameController : MonoBehaviour
 
     bool PodeAbrirMenuDeImagem(TipoDeDado tipo)
     {
-        
+
         if (HudM.MenuDeI.Aberto)
         {
             hudM.MenuDeI.FinalizarHud();
@@ -177,7 +178,7 @@ public class GameController : MonoBehaviour
     void FuncaoTrocarCriatureSemMenu(int indice)
     {
         FluxoDeRetorno fluxo = manager.Estado == EstadoDePersonagem.comMeuCriature ? FluxoDeRetorno.criature : FluxoDeRetorno.heroi;
-        FuncaoTrocarCriature(indice, fluxo);
+        FuncaoTrocarCriature(indice+1, fluxo);
     }
 
     public void FuncaoTrocarCriature(int indice, FluxoDeRetorno fluxo, bool bugDoTesteChao = false)
@@ -187,7 +188,6 @@ public class GameController : MonoBehaviour
             if (estaEmLuta)
             {
                 encontros.InimigoAtivo.Estado = CreatureManager.CreatureState.parado;
-                //encontros.InimigoAtivo.Mov.Animador.PararAnimacao();
             }
 
             manager.Dados.criatureSai = indice;
@@ -197,9 +197,7 @@ public class GameController : MonoBehaviour
 
     }
 
-
-
-    void FuncaoDoUseiItem(int indice)
+    public void FuncaoDoUseiItem(int indice, FluxoDeRetorno fluxo)
     {
         if (EmEstadoDeAcao())
         {
@@ -207,14 +205,21 @@ public class GameController : MonoBehaviour
             {
                 hudM.MenuDeI.FinalizarHud();
 
-                usoDeItens.Start(manager,
-                    manager.Estado == EstadoDePersonagem.comMeuCriature
-                    ? FluxoDeRetorno.criature
-                    : FluxoDeRetorno.heroi);
+                usoDeItens.Start(manager,fluxo);
 
-                manager.Estado = EstadoDePersonagem.parado;
+                if(fluxo!=FluxoDeRetorno.menuCriature&&fluxo!=FluxoDeRetorno.menuHeroi)
+                    manager.Estado = EstadoDePersonagem.parado;
+
             }
         }
+    }
+    void FuncaoDoUseiItem(int indice)
+    {
+        FluxoDeRetorno fluxo = manager.Estado == EstadoDePersonagem.comMeuCriature
+                    ? FluxoDeRetorno.criature
+                    : FluxoDeRetorno.heroi;
+
+        FuncaoDoUseiItem(indice, fluxo);
     }
 
     #region botões de teste
