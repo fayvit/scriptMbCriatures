@@ -20,7 +20,7 @@ public class AndroidController:MonoBehaviour
     private int jId = 0;
     private Vector2 anchoredOriginal = Vector2.zero;
     private Vector2 anchoredCentral = Vector2.zero;
-    private Vector3 posClicked = Vector3.zero;
+    //private Vector3 posClicked = Vector3.zero;
 
     // Use this for initialization
     public void Start()
@@ -107,7 +107,7 @@ public class AndroidController:MonoBehaviour
     {
         joyClicked = true;
         jId = ((PointerEventData)data).pointerId;
-        posClicked = Input.mousePosition;
+        //posClicked = Input.mousePosition;
 
     }
 

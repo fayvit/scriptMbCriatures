@@ -11,6 +11,7 @@ public class BtnsManager
     public Button btnMaisAtaques;
     public Button btnPular;
     public Button btnAtaque;
+    public RawImage imgDoAtaque;
 
     public void BotoesDoHeroi(CharacterManager manager)
     {
@@ -42,6 +43,13 @@ public class BtnsManager
             aparece = false;
 
         btnMaisCriature.gameObject.SetActive(aparece);
+        ImagemDoAtaque(manager);
+    }
+
+    public void ImagemDoAtaque(CharacterManager manager)
+    {
+        GerenciadorDeGolpes gg = manager.CriatureAtivo.MeuCriatureBase.GerenteDeGolpes;
+        imgDoAtaque.texture = elementosDoJogo.el.RetornaMini(gg.meusGolpes[gg.golpeEscolhido].Nome);
     }
 
     /// <summary>

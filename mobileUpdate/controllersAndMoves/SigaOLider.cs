@@ -37,6 +37,7 @@ public class SigaOLider
     {
         //nav.destination = nav.transform.position;
         animator.SetFloat("velocidade", 0);
-        nav.Stop();
+        if(nav.enabled)
+            nav.Stop();
     }
 }

@@ -25,6 +25,9 @@ public class ReplaceManager
         CriatureBase temp = lista[0];
 
         manager.Estado = EstadoDePersonagem.parado;
+        manager.CriatureAtivo.PararCriatureNoLocal();
+        manager.Mov.Animador.PararAnimacao();
+
         GameController.g.HudM.MenuDeI.FinalizarHud();
         PainelMensCriature.p.EsconderMensagem();
 

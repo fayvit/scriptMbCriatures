@@ -17,17 +17,20 @@ public interface IGolpeBase
     float UltimoUso { get; set; }
     float DistanciaDeRepulsao { get; }
     float VelocidadeDeRepulsao { get; }
-    float TempoNoDano { get;}
+    float TempoNoDano { get; }
 
-    float VelocidadeDeGolpe { get;}
+    float VelocidadeDeGolpe { get; }
     float TempoDeMoveMin { get; }
     float TempoDeMoveMax { get; }
     float TempoDeDestroy { get; }
+
+    Vector3 DirDeREpulsao { get; set; }
 
     void IniciaGolpe(GameObject G);
     void UpdateGolpe(GameObject G);
 
 }
+
 [System.Serializable]
 public class ContainerDeCaracteristicasDeGolpe
 {

@@ -52,18 +52,18 @@ public static class GolpeDeProjetilBasico  {
 		{
 		case "rigido":
 			proj = KY.AddComponent<projetilRigido>();
-			break;
+		break;
 		case "basico":
 			proj = KY.AddComponent<projetil>();
-			break;
+		break;
 		case "status":
 			proj = KY.AddComponent<projetilStatusExpansivel>();
-			break;
+		break;
 		case "direcional":
 			projetilDirecional projD = KY.AddComponent<projetilDirecional>();
 			projD.alvo = (aG.gameObject.name=="inimigo")?GameObject.Find("CriatureAtivo"):GameObject.Find("inimigo");
 			proj = projD;
-			break;
+		break;
 		}
 		
 		proj.velocidadeProjetil = velocidade;

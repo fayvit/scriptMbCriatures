@@ -28,7 +28,6 @@ public class RajadaDeAguaG2 : GolpeBase
 
     */
     private Vector3 posInicial;
-    private Vector3 forwardInicial;
     private float tempoDecorrido = 0;
     private int impactos = 0;
     private bool addView = false;
@@ -41,7 +40,7 @@ public class RajadaDeAguaG2 : GolpeBase
         addView = false;
         tempoDecorrido = 0;
         posInicial = Emissor.UseOEmissor(G, this.Nome);
-        forwardInicial = G.transform.forward;        
+        DirDeREpulsao = G.transform.forward;        
         AnimadorCriature.AnimaAtaque(G, "emissor");         
     }
 
@@ -49,48 +48,48 @@ public class RajadaDeAguaG2 : GolpeBase
     {
         if (!addView)
         {
-            AuxiliarDeInstancia.InstancieEDestrua(Nome, posInicial, forwardInicial, TempoDeDestroy);
+            AuxiliarDeInstancia.InstancieEDestrua(Nome, posInicial, DirDeREpulsao, TempoDeDestroy);
             addView = true;
         }
 
         hit = new RaycastHit();
         tempoDecorrido += Time.deltaTime;
-        Vector3 ort = Vector3.Cross(forwardInicial, Vector3.up).normalized;
+        Vector3 ort = Vector3.Cross(DirDeREpulsao, Vector3.up).normalized;
 
         float deslocadorInicial = tempoDecorrido > 1 ? tempoDecorrido : 1;
         float deslocadorFinal = tempoDecorrido < 0.7f ? tempoDecorrido : 0.7f;
         if (tempoDecorrido < TempoDeDestroy)
         {
-            Debug.DrawLine(posInicial + 25 * (deslocadorInicial - 1) * forwardInicial, posInicial + forwardInicial * 25 * deslocadorFinal, Color.red);
+            Debug.DrawLine(posInicial + 25 * (deslocadorInicial - 1) * DirDeREpulsao, posInicial + DirDeREpulsao * 25 * deslocadorFinal, Color.red);
             Debug.DrawLine(
-                posInicial + 25 * (deslocadorInicial - 1) * forwardInicial + 0.25f * Vector3.up,
-                posInicial + 0.25f * Vector3.up + forwardInicial * 25 * deslocadorFinal,
+                posInicial + 25 * (deslocadorInicial - 1) * DirDeREpulsao + 0.25f * Vector3.up,
+                posInicial + 0.25f * Vector3.up + DirDeREpulsao * 25 * deslocadorFinal,
                 Color.red);
             Debug.DrawLine(
-                posInicial + 25 * (deslocadorInicial - 1) * forwardInicial - 0.25f * Vector3.up,
-                posInicial - 0.25f * Vector3.up + forwardInicial * 25 * deslocadorFinal,
+                posInicial + 25 * (deslocadorInicial - 1) * DirDeREpulsao - 0.25f * Vector3.up,
+                posInicial - 0.25f * Vector3.up + DirDeREpulsao * 25 * deslocadorFinal,
                 Color.red);
             Debug.DrawLine(
-                posInicial + 25 * (deslocadorInicial - 1) * forwardInicial - 0.25f * ort,
-                posInicial - 0.25f * ort + forwardInicial * 25 * deslocadorFinal,
+                posInicial + 25 * (deslocadorInicial - 1) * DirDeREpulsao - 0.25f * ort,
+                posInicial - 0.25f * ort + DirDeREpulsao * 25 * deslocadorFinal,
                 Color.red);
 
 
-            if (Physics.Linecast(posInicial + 25 * (deslocadorInicial - 1) * forwardInicial, posInicial + forwardInicial * 25 * tempoDecorrido, out hit)
+            if (Physics.Linecast(posInicial + 25 * (deslocadorInicial - 1) * DirDeREpulsao, posInicial + DirDeREpulsao * 25 * tempoDecorrido, out hit)
                ||
                Physics.Linecast(
-                posInicial + 25 * (deslocadorInicial - 1) * forwardInicial - 0.25f * Vector3.up,
-                posInicial - 0.25f * Vector3.up + forwardInicial * 25 * tempoDecorrido,
+                posInicial + 25 * (deslocadorInicial - 1) * DirDeREpulsao - 0.25f * Vector3.up,
+                posInicial - 0.25f * Vector3.up + DirDeREpulsao * 25 * tempoDecorrido,
                 out hit)
                ||
                Physics.Linecast(
-                posInicial + 25 * (deslocadorInicial - 1) * forwardInicial - 0.25f * ort,
-                posInicial - 0.25f * ort + forwardInicial * 25 * tempoDecorrido,
+                posInicial + 25 * (deslocadorInicial - 1) * DirDeREpulsao - 0.25f * ort,
+                posInicial - 0.25f * ort + DirDeREpulsao * 25 * tempoDecorrido,
                 out hit)
                ||
                Physics.Linecast(
-                posInicial + 25 * (deslocadorInicial - 1) * forwardInicial + 0.25f * ort,
-                posInicial + 0.25f * ort + forwardInicial * 25 * tempoDecorrido,
+                posInicial + 25 * (deslocadorInicial - 1) * DirDeREpulsao + 0.25f * ort,
+                posInicial + 0.25f * ort + DirDeREpulsao * 25 * tempoDecorrido,
                 out hit)
 
                )
@@ -102,7 +101,7 @@ public class RajadaDeAguaG2 : GolpeBase
                     MonoBehaviour.Destroy(impacto, 0.5f);
 
                     if (impactos == 0)
-                        Dano.VerificaDano(hit.transform.gameObject, G, this,forwardInicial);
+                        Dano.VerificaDano(hit.transform.gameObject, G, this);
 
                 }
                 impactos++;

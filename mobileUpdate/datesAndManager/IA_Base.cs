@@ -18,7 +18,7 @@ public class IA_Base
     [SerializeField]protected CreatureManager meuCriature;
     [SerializeField]protected SigaOLider siga;
 
-    private bool procurando = false;
+    protected bool procurando = false;
 
     public void Start(CreatureManager meuCriature) {
         this.meuCriature = meuCriature;

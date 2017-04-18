@@ -23,10 +23,11 @@ public class Dano
         }*/
     }
 
-    public static void VerificaDano(GameObject atacado,GameObject atacante,IGolpeBase golpe,Vector3 dirDano)
+    public static void VerificaDano(GameObject atacado,GameObject atacante,IGolpeBase golpe)
     {
+        Vector3 dirDano = golpe.DirDeREpulsao;
         CreatureManager GdC = atacado.GetComponent<CreatureManager>();
-        if (GdC)
+        if (GdC && !GameController.g.UsandoItemOuTrocandoCriature)
         {
             if (GdC.MeuCriatureBase.CaracCriature.meusAtributos.PV.Corrente > 0)
             {
@@ -69,8 +70,8 @@ public class Dano
                 s.enabled = false;
 
             UnityEngine.AI.NavMeshAgent nav = a.GetComponent<UnityEngine.AI.NavMeshAgent>();
-            if(nav.enabled)
-                nav.Stop();
+            if (nav.enabled)
+                nav.isStopped = true;
             
          /*   doAtacado.MudaParaDerrotado();
 

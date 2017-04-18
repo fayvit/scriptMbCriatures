@@ -21,6 +21,9 @@
             case nomesGolpes.garra:
                 retorno = new GarraG2();
             break;
+            case nomesGolpes.furacaoDeFolhas:
+                retorno = new FuracaoDeFolhasG2();
+            break;
 
 
             default:

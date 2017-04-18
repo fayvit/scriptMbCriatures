@@ -112,6 +112,7 @@ public class PainelStatus : MonoBehaviour
         }
 
         sRect.verticalScrollbar.value = 1;
+        Debug.Log(sRect.verticalScrollbar.value);
         btnAbas[indice].sprite = selecionado;
         indiceDoSelecionado = indice;
     }

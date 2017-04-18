@@ -11,6 +11,14 @@ public class GameController : MonoBehaviour
     [SerializeField]private MbEncontros encontros;
     [SerializeField]private HudManager hudM;
 
+    public bool UsandoItemOuTrocandoCriature
+    {
+        get { return 
+                (usoDeItens == null ? false : usoDeItens.EstouUsandoItem) 
+                || 
+                (replace == null ? false : replace.EstouTrocandoDeCriature);
+        }
+    }
     public bool estaEmLuta
     {
         get { return encontros.Luta; }
@@ -124,8 +132,10 @@ public class GameController : MonoBehaviour
                 {
                     manager.Dados.criaturesAtivos[0].GerenteDeGolpes.golpeEscolhido = i;
                     hudM.MenuDeI.FinalizarHud();
+                    hudM.Btns.ImagemDoAtaque(manager);
                 },5
                 );
+            
         }
     }
 

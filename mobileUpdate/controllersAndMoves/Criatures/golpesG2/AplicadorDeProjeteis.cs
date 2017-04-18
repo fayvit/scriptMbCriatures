@@ -5,12 +5,11 @@ public class AplicadorDeProjeteis
 {
     public static void AplicaProjetil(GameObject G,IGolpeBase ativa,CaracteristicasDeProjetil carac)
     {
-        Debug.Log(G.name);
         GolpePersonagem golpeP = GolpePersonagem.RetornaGolpePersonagem(G, ativa.Nome);
             if (golpeP.TempoDeInstancia > 0)
                 carac.posInicial = Emissor.UseOEmissor(G, ativa.Nome);
 
-        GameObject KY = AuxiliarDeInstancia.InstancieEDestrua(ativa.Nome, carac.posInicial, carac.forwardInicial, ativa.TempoDeDestroy);
+        GameObject KY = AuxiliarDeInstancia.InstancieEDestrua(ativa.Nome, carac.posInicial, ativa.DirDeREpulsao, ativa.TempoDeDestroy);
 
         ColisorDeDanoBase proj = null;
         switch (carac.tipo)
@@ -42,7 +41,6 @@ public class AplicadorDeProjeteis
 public struct CaracteristicasDeProjetil
 {
     public Vector3 posInicial;
-    public Vector3 forwardInicial;
     public TipoDoProjetil tipo;
     public NoImpacto noImpacto;
 }

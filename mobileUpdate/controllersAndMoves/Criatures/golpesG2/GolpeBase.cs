@@ -6,6 +6,8 @@ using System;
 public class GolpeBase : IGolpeBase
 {
     [SerializeField] private ContainerDeCaracteristicasDeGolpe container;
+    private Vector3 dirDeREpulsao = Vector3.zero;
+
     public GolpeBase(ContainerDeCaracteristicasDeGolpe container)
     {
         this.container = container;
@@ -158,6 +160,19 @@ public class GolpeBase : IGolpeBase
         }
     }
 
+    public Vector3 DirDeREpulsao
+    {
+        get
+        {
+            return dirDeREpulsao;
+        }
+
+        set
+        {
+            dirDeREpulsao = value;
+        }
+    }
+
     public virtual void IniciaGolpe(GameObject G)
     {
         throw new NotImplementedException();
@@ -168,8 +183,13 @@ public class GolpeBase : IGolpeBase
         throw new NotImplementedException();
     }
 
+    public string NomeEmLinguas()
+    {
+        return bancoDeTextos.falacoes[heroi.lingua]["listaDeGolpes"][(int)Nome];
+    }
+
     public static string NomeEmLinguas(nomesGolpes nome)
     {
-        return nome.ToString();
+        return bancoDeTextos.falacoes[heroi.lingua]["listaDeGolpes"][(int)nome];
     }
 }

@@ -6,6 +6,7 @@ public abstract class UiDeOpcoes
 {
     [SerializeField]protected GameObject itemDoContainer;
     [SerializeField]protected RectTransform painelDeTamanhoVariavel;
+    [SerializeField]protected ScrollRect sr;
 
     public abstract void SetarComponenteAdaptavel(GameObject G,int indice);
     protected abstract void FinalizarEspecifico();
@@ -28,6 +29,17 @@ public abstract class UiDeOpcoes
         }
 
         itemDoContainer.SetActive(false);
+
+        GameController.g.StartCoroutine(ScrollPos());
+        
+    }
+
+    IEnumerator ScrollPos()
+    {
+        yield return new WaitForSecondsRealtime(0.01f);
+        if (sr != null)
+            if (sr.verticalScrollbar)
+                sr.verticalScrollbar.value = 1;
     }
 
     public void FinalizarHud()

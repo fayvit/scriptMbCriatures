@@ -94,7 +94,9 @@ public class CreatureManager : MonoBehaviour
         switch (estado)
         {
             case CreatureState.parado:
-                if(mov!=null)
+            case CreatureState.emDano:
+            case CreatureState.aplicandoGolpe:
+                if (mov!=null)
                     mov.AplicadorDeMovimentos(Vector3.zero, meuCriatureBase.CaracCriature.distanciaFundamentadora);
             break;
             case CreatureState.seguindo:
@@ -128,7 +130,7 @@ public class CreatureManager : MonoBehaviour
                     mov.AplicadorDeMovimentos(dir, meuCriatureBase.CaracCriature.distanciaFundamentadora);
                 }
 
-                break;
+            break;
         }
     }
 
@@ -170,6 +172,12 @@ public class CreatureManager : MonoBehaviour
         
         if (!meuCriatureBase.Mov.caracPulo.estouPulando && (estado == CreatureState.aPasseio ||estado==CreatureState.emLuta))
             mov._Pulo.IniciaAplicaPulo();
+    }
+
+    public void PararCriatureNoLocal()
+    {
+        estado = CreatureState.parado;
+        ia.SuspendeNav();
     }
 }
 

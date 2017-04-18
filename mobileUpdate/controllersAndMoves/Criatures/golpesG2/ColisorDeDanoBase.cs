@@ -13,10 +13,10 @@ public class ColisorDeDanoBase : MonoBehaviour
 
     protected void funcaoTrigger(Collider emQ)
     {
-
+        
         if (emQ.gameObject != dono
            &&
-           ((emQ.tag != "cenario" && emQ.gameObject.layer != 2) || velocidadeProjetil > 0)
+           ((emQ.tag != "cenario" && emQ.gameObject.layer != 2) /*|| velocidadeProjetil > 0*/)
            &&
            emQ.tag != "desvieCamera")
         {
@@ -77,7 +77,7 @@ public class ColisorDeDanoBase : MonoBehaviour
             if (A!=null)
                 if (A.PV.Corrente > 0)
 
-                    Dano.VerificaDano(emQ, dono, esseGolpe,transform.forward);
+                    Dano.VerificaDano(emQ, dono, esseGolpe);
 
             if (noTransform)
                 impacto = (GameObject)Instantiate(impacto, emQ.transform.position, Qparticles);

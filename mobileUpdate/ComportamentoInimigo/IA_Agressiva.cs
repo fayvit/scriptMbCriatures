@@ -34,19 +34,19 @@ public class IA_Agressiva : IA_Base
             podeAtualizar
             )
         {
-            
+
             GolpeBase GB = gg.meusGolpes[gg.golpeEscolhido];
 
             if (GB.Caracteristica == caracGolpe.colisao)
             {
                 {
-                    
+
                     VerifiqueSigaOuAtaque(GB, A);
                 }
             }
             else
             {
-                
+
                 Disparador(GB, A);
             }
         }
@@ -63,6 +63,9 @@ public class IA_Agressiva : IA_Base
         {
             AproximeEnquantoEspera();
         }
+        else if (!criatureDoJogador && !procurando)
+            ProcuraCriatureDoJogador();
+            
         
     }
 

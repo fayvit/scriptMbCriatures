@@ -13,18 +13,18 @@ public class AtualizadorDeImpactos
     {
         tempoDecorrido = 0;
         addView = false;
+        procurouAlvo = false;
     }
 
     void ajudaAtaque(Transform alvo,Transform T)
     {
-
-        Vector3 gira = Vector3.zero;
+        Vector3 forwardInicial = T.forward;
         if (alvo != null)
         {
-            gira = alvo.position - T.position;
+            forwardInicial = alvo.position - T.position;
 
-            gira.y = 0;
-            T.rotation = Quaternion.LookRotation(gira);
+            forwardInicial.y = 0;
+            T.rotation = Quaternion.LookRotation(forwardInicial);
 
         }
     }
@@ -33,7 +33,12 @@ public class AtualizadorDeImpactos
     {
         tempoDecorrido += Time.deltaTime;
         if (!procurouAlvo)
+        {
             alvoProcurado = CriaturesPerto.procureUmBomAlvo(G);
+            procurouAlvo = true;
+            Debug.Log(alvoProcurado + "  esse é o alvo");
+            ajudaAtaque(alvoProcurado, G.transform);
+        }
 
         if (tempoDecorrido > ativa.TempoDeMoveMin  && !addView)
         {
@@ -48,6 +53,8 @@ public class AtualizadorDeImpactos
         {
             if (((int)(tempoDecorrido * 10)) % 2 == 0 && alvoProcurado)
                 ajudaAtaque(alvoProcurado,G.transform);
+
+            ativa.DirDeREpulsao = G.transform.forward;
 
             if (!controle)
                 controle = G.GetComponent<CharacterController>();

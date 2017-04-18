@@ -3,8 +3,10 @@ using System.Collections;
 
 public class ColisorDeDano : ColisorDeDanoBase
 {
+    Vector3 forwardInicial;
     void Start()
     {
+        forwardInicial = transform.forward;
         quaternionDeImpacto();
 
     }
@@ -13,11 +15,18 @@ public class ColisorDeDano : ColisorDeDanoBase
     void Update()
     {
 
-        transform.position += velocidadeProjetil * transform.forward * Time.deltaTime;
+        transform.position += velocidadeProjetil * forwardInicial * Time.deltaTime;
     }
 
     void OnTriggerEnter(Collider emQ)
     {
+        //Debug.Log(emQ.name + " : " + emQ.gameObject.name + " : " + dono+"trigger");
         funcaoTrigger(emQ);
+    }
+
+    void OnCollisionEnter(Collision emQ)
+    {
+        //Debug.Log(emQ.collider.name + " : " + emQ.gameObject.name + " : " + dono+"collision");
+        funcaoTrigger(emQ.collider);
     }
 }

@@ -101,19 +101,21 @@
 
     static void atualizaAtributos(float[] pontinhos, Atributos A, bool total = false)
     {
+        UnityEngine.Debug.Log(pontinhos[0]+": "+pontinhos[1]);
+
         if (total)
         {
                 A.PV = new AtributoConsumivel(
-                    (int)pontinhos[0]*4+A.PV.Corrente*4,
+                    (int)pontinhos[0]*4+10,
                     A.PV.Taxa,
-                    4*((int)pontinhos[0]+A.PV.Maximo),
+                    4*(int)pontinhos[0]+10,
                     A.PV.ModMaximo
                     );
 
                 A.PE = new AtributoConsumivel(
-                    (int)pontinhos[1] * 4 + A.PE.Corrente * 4,
+                    (int)pontinhos[1] * 4 + 26 ,
                     A.PE.Taxa,
-                    4 * ((int)pontinhos[1] + A.PE.Maximo),
+                    4 * (int)pontinhos[1] + 26,
                     A.PE.ModMaximo
                     );
 

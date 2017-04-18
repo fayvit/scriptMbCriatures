@@ -75,7 +75,7 @@ public class MbMaca : MbItens
 
     private void IniciaUsoDaMaca(GameObject dono)
     {
-        Manager = dono.GetComponent<CharacterManager>();
+        Manager = GameController.g.Manager;
         CriatureAlvoDoItem = Manager.CriatureAtivo;
         if (ItemQuantitativo.UsaItemDeRecuperacao(CriatureAlvoDoItem.MeuCriatureBase) && RetirarUmItem(Manager, this, 1))
         {
@@ -98,7 +98,7 @@ public class MbMaca : MbItens
         TempoDecorrido = 0;
 
         Manager.Estado = EstadoDePersonagem.parado;
-        Manager.CriatureAtivo.Estado = CreatureManager.CreatureState.parado;
+        Manager.CriatureAtivo.PararCriatureNoLocal();
         Manager.Mov.Animador.PararAnimacao();
 
         if (GameController.g.estaEmLuta)

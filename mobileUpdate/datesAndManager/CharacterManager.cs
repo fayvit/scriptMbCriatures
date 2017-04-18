@@ -65,6 +65,7 @@ public class CharacterManager : MonoBehaviour {
                 mov.AplicadorDeMovimentos(controle.ValorParaEixos());
             break;
             case EstadoDePersonagem.comMeuCriature:
+            case EstadoDePersonagem.parado:
                 mov.AplicadorDeMovimentos(Vector3.zero);
             break;
         }

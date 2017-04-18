@@ -77,7 +77,7 @@ public class CriaturesPerto
             {
                 alvo = Vector3.Dot((maisPerto.transform.position -
                                     T.position).normalized,
-                                   T.forward) > 0.5
+                                   T.forward) > -0.5
                     ? deMelhorVisao : null;
             }
             else
@@ -86,13 +86,13 @@ public class CriaturesPerto
                    .sqrMagnitude < 25 &&
                    Vector3.Dot((maisPerto.transform.position -
                              T.position).normalized,
-                            T.forward) > 0.5
+                            T.forward) > -0.5
                    )
                     alvo = maisPerto;
                 else
                     alvo = Vector3.Dot((deMelhorVisao.transform.position -
                                         T.position).normalized,
-                                       T.forward) > 0.5
+                                       T.forward) > -0.5
                         ? deMelhorVisao : null;
             }
         }

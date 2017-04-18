@@ -21,9 +21,9 @@ public class TapaG2 : GolpeBase
         potenciaMaxima = 8,
         potenciaMinima = 1,
         tempoDeReuso = 3.5f,        
-        TempoNoDano = 0.25f,
-        distanciaDeRepulsao = 45f,
-        velocidadeDeRepulsao = 23,
+        TempoNoDano = 0.5f,
+        distanciaDeRepulsao = 65f,
+        velocidadeDeRepulsao = 33,
         tempoDeMoveMin = 0.44f,//74
         tempoDeMoveMax = 0.7f,
         tempoDeDestroy = 1.2f

@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LaminaDeFolhaG2:GolpeBase {
+public class FuracaoDeFolhasG2 : GolpeBase
+{
 
     private bool addView = false;
     private float tempoDecorrido = 0;
@@ -9,19 +10,19 @@ public class LaminaDeFolhaG2:GolpeBase {
     private CaracteristicasDeProjetil carac = new CaracteristicasDeProjetil()
     {
         noImpacto = NoImpacto.impactoDeFolhas,
-        tipo = TipoDoProjetil.basico
+        tipo = TipoDoProjetil.rigido
     };
 
-    public LaminaDeFolhaG2() : base(new ContainerDeCaracteristicasDeGolpe()
+    public FuracaoDeFolhasG2() : base(new ContainerDeCaracteristicasDeGolpe()
     {
-        nome = nomesGolpes.laminaDeFolha,
+        nome = nomesGolpes.furacaoDeFolhas,
         tipo = nomeTipos.Planta,
         carac = caracGolpe.projetil,
-        custoPE = 1,
-        potenciaCorrente = 2,
-        potenciaMaxima = 7,
-        potenciaMinima = 1,
-        tempoDeReuso = 5,
+        custoPE = 2,
+        potenciaCorrente = 4,
+        potenciaMaxima = 10,
+        potenciaMinima = 2,
+        tempoDeReuso = 7.5f,
         tempoDeMoveMax = 1 ,
         tempoDeMoveMin = 0.15f,
         tempoDeDestroy = 2,
@@ -38,7 +39,7 @@ public class LaminaDeFolhaG2:GolpeBase {
         addView = false;
         tempoDecorrido = 0;
         carac.posInicial = Emissor.UseOEmissor(G, this.Nome);
-        DirDeREpulsao = G.transform.forward;        
+        DirDeREpulsao = G.transform.forward;
         AnimadorCriature.AnimaAtaque(G, "emissor");
     }
 
@@ -49,7 +50,7 @@ public class LaminaDeFolhaG2:GolpeBase {
         if (!addView && tempoDecorrido > this.TempoDeMoveMin)
         {
             addView = true;
-            AplicadorDeProjeteis.AplicaProjetil(G,this,carac);
+            AplicadorDeProjeteis.AplicaProjetil(G, this, carac);
         }
 
 
