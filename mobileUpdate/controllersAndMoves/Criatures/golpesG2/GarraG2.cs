@@ -22,7 +22,7 @@ public class GarraG2 : GolpeBase
         potenciaMinima = 1,
         tempoDeReuso = 3.5f,
         TempoNoDano = 0.5f,
-        velocidadeDeGolpe = 15f,
+        velocidadeDeGolpe = 10f,
         distanciaDeRepulsao = 65f,
         velocidadeDeRepulsao = 33,
         tempoDeMoveMin = 0.15f,//74

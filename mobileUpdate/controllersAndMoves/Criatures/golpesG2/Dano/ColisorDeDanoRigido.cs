@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ColisorDeDano : ColisorDeDanoBase
+public class ColisorDeDanoRigido : ColisorDeDanoBase
 {
     Vector3 forwardInicial;
     
@@ -19,10 +19,9 @@ public class ColisorDeDano : ColisorDeDanoBase
         transform.position += velocidadeProjetil * forwardInicial * Time.deltaTime;
     }
 
-    void OnTriggerEnter(Collider emQ)
+    void OnCollisionEnter(Collision emQ)
     {
-        Debug.Log(emQ.name + " : " + emQ.gameObject.name + " : " + dono+"trigger");
-        
-        funcaoTrigger(emQ);
+        Debug.Log(emQ.collider.name + " : " + emQ.gameObject.name + " : " + dono + "collision");
+        funcaoTrigger(emQ.collider);
     }
 }

@@ -11,7 +11,7 @@ public class GerenciadorDeGolpes
 
     List<GolpePersonagem> ListaDeGolpesAtualizada(nomesCriatures nome)
     {
-        return personagemG2.Criatures[nome].GerenteDeGolpes.listaDeGolpes;
+        return personagemG2.RetornaUmCriature(nome).GerenteDeGolpes.listaDeGolpes;
     }
 
     public GolpePersonagem ProcuraGolpeNaLista(nomesCriatures nome,nomesGolpes esseGolpe)

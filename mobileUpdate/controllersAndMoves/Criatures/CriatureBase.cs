@@ -22,7 +22,7 @@ public class CriatureBase : ICloneable
     public CriatureBase() { }
     public CriatureBase(nomesCriatures X, int nivel = 1)
     {
-        CriatureBase Y = (CriatureBase)(personagemG2.Criatures[X].Clone());
+        CriatureBase Y = personagemG2.RetornaUmCriature(X); //(CriatureBase)(personagemG2.Criatures[X].Clone());
         caracCriature = Y.CaracCriature;
         gerenteG = Y.GerenteDeGolpes;
         mov = Y.Mov;

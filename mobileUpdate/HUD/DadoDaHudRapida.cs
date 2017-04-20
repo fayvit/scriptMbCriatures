@@ -18,6 +18,23 @@ public class DadoDaHudRapida : MonoBehaviour
         set { daSelecao = value; }
     }
 
+    public void SetarGolpe(nomesGolpes nomeG)
+    {
+        containerDaQuantidade.SetActive(false);
+        imgDoDado.texture = elementosDoJogo.el.RetornaMini(nomeG);
+        txtDoDado.text = golpe.nomeEmLinguas(nomeG);
+    }
+
+    public void SetarAcao(System.Action<int> acao)
+    {
+        aoClique += acao;
+    }
+
+    public void LimparAcao()
+    {
+        aoClique = null;
+    }
+
     public void SetarDados(DadosDoPersonagem dados,int indice,TipoDeDado tipo,System.Action<int> ao)
     {
         aoClique += ao;
@@ -30,9 +47,7 @@ public class DadoDaHudRapida : MonoBehaviour
             break;
             case TipoDeDado.golpe:
                 nomesGolpes nomeG = dados.criaturesAtivos[0].GerenteDeGolpes.meusGolpes[indice].Nome;
-                containerDaQuantidade.SetActive(false);
-                imgDoDado.texture = elementosDoJogo.el.RetornaMini(nomeG);
-                txtDoDado.text = golpe.nomeEmLinguas(nomeG);
+                SetarGolpe(nomeG);
             break;
             case TipoDeDado.criature:
                 containerDaQuantidade.SetActive(false);

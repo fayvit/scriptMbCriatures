@@ -259,5 +259,19 @@ public class GameController : MonoBehaviour
         IGerenciadorDeExperiencia gXP = Manager.Dados.criaturesAtivos[0].CaracCriature.mNivel;
         gXP.XP = gXP.ParaProxNivel - 1;
     }
+
+    public void ColocaQuatroGolpesNosCriatures()
+    {
+        CriatureBase[] Cs = Manager.Dados.criaturesAtivos.ToArray();
+
+        for (int i = 0; i < Cs.Length; i++)
+        {
+            GolpeBase duplicado = Cs[i].GerenteDeGolpes.meusGolpes[0];
+            while (Cs[i].GerenteDeGolpes.meusGolpes.Count< 4)
+            {
+                Cs[i].GerenteDeGolpes.meusGolpes.Add(duplicado);
+            }
+        }
+    }
     #endregion
 }

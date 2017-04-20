@@ -76,6 +76,42 @@ public class bancoDeTextos{
                     {
                         "<color=yellow>Em qual criature você irá usar o item {0}</color>"
                     }
+                },
+                {
+                    ChaveDeTexto.aprendeuGolpe,new List<string>()
+                    {
+                        "{0} aprendeu o ataque <color=yellow>{1}</color>"
+                    }
+                },
+                {
+                    ChaveDeTexto.tentandoAprenderGolpe,new List<string>()
+                    {
+                       "{0} está tentando aprender o ataque <color=yellow>{1}</color>, mas para isso precisa esquecer um ataque."
+                    }
+                },
+                {
+                    ChaveDeTexto.precisaEsquecer,new List<string>()
+                    {
+                        "Qual ataque {0} irá esquecer?"
+                    }
+                },
+                {
+                    ChaveDeTexto.certezaEsquecer,new List<string>()
+                    {
+                        "Você tem certeza que deseja esquecer o ataque <color=yellow>{0}</color> para aprender o ataque <color=yellow>{1}</color>??"
+                    }
+                },
+                {
+                    ChaveDeTexto.naoQueroAprenderEsse,new List<string>()
+                    {
+                        "<color=orange>{0}</color> deixará de aprender o golpe <color=yellow>{1}</color>. Você está certo disso?"
+                    }
+                },
+                {
+                    ChaveDeTexto.aprendeuGolpeEsquecendo,new List<string>()
+                    {
+                        "<color=orange>{0}</color> esqueceu <color=yellow>{1}</color> e aprendeu <color=yellow>{2}</color>"
+                    }
                 }
             }
         }
@@ -2681,5 +2717,11 @@ public enum ChaveDeTexto
     naoPodeEssaAcao,
     jogoPausado,
     selecioneParaOrganizar,
-    emQuem
+    emQuem,
+    aprendeuGolpe,
+    tentandoAprenderGolpe,
+    precisaEsquecer,
+    certezaEsquecer,
+    naoQueroAprenderEsse,
+    aprendeuGolpeEsquecendo
 }

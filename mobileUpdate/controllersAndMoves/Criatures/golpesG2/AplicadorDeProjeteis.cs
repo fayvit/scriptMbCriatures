@@ -15,7 +15,7 @@ public class AplicadorDeProjeteis
         switch (carac.tipo)
         {
             case TipoDoProjetil.rigido:
-                proj = KY.AddComponent<ColisorDeDano>();
+                proj = KY.AddComponent<ColisorDeDanoRigido>();
             break;
             case TipoDoProjetil.basico:
                 proj = KY.AddComponent<ColisorDeDano>();

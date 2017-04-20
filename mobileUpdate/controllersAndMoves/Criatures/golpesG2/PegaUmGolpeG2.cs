@@ -10,6 +10,10 @@
                 retorno = new RajadaDeAguaG2();
             break;
 
+            case nomesGolpes.turboDeAgua:
+                retorno = new TurboDeAguaG2();
+            break;
+
             case nomesGolpes.tapa:
                 retorno = new TapaG2();
             break;
@@ -23,6 +27,12 @@
             break;
             case nomesGolpes.furacaoDeFolhas:
                 retorno = new FuracaoDeFolhasG2();
+            break;
+            case nomesGolpes.bolaDeFogo:
+                retorno = new BolaDeFogoG2();
+            break;
+            case nomesGolpes.rajadaDeFogo:
+                retorno = new RajadaDeFogoG2();
             break;
 
 

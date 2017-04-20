@@ -66,7 +66,6 @@ public class EncounterManager
                 ((IA_Agressiva)inimigo.IA).PodeAtualizar = true;
                 manager.CriatureAtivo.Estado = CreatureManager.CreatureState.emLuta;
                 cam.InicializaCameraDeLuta(manager.CriatureAtivo,inimigo.transform);
-                cam.enabled = true;
                 estado = EncounterState.verifiqueVida;
             break;
             case EncounterState.verifiqueVida:
@@ -179,8 +178,7 @@ public class EncounterManager
         if (contadorDeTempo > 0.5f)
         {
             estado = EncounterState.apresentaAdversario;
-            cam = MonoBehaviour.FindObjectOfType<AplicadorDeCamera>();
-            cam.enabled = false;            
+            cam = MonoBehaviour.FindObjectOfType<AplicadorDeCamera>();       
             contadorDeTempo = 0;
         }
     }

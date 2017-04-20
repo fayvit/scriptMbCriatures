@@ -19,11 +19,13 @@ public class ApresentadorDeAdversario
             {
                 cam.transform.position = (inimigo.transform.position + 8 * inimigo.transform.forward + 5 * Vector3.up);
                 cam.transform.LookAt(inimigo.transform);
+                cam.InicializaCameraExibicionista(inimigo.transform, inimigo.GetComponent<CharacterController>().height);
                 foiApresentado = true;
             }
             else
             {
-                cam.transform.RotateAround(inimigo.transform.position, Vector3.up, 15 * Time.deltaTime);
+                
+                //cam.transform.RotateAround(inimigo.transform.position, Vector3.up, 15 * Time.deltaTime);
                 if (!painelAberto)
                 {
                     painelAberto = true;

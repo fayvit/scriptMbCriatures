@@ -55,7 +55,7 @@ public class AtualizadorDeImpactos
                 ajudaAtaque(alvoProcurado,G.transform);
 
             ativa.DirDeREpulsao = G.transform.forward;
-
+            
             if (!controle)
                 controle = G.GetComponent<CharacterController>();
             controle.Move(ativa.VelocidadeDeGolpe * G.transform.forward * Time.deltaTime + Vector3.down * 9.8f);
@@ -86,5 +86,7 @@ public enum Trails
 public enum NoImpacto
 {
     impactoComum,
-    impactoDeFolhas
+    impactoDeFolhas,
+    impactoDeAgua,
+    impactoDeFogo
 }
