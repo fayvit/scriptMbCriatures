@@ -183,14 +183,10 @@ public class comandos :MonoBehaviour{
 			Physics.Raycast (transform.position, Vector3.down, erroDeAncora);
 		}
 	}
-
-    static float erroMaiorS;
-    static string colidiS;
-
     public static bool noChaoS(CharacterController controle,float erroDeAncora, bool especial = false)
     {
-        erroMaiorS = erroDeAncora;
-        if (especial && colidiS == "Terrain")
+        
+        if (especial)
         {
             return
                 Physics.Raycast(controle.transform.position, Vector3.down, erroDeAncora);

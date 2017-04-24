@@ -5,16 +5,17 @@ public class MbAlternancia
 {
     public static void AoCriature(CreatureManager C,CreatureManager inimigo = null)
     {
+        Debug.Log("aqui");
         if (inimigo!=null)
         {
-            AplicadorDeCamera aCam = MonoBehaviour.FindObjectOfType<AplicadorDeCamera>();
+            AplicadorDeCamera aCam = AplicadorDeCamera.cam;
             aCam.InicializaCameraDeLuta(C, inimigo.transform);
             C.Estado = CreatureManager.CreatureState.emLuta;
             inimigo.Estado = CreatureManager.CreatureState.selvagem;
         }
         else
         {
-            MonoBehaviour.FindObjectOfType<AplicadorDeCamera>().FocarBasica(C.transform, C.MeuCriatureBase.alturaCamera, C.MeuCriatureBase.distanciaCamera);
+            AplicadorDeCamera.cam.FocarBasica(C.transform, C.MeuCriatureBase.alturaCamera, C.MeuCriatureBase.distanciaCamera);
             C.Estado = CreatureManager.CreatureState.aPasseio;                        
         }
 
@@ -24,8 +25,9 @@ public class MbAlternancia
     public static void AoHeroi(CharacterManager manager)
     {
         CreatureManager C = manager.CriatureAtivo;
-        MonoBehaviour.FindObjectOfType<AplicadorDeCamera>().FocarBasica(manager.transform, 10,10);
+        AplicadorDeCamera.cam.FocarBasica(manager.transform, 10,10);
         C.Estado = CreatureManager.CreatureState.seguindo;
+        manager.Estado = EstadoDePersonagem.aPasseio;
         C.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
     }
 }

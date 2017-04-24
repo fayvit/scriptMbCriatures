@@ -9,7 +9,8 @@ public class PainelStatus : MonoBehaviour
     [SerializeField]private PainelDeGolpe[] pGolpe;
     [SerializeField]private Sprite selecionado;
     [SerializeField]private Sprite deselecionado;
-    [SerializeField]private DadosDoPainelPrincipal principal;
+    [SerializeField]private PainelDeCriature principal;
+    //[SerializeField]private DadosDoPainelPrincipal principal;
     [SerializeField]private RectTransform containerDeTamanhoVariavel;
     [SerializeField]private ScrollRect sRect;
 
@@ -52,33 +53,13 @@ public class PainelStatus : MonoBehaviour
         indiceDoSelecionado = 0;
 
         InserirDadosNoPainelPrincipal(ativos[0]);
+        
     }
 
     void InserirDadosNoPainelPrincipal(CriatureBase C)
     {
-        Atributos A = C.CaracCriature.meusAtributos;
-        IGerenciadorDeExperiencia g_XP = C.CaracCriature.mNivel;
-
-        principal.imgDoPersonagem.texture = elementosDoJogo.el.RetornaMini(C.NomeID);
-        principal.txtNomeC.text = C.NomeEmLinguas;
-        principal.numNivel.text = g_XP.Nivel.ToString();
-        principal.numPV.text = A.PV.Corrente + "\t/\t" + A.PV.Maximo;
-        principal.numPE.text = A.PE.Corrente + "\t/\t" + A.PE.Maximo;
-        principal.numXp.text = g_XP.XP + "\t/\t" + g_XP.ParaProxNivel;
-        principal.numAtk.text = A.Ataque.Corrente.ToString();
-        principal.numDef.text = A.Defesa.Corrente.ToString();
-        principal.numPod.text = A.Poder.Corrente.ToString();
-        string paraTipos = "";
-
-        for (int i = 0; i < C.CaracCriature.meusTipos.Length; i++)
-        {
-            paraTipos += tipos.NomeEmLinguas(C.CaracCriature.meusTipos[i])+", ";
-        }
-
-        principal.txtMeusTipos.text = paraTipos.Substring(0, paraTipos.Length - 2);
-
+        principal.InserirDadosNoPainelPrincipal(C);
         InsereGolpes(C.GerenteDeGolpes.meusGolpes.ToArray());
-
     }
 
     void InsereGolpes(GolpeBase[] golpes)
@@ -100,7 +81,7 @@ public class PainelStatus : MonoBehaviour
     {
         containerDeTamanhoVariavel.sizeDelta
                = new Vector2(0, numGOlpes * pGolpe[0].GetComponent<LayoutElement>().preferredHeight
-               +principal.numPV.transform.parent.GetComponent<LayoutElement>().preferredHeight
+               +principal.transform.GetComponent<LayoutElement>().preferredHeight
                );
     }
 

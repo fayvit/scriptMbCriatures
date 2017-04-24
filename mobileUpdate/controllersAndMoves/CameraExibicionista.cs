@@ -45,10 +45,10 @@ public class CameraExibicionista
         }
     }
 
-    public bool MostrarFixa(float velocidadeDeFoco)
+    public bool MostrarFixa(float velocidadeDeFoco,float distancia = 6)
     {
         //Debug.Log(foco);
-        Vector3 posAlvo = foco.position + foco.forward * 6 + Vector3.up * alturaDoPersonagem;
+        Vector3 posAlvo = foco.position + foco.forward * distancia + Vector3.up * alturaDoPersonagem;
         Vector3 dirAlvo = foco.position - transform.position;
         if (transform)
         {

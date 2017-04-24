@@ -17,6 +17,15 @@ public static class personagemG2
             case nomesCriatures.PolyCharm:
                 retorno = PolyCharmG2.Criature;
             break;
+            case nomesCriatures.Arpia:
+                retorno = ArpiaG2.Criature;
+            break;
+            case nomesCriatures.Iruin:
+                retorno = IruinG2.Criature;
+            break;
+            case nomesCriatures.Urkan:
+                retorno = UrkanG2.Criature;
+            break;
             default:
                 retorno = new CriatureBase();
             break;

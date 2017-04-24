@@ -24,9 +24,11 @@ public class AplicadorDeProjeteis
                // proj = KY.AddComponent<projetilStatusExpansivel>();
             break;
             case TipoDoProjetil.direcional:
-                //projetilDirecional projD = KY.AddComponent<projetilDirecional>();
-                //projD.alvo = (gameObject.name == "inimigo") ? GameObject.Find("CriatureAtivo") : GameObject.Find("inimigo");
-                //proj = projD;
+                ColisorDeDanoDirecional projD = KY.AddComponent<ColisorDeDanoDirecional>();
+                projD.alvo = (G.name == "CriatureAtivo")
+                    ? ((GameController.g.InimigoAtivo!= null)? GameController.g.InimigoAtivo.gameObject: null)
+                    : GameController.g.Manager.CriatureAtivo.gameObject;
+                proj = projD;
             break;
         }
         

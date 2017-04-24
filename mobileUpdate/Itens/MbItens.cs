@@ -9,8 +9,7 @@ public class MbItens:System.ICloneable
     [SerializeField]private int estoque;
     [SerializeField]private int valor;
 
-    private GameObject gAlvoDoItem;
-    private AplicadorDeCamera cam;
+    //private GameObject gAlvoDoItem;
     private CharacterManager manager;
     private FluxoDeRetorno fluxo;
     private EstadoDeUsoDeItem estado = EstadoDeUsoDeItem.nulo;
@@ -67,12 +66,6 @@ public class MbItens:System.ICloneable
     {
         get { return manager; }
         set { manager = value; }
-    }
-
-    public AplicadorDeCamera Cam
-    {
-        get { return cam; }
-        set { cam = value; }
     }
 
     public AnimaBraco AnimaB
@@ -137,6 +130,22 @@ public class MbItens:System.ICloneable
             }
 
         return false;
+    }
+
+    protected void InicializacaoComum(GameObject dono,Transform alvoDoItem)
+    {
+
+        TempoDecorrido = 0;
+
+        Manager.Estado = EstadoDePersonagem.parado;
+        Manager.CriatureAtivo.PararCriatureNoLocal();
+        Manager.Mov.Animador.PararAnimacao();
+
+        if (GameController.g.estaEmLuta)
+            GameController.g.InimigoAtivo.PararCriatureNoLocal();
+
+        AnimaB = new AnimaBraco(Manager, alvoDoItem);
+
     }
 
     static IEnumerator VoltarDosItensQuandoNaoTemMais()

@@ -67,6 +67,11 @@ public class MbEncontros
         }
     }
 
+    public void FinalizaEncontro()
+    {
+        gerenteDeEncontro.FinalizarEncontro();
+    }
+
     void IniciaEncontro()
     {
         luta = true;
@@ -85,7 +90,7 @@ public class MbEncontros
         GameController.g.HudM.Btns.btnParaCriature.interactable = true;
         heroi.emLuta = false;
         luta = false;        
-        manager.BotaoAlternar();        
+        manager.AoHeroi();        
         manager.transform.position = posHeroi;
         
     }
@@ -102,9 +107,12 @@ public class MbEncontros
 
     protected virtual List<encontravel> listaEncontravel()
     {
-        return new List<encontravel>() { new encontravel(nomesCriatures.PolyCharm,1,1,5),
-            new encontravel(nomesCriatures.Florest,1,1,5),
-            new encontravel(nomesCriatures.Xuash,1,1,5)
+        return new List<encontravel>() { //new encontravel(nomesCriatures.PolyCharm,1,1,5),
+            //new encontravel(nomesCriatures.Urkan,1,1,5),
+            //new encontravel(nomesCriatures.Xuash,1,1,5),
+            //new encontravel(nomesCriatures.Florest,1,1,5),
+            //new encontravel(nomesCriatures.Arpia,1,1,5),
+            new encontravel(nomesCriatures.Iruin,1,1,5)
         };
     }
 

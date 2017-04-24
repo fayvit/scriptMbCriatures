@@ -10,20 +10,22 @@ public class DadosDoPersonagem
     public int criatureSai = 1;
     public int itemSai = 0;
     public int cristais = 1021;
+    public int maxCarregaveis = 5;
 
     public void InicializadorDosDados()
     {
         criaturesAtivos = new List<CriatureBase>() {
-             new CriatureBase(nomesCriatures.PolyCharm,1),
+             new CriatureBase(nomesCriatures.Urkan,2),
+             new CriatureBase(nomesCriatures.Arpia,2),
               new CriatureBase(nomesCriatures.Xuash,1),
               new CriatureBase(nomesCriatures.Florest,1),
-             new CriatureBase(nomesCriatures.Florest)
+             new CriatureBase(nomesCriatures.PolyCharm)
         };
 
         itens = new List<MbItens>()
         {
             PegaUmItem.Retorna(nomeIDitem.maca,1),
-            PegaUmItem.Retorna(nomeIDitem.maca,11),
+            PegaUmItem.Retorna(nomeIDitem.cartaLuva,11),
             PegaUmItem.Retorna(nomeIDitem.maca,2),
             PegaUmItem.Retorna(nomeIDitem.maca,3),
             PegaUmItem.Retorna(nomeIDitem.maca,93),

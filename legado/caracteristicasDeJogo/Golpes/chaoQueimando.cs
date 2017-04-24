@@ -25,10 +25,10 @@ public class chaoQueimando : MonoBehaviour {
 			bool deFogo = false;
 			if(emQ.tag=="Criature")
 			{
-				string[] Tipos =  emQ.transform.GetComponent<umCriature>().criature().meusTipos;
+                nomeTipos[] Tipos = emQ.transform.GetComponent<CreatureManager>().MeuCriatureBase.CaracCriature.meusTipos;
 				for(int i=0;i<Tipos.Length;i++)
 				{
-					if(Tipos[i]==tipoImune.ToString())
+					if(Tipos[i]==tipoImune)
 					{
 						dano = false;
 						deFogo = true;
@@ -45,9 +45,7 @@ public class chaoQueimando : MonoBehaviour {
 			}
 
 			if(dano){
-				acaoDeGolpe aG = gameObject.AddComponent<acaoDeGolpe>();
-				aG.ativa = new golpe();
-				aG.tomaDanoUm(emQ.transform);
+                Dano.VerificaDano(emQ.gameObject, emQ.gameObject, new GolpeBase(new ContainerDeCaracteristicasDeGolpe()));                
 			}
 
 			if(!deFogo)

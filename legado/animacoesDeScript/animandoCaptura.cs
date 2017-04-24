@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class animandoCaptura : LuvaDeGuarde {
-
+    
 	public GameObject G;
 	public string estado = "tentandoCapturar";
 

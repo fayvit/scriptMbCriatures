@@ -139,6 +139,12 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void RetornarParaFluxoDoHeroi()
+    {
+        encontros.FinalizaEncontro();
+        usoDeItens.FinalizaUsaItemDeFora();
+    }
+
     public void BotaItens()
     {
         if (PodeAbrirMenuDeImagem(TipoDeDado.item))
@@ -197,7 +203,7 @@ public class GameController : MonoBehaviour
         {
             if (estaEmLuta)
             {
-                encontros.InimigoAtivo.Estado = CreatureManager.CreatureState.parado;
+                encontros.InimigoAtivo.PararCriatureNoLocal();
             }
 
             manager.Dados.criatureSai = indice;
@@ -213,16 +219,19 @@ public class GameController : MonoBehaviour
         {
             if (!usoDeItens.EstouUsandoItem)
             {
+                manager.Dados.itemSai = indice;
+
                 hudM.MenuDeI.FinalizarHud();
 
                 usoDeItens.Start(manager,fluxo);
 
-                if(fluxo!=FluxoDeRetorno.menuCriature&&fluxo!=FluxoDeRetorno.menuHeroi)
+                if(fluxo!=FluxoDeRetorno.menuCriature && fluxo!=FluxoDeRetorno.menuHeroi)
                     manager.Estado = EstadoDePersonagem.parado;
 
             }
         }
     }
+
     void FuncaoDoUseiItem(int indice)
     {
         FluxoDeRetorno fluxo = manager.Estado == EstadoDePersonagem.comMeuCriature

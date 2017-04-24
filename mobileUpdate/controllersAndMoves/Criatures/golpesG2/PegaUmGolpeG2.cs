@@ -34,8 +34,30 @@
             case nomesGolpes.rajadaDeFogo:
                 retorno = new RajadaDeFogoG2();
             break;
-
-
+            case nomesGolpes.ventania:
+                retorno = new VentaniaG2();
+            break;
+            case nomesGolpes.bico:
+                retorno = new BicoG2();
+            break;
+            case nomesGolpes.ventosCortantes:
+                retorno = new VentosCortantesG2();
+            break;
+            case nomesGolpes.chicoteDeCalda:
+                retorno = new ChicoteDeCaldaG2();
+            break;
+            case nomesGolpes.gosmaDeInseto:
+                retorno = new GosmaDeInsetoG2();
+            break;
+            case nomesGolpes.gosmaAcida:
+                retorno = new GosmaAcidaG2();
+            break;
+            case nomesGolpes.psicose:
+                retorno = new PsicoseG2();
+            break;
+            case nomesGolpes.bolaPsiquica:
+                retorno = new BolaPsiquicaG2();
+            break;
             default:
                 retorno = new GolpeBase(new ContainerDeCaracteristicasDeGolpe());
             break;

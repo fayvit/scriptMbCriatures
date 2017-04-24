@@ -18,6 +18,7 @@ public class HudManager
     [SerializeField]private PainelDeConfirmacao confirmacao;
     [SerializeField]private PauseMenu pauseM;
     [SerializeField]private PainelStatus pEscolheUsoDeItens;
+    [SerializeField]private PainelDeCriature pCriature;
     [SerializeField]private PainelDeGolpe pGolpe;
     [SerializeField]private HudTentandoAprenderGolpe hTenta;
 
@@ -58,6 +59,11 @@ public class HudManager
     public PainelStatus P_EscolheUsoDeItens
     {
         get { return pEscolheUsoDeItens; }
+    }
+
+    public PainelDeCriature P_Criature
+    {
+        get { return pCriature; }
     }
 
     public PainelDeGolpe P_Golpe

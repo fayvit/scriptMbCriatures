@@ -27,7 +27,7 @@ public class SigaOLider
     {
         if (nav)
         {
-            nav.Resume();
+            nav.isStopped = false;//nav.Resume();
             nav.destination = posAlvo;
             animator.SetFloat("velocidade", Vector3.ProjectOnPlane(nav.velocity, Vector3.up).magnitude);
         }
@@ -37,7 +37,10 @@ public class SigaOLider
     {
         //nav.destination = nav.transform.position;
         animator.SetFloat("velocidade", 0);
-        if(nav.enabled)
-            nav.Stop();
+        if (nav.enabled)
+        {
+            nav.destination = nav.transform.position;
+            nav.isStopped = true;//nav.Stop();
+        }
     }
 }

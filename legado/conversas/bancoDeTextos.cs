@@ -112,6 +112,12 @@ public class bancoDeTextos{
                     {
                         "<color=orange>{0}</color> esqueceu <color=yellow>{1}</color> e aprendeu <color=yellow>{2}</color>"
                     }
+                },
+                {
+                    ChaveDeTexto.foiParaArmagedom,new List<string>()
+                    {
+                        "A luva de Guarde de <color=yellow>Cesar Corean</color> só pode carregar {0} Criatures. Então <color=orange>{1}</color> nivel {2} foi enviado para o Armagedom"
+                    }
                 }
             }
         }
@@ -2723,5 +2729,6 @@ public enum ChaveDeTexto
     precisaEsquecer,
     certezaEsquecer,
     naoQueroAprenderEsse,
-    aprendeuGolpeEsquecendo
+    aprendeuGolpeEsquecendo,
+    foiParaArmagedom
 }

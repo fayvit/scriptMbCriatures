@@ -30,7 +30,7 @@ public class AnimaBraco
 
     public AnimaBraco(CharacterManager manager, Transform alvo)
     {
-        mCamera = MonoBehaviour.FindObjectOfType<AplicadorDeCamera>();
+        mCamera = AplicadorDeCamera.cam;
         mCamera.InicializaCameraExibicionista(manager.transform, 2.5f);
         this.manager = manager;
         animador = manager.Mov.Animador;

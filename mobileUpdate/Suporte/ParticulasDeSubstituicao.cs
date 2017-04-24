@@ -18,14 +18,21 @@ public class ParticulasDeSubstituicao
 
     public static GameObject InsereParticulaDoRaio(Vector3 posCriature, GameObject dono, bool bracoDireito = true)
     {
-        GameObject raio = elementosDoJogo.el.retorna(DoJogo.raioDeLuvaDeGuarde);
+        
         Vector3 instancia = SetarInstancia(dono, bracoDireito);
-        raio = (GameObject)MonoBehaviour.Instantiate(raio, instancia, Quaternion.LookRotation(
-         posCriature - instancia
+        return InsereParticulaDoRaio(instancia,posCriature);
+    }
+
+    public static GameObject InsereParticulaDoRaio(Vector3 posSaida, Vector3 posChegada, bool bracoDireito = true)
+    {
+        GameObject raio = elementosDoJogo.el.retorna(DoJogo.raioDeLuvaDeGuarde);
+        
+        raio = (GameObject)MonoBehaviour.Instantiate(raio, posSaida, Quaternion.LookRotation(
+         posChegada - posSaida
         ));
         raio.name = "raio";
         ParticleSystem P = raio.GetComponent<ParticleSystem>();
-        P.startSpeed *= (posCriature - instancia).magnitude * 2;
+        P.startSpeed *= (posChegada - posSaida).magnitude * 2;
         return raio;
     }
 

@@ -3,6 +3,8 @@ using System.Collections;
 
 public class AplicadorDeCamera : MonoBehaviour
 {
+    public static AplicadorDeCamera cam;
+
     [SerializeField]private CameraBasica basica;
     [SerializeField]private CameraDeLuta cDeLuta;
     [SerializeField]private CameraExibicionista cExibe;
@@ -23,6 +25,7 @@ public class AplicadorDeCamera : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        cam = this;
         basica.Start(transform);
     }
 
@@ -49,6 +52,12 @@ public class AplicadorDeCamera : MonoBehaviour
         estilo = EstiloDeCamera.passeio;
     }
 
+    public void InicializaCameraExibicionista(Transform focoComCharacterController)
+    {
+        InicializaCameraExibicionista(focoComCharacterController, 
+            focoComCharacterController.GetComponent<CharacterController>().height);
+    }
+
     public void InicializaCameraExibicionista(Transform doFoco,float altura)
     {
         if (cExibe != null)
@@ -64,9 +73,9 @@ public class AplicadorDeCamera : MonoBehaviour
         estilo = EstiloDeCamera.luta;
     }
 
-    public bool FocarPonto(float velocidadeDeFoco)
+    public bool FocarPonto(float velocidadeDeFoco,float distancia = 6)
     {
         estilo = EstiloDeCamera.focandoPonto;
-        return cExibe.MostrarFixa(velocidadeDeFoco);
+        return cExibe.MostrarFixa(velocidadeDeFoco,distancia);
     }
 }

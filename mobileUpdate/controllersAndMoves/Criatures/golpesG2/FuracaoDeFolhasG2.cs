@@ -1,18 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FuracaoDeFolhasG2 : GolpeBase
+[System.Serializable]
+public class FuracaoDeFolhasG2 : ProjetilBase
 {
-
-    private bool addView = false;
-    private float tempoDecorrido = 0;
-
-    private CaracteristicasDeProjetil carac = new CaracteristicasDeProjetil()
-    {
-        noImpacto = NoImpacto.impactoDeFolhas,
-        tipo = TipoDoProjetil.rigido
-    };
-
     public FuracaoDeFolhasG2() : base(new ContainerDeCaracteristicasDeGolpe()
     {
         nome = nomesGolpes.furacaoDeFolhas,
@@ -31,29 +22,11 @@ public class FuracaoDeFolhasG2 : GolpeBase
     }
         )
     {
-        //Corpo do construtor
-    }
-
-    public override void IniciaGolpe(GameObject G)
-    {
-        addView = false;
-        tempoDecorrido = 0;
-        carac.posInicial = Emissor.UseOEmissor(G, this.Nome);
-        DirDeREpulsao = G.transform.forward;
-        AnimadorCriature.AnimaAtaque(G, "emissor");
-    }
-
-    public override void UpdateGolpe(GameObject G)
-    {
-
-        tempoDecorrido += Time.deltaTime;
-        if (!addView && tempoDecorrido > this.TempoDeMoveMin)
+        carac = new CaracteristicasDeProjetil()
         {
-            addView = true;
-            AplicadorDeProjeteis.AplicaProjetil(G, this, carac);
-        }
-
-
+            noImpacto = NoImpacto.impactoDeFolhas,
+            tipo = TipoDoProjetil.rigido
+        };
     }
 
 }

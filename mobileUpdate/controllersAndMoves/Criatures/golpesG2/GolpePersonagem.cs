@@ -19,10 +19,8 @@ public class GolpePersonagem
         CriatureBase criatureBase = G.GetComponent<CreatureManager>().MeuCriatureBase;
         GerenciadorDeGolpes gg = criatureBase.GerenteDeGolpes;
         GolpePersonagem gP = gg.ProcuraGolpeNaLista(criatureBase.NomeID, nomeDoGolpe);
-        return gP;
-    }
-
-    
+        return gP;   
+    }   
     
     public float AcimaDoChao
     {

@@ -88,5 +88,8 @@ public enum NoImpacto
     impactoComum,
     impactoDeFolhas,
     impactoDeAgua,
-    impactoDeFogo
+    impactoDeFogo,
+    impactoDeVento,
+    impactoDeGosma,
+    impactoDeGosmaAcida
 }

@@ -1,16 +1,8 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public class GarraG2 : GolpeBase
+public class GarraG2 : ImpactoBase
 {
-    private AtualizadorDeImpactos aImpacto = new AtualizadorDeImpactos();
-    private CaracteristicasDeImpacto carac = new CaracteristicasDeImpacto()
-    {
-        noImpacto = NoImpacto.impactoComum.ToString(),
-        nomeTrail = Trails.tresCubos.ToString(),
-        parentearNoOsso = true
-    };
-
     public GarraG2() : base(new ContainerDeCaracteristicasDeGolpe()
     {
         nome = nomesGolpes.garra,
@@ -22,7 +14,7 @@ public class GarraG2 : GolpeBase
         potenciaMinima = 1,
         tempoDeReuso = 3.5f,
         TempoNoDano = 0.5f,
-        velocidadeDeGolpe = 10f,
+        velocidadeDeGolpe = 14f,
         distanciaDeRepulsao = 65f,
         velocidadeDeRepulsao = 33,
         tempoDeMoveMin = 0.15f,//74
@@ -31,17 +23,11 @@ public class GarraG2 : GolpeBase
     }
         )
     {
-
-    }
-
-    public override void IniciaGolpe(GameObject G)
-    {
-        aImpacto.ReiniciaAtualizadorDeImpactos();
-        AnimadorCriature.AnimaAtaque(G, Nome.ToString());
-    }
-
-    public override void UpdateGolpe(GameObject G)
-    {
-        aImpacto.ImpatoAtivo(G, this, carac);
+        carac = new CaracteristicasDeImpacto()
+        {
+            noImpacto = NoImpacto.impactoComum.ToString(),
+            nomeTrail = Trails.tresCubos.ToString(),
+            parentearNoOsso = true
+        };
     }
 }

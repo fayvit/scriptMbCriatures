@@ -79,7 +79,10 @@ public class EncounterManager
                 }
             break;
             case EncounterState.VoltarParaPasseio:
-                MonoBehaviour.Destroy(inimigo.gameObject);
+
+                if(inimigo)
+                    MonoBehaviour.Destroy(inimigo.gameObject);
+
                 cam.FocarBasica(manager.transform,10,10);
                 estado = EncounterState.emEspera;
                 retorno = true;                
@@ -103,6 +106,11 @@ public class EncounterManager
             break;
         }
         return retorno;
+    }
+
+    public void FinalizarEncontro()
+    {
+        estado = EncounterState.VoltarParaPasseio;
     }
 
     void RecebePontosDaVitoria()
@@ -178,7 +186,7 @@ public class EncounterManager
         if (contadorDeTempo > 0.5f)
         {
             estado = EncounterState.apresentaAdversario;
-            cam = MonoBehaviour.FindObjectOfType<AplicadorDeCamera>();       
+            cam = AplicadorDeCamera.cam;
             contadorDeTempo = 0;
         }
     }

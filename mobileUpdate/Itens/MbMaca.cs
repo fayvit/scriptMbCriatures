@@ -79,7 +79,7 @@ public class MbMaca : MbItens
         CriatureAlvoDoItem = Manager.CriatureAtivo;
         if (ItemQuantitativo.UsaItemDeRecuperacao(CriatureAlvoDoItem.MeuCriatureBase) && RetirarUmItem(Manager, this, 1))
         {
-            InicializacaoComum(dono);
+            InicializacaoComum(dono, Manager.CriatureAtivo.transform);
             Estado = EstadoDeUsoDeItem.animandoBraco;
         }
         else
@@ -90,26 +90,6 @@ public class MbMaca : MbItens
                     bancoDeTextos.falacoes[heroi.lingua]["mensLuta"][2], 
                     CriatureAlvoDoItem.MeuCriatureBase.NomeEmLinguas),30,5);
         }
-    }
-
-    void InicializacaoComum(GameObject dono)
-    {
-        
-        TempoDecorrido = 0;
-
-        Manager.Estado = EstadoDePersonagem.parado;
-        Manager.CriatureAtivo.PararCriatureNoLocal();
-        Manager.Mov.Animador.PararAnimacao();
-
-        if (GameController.g.estaEmLuta)
-            GameController.g.InimigoAtivo.Estado = CreatureManager.CreatureState.parado;
-
-        Cam = MonoBehaviour.FindObjectOfType<AplicadorDeCamera>();
-
-
-
-        AnimaB = new AnimaBraco(Manager, Manager.CriatureAtivo.transform);
-
     }
 
     private bool AtualizaUsoDaMaca()

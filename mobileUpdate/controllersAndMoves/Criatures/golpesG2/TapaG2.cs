@@ -1,16 +1,8 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public class TapaG2 : GolpeBase
+public class TapaG2 : ImpactoBase
 {
-    private AtualizadorDeImpactos aImpacto = new AtualizadorDeImpactos();
-    private CaracteristicasDeImpacto carac = new CaracteristicasDeImpacto()
-    {
-        noImpacto = "impactoComum",
-        nomeTrail = "umCuboETrail",
-        parentearNoOsso = true
-    };
-
     public TapaG2() : base(new ContainerDeCaracteristicasDeGolpe()
     {
         nome = nomesGolpes.tapa,
@@ -30,17 +22,11 @@ public class TapaG2 : GolpeBase
     }
         )
     {
-
-    }
-
-    public override void IniciaGolpe(GameObject G)
-    {
-        aImpacto.ReiniciaAtualizadorDeImpactos();
-        AnimadorCriature.AnimaAtaque(G, Nome.ToString());
-    }
-
-    public override void UpdateGolpe(GameObject G)
-    {
-        aImpacto.ImpatoAtivo(G,this,carac);
+        carac = new CaracteristicasDeImpacto()
+        {
+            noImpacto = NoImpacto.impactoComum.ToString(),
+            nomeTrail = Trails.umCuboETrail.ToString(),
+            parentearNoOsso = true
+        };
     }
 }

@@ -149,7 +149,8 @@ public enum DoJogo
     raioDeLuvaDeGuarde,
     acaoDeCura1,
     particulasCoisasBoasUI,
-    particulasUpeiDeNivel
+    particulasUpeiDeNivel,
+    encontro
 }
 
 /// <summary>

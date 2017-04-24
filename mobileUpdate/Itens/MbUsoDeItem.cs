@@ -64,6 +64,7 @@ public class MbUsoDeItem
                 switch (fluxo)
                 {
                     case FluxoDeRetorno.criature:
+                        Debug.Log(esseItem.ID);
                         gerente.AoCriature(GameController.g.InimigoAtivo);
                     break;
                     case FluxoDeRetorno.heroi:
@@ -82,7 +83,12 @@ public class MbUsoDeItem
         }
         else
             return false;
+    }
 
-        
+    public void FinalizaUsaItemDeFora()
+    {
+        retorno = false;
+        retornoDeFora = false;
+        fluxo = FluxoDeRetorno.heroi;
     }
 }

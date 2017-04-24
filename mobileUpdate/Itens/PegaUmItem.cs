@@ -11,6 +11,9 @@ public class PegaUmItem
             case nomeIDitem.maca:
                 retorno = new MbMaca(estoque);
             break;
+            case nomeIDitem.cartaLuva:
+                retorno = new MbCartaLuva(estoque);
+            break;
         }
         return retorno;
     }
