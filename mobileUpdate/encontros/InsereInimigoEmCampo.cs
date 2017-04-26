@@ -5,9 +5,11 @@ public class InsereInimigoEmCampo
 {
     public static CreatureManager RetornaInimigoEmCampo(encontravel encontrado,CharacterManager manager)
     {
+        Debug.Log(encontrado.nome);
         GameObject M = elementosDoJogo.el.criature(encontrado.nome.ToString());
         Transform doCriatureAtivo = manager.CriatureAtivo.transform;
         Vector3 instancia = doCriatureAtivo.position + 10 * doCriatureAtivo.forward;
+        Debug.Log(M);
         /*
 		RaycastHit hit = new RaycastHit ();
 			if(Physics.Linecast(posHeroi,posHeroi+10*tHeroi.forward,out hit))

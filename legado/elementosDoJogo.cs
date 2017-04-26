@@ -5,12 +5,12 @@ public class elementosDoJogo : LuvaDeGuarde {
 
 	public GameObject[] doJogo;
 	public Material[] materiais;
-	public GameObject[] colisores;
-	public GameObject[] criatures;
-	public Texture2D[] miniGolpes;
-	public Texture2D[] miniCriatures;
-	public Texture2D[] miniItens;
-	public Texture2D[] miniStatus;
+	//public GameObject[] colisores;
+	//public GameObject[] criatures;
+	//public Texture2D[] miniGolpes;
+	//public Texture2D[] miniCriatures;
+	//public Texture2D[] miniItens;
+	//public Texture2D[] miniStatus;
 	public static elementosDoJogo el;
 
 	public GUISkin skin;
@@ -52,7 +52,7 @@ public class elementosDoJogo : LuvaDeGuarde {
 		break;
 		case "criature":
 		case "Criature":
-			retorno = criature(ele);
+                retorno = criature(ele);
 		break;
 		case "colisor":
 			retorno = retornaColisor(ele);
@@ -65,74 +65,57 @@ public class elementosDoJogo : LuvaDeGuarde {
 
     public Texture2D RetornaMini(nomesCriatures nome)
     {
-        return retornaMini(nome.ToString(),"criature");
+        return (Texture2D)Resources.Load("miniCriatures/"+nome);//retornaMini(nome.ToString(),"criature");
     }
 
     public Texture2D RetornaMini(nomeIDitem nome)
     {
-        return retornaMini(nome.ToString(), "itens");
+        return (Texture2D)Resources.Load("miniItens/" + nome);//return retornaMini(nome.ToString(), "itens");
     }
     public Texture2D RetornaMini(nomesGolpes nome)
     {
-        return retornaMini(nome.ToString(), "golpe");
+        return (Texture2D)Resources.Load("miniGolpes/" + nome);//return retornaMini(nome.ToString(), "golpe");
+    }
+
+    public Texture2D RetornaMini(tipoStatus nome)
+    {
+        return (Texture2D)Resources.Load("miniStatus/" + nome);//return retornaMini(nome.ToString(), "golpe");
     }
 
     public Texture2D retornaMini(string ele,string oQ)
 	{
 
 		Texture2D retorno = null;
-		Texture2D[] conjunto = null;
 
 		switch(oQ)
 		{
 		case "golpe":
-			conjunto = miniGolpes;
+                retorno = RetornaMini((nomesGolpes)System.Enum.Parse(typeof(nomesGolpes), ele));
 		break;
 		case "criature":
-			conjunto = miniCriatures;
-		break;
+                retorno = RetornaMini((nomesCriatures)System.Enum.Parse(typeof(nomesCriatures), ele));
+        break;
 		case "itens":
-			conjunto = miniItens;
-		break;
+                retorno = RetornaMini((nomeIDitem)System.Enum.Parse(typeof(nomeIDitem), ele));
+        break;
 		case "status":
-			conjunto = miniStatus;
-		break;
-		}
-
-		for(int i=0;i<conjunto.Length;i++)
-		{
-			if(conjunto[i].name == ele)
-				retorno = conjunto[i];
+                retorno = RetornaMini((tipoStatus)System.Enum.Parse(typeof(tipoStatus), ele));
+        break;
 		}
 		
 		return retorno;
 	}
 
 	public GameObject criature(string ele)
-	{
-		
-		GameObject retorno = null;
-		for(int i=0;i<criatures.Length;i++)
-		{
-			if(criatures[i].name == ele)
-				retorno = criatures[i];
-		}
-		
-		return retorno;
+	{	
+		return (GameObject)Resources.Load("criatures/"+ele);
 	}
 
 	public GameObject retornaColisor(string ele)
 	{
-		
-		GameObject retorno = null;
-		for(int i=0;i<colisores.Length;i++)
-		{
-			if(colisores[i].name == ele)
-				retorno = colisores[i];
-		}
-		
-		return retorno;
-	}
+
+        return (GameObject)Resources.Load("colisores/" + ele);
+    }
 }
 
 /// <summary>

@@ -21,7 +21,17 @@ public class HudManager
     [SerializeField]private PainelDeCriature pCriature;
     [SerializeField]private PainelDeGolpe pGolpe;
     [SerializeField]private HudTentandoAprenderGolpe hTenta;
+    [SerializeField]private DisparaTexto disparaT;
+    [SerializeField]private MenuDeArmagedom menuDeA;
 
+    public MenuDeArmagedom MenuDeA
+    {
+        get { return menuDeA; }
+    }
+    public DisparaTexto DisparaT
+    {
+        get { return disparaT; }
+    }
     public PauseMenu PauseM
     {
         get { return pauseM; }
@@ -122,6 +132,11 @@ public class HudManager
     {
         AtualizaDadosDaHud(hudInimigo, inimigo);
         AtualizaDadosDaHud(HudCriatureAtivo, manager.Dados.criaturesAtivos[0]);
+    }
+
+    public void AtualizaHudHeroi()
+    {
+        AtualizaHudHeroi(GameController.g.Manager.CriatureAtivo.MeuCriatureBase);
     }
 
     public void AtualizaHudHeroi(CriatureBase C)

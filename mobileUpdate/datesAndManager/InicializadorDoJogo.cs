@@ -9,7 +9,7 @@ public class InicializadorDoJogo
         GameObject CA = elementosDoJogo.el.retorna(criature.NomeID.ToString(),"criature");
         CA = MonoBehaviour.Instantiate(CA, transform.position - 3 * transform.forward, Quaternion.identity)
             as GameObject;
-
+        CA.transform.parent = elementosDoJogo.el.transform;
         return CA;
     }
 

@@ -15,11 +15,11 @@ public class DadosDoPersonagem
     public void InicializadorDosDados()
     {
         criaturesAtivos = new List<CriatureBase>() {
-             new CriatureBase(nomesCriatures.Urkan,2),
+             //new CriatureBase(nomesCriatures.Urkan,2),
+             new CriatureBase(nomesCriatures.Florest,1),
              new CriatureBase(nomesCriatures.Arpia,2),
-              new CriatureBase(nomesCriatures.Xuash,1),
-              new CriatureBase(nomesCriatures.Florest,1),
-             new CriatureBase(nomesCriatures.PolyCharm)
+              new CriatureBase(nomesCriatures.Xuash,1),              
+             //new CriatureBase(nomesCriatures.PolyCharm)
         };
 
         itens = new List<MbItens>()
@@ -55,5 +55,13 @@ public class DadosDoPersonagem
         }
 
         return retorno;
+    }
+
+    public void TodosCriaturesPerfeitos()
+    {
+        for (int i = 0; i < criaturesAtivos.Count; i++)
+        {
+            CriatureBase.EnergiaEVidaCheia(criaturesAtivos[i]);
+        }
     }
 }

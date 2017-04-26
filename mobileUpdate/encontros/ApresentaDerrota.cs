@@ -56,7 +56,7 @@ public class ApresentaDerrota
                     if (manager.Dados.TemCriatureVivo())
                     {
                         PainelMensCriature.p.AtivarNovaMens(textos[1], 20);
-                        GameController.g.HudM.EntraCriatures.IniciarEssaHUD(manager.Dados,AoEscolherUmCriature);
+                        GameController.g.HudM.EntraCriatures.IniciarEssaHUD(manager.Dados.criaturesAtivos.ToArray(),AoEscolherUmCriature);
                         fase = FaseDaDerrota.emEspera;
                     }
                     else

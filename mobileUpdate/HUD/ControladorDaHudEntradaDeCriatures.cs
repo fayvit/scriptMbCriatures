@@ -4,19 +4,19 @@ using System.Collections;
 [System.Serializable]
 public class ControladorDaHudEntradaDeCriatures : UiDeOpcoes
 {
-    private DadosDoPersonagem dados;
+    private CriatureBase[] listaDeCriatures;
     private System.Action<int> aoClique;
 
-    public void IniciarEssaHUD(DadosDoPersonagem dados,System.Action<int> AoEscolherUmCriature)
+    public void IniciarEssaHUD(CriatureBase[] listaDeCriatures,System.Action<int> AoEscolherUmCriature)
     {
-        this.dados = dados;
+        this.listaDeCriatures = listaDeCriatures;
         aoClique += AoEscolherUmCriature;
-        IniciarHUD(dados.criaturesAtivos.Count);
+        IniciarHUD(listaDeCriatures.Length);
     }
 
     public override void SetarComponenteAdaptavel(GameObject G,int indice)
     {
-        G.GetComponent<CriatureParaMostrador>().SetarCriature(dados.criaturesAtivos[indice], aoClique);
+        G.GetComponent<CriatureParaMostrador>().SetarCriature(listaDeCriatures[indice], aoClique);
     }
 
     protected override void FinalizarEspecifico()

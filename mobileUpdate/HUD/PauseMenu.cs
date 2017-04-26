@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -78,6 +79,6 @@ public class PauseMenu : MonoBehaviour
 
     public void VoltarAoTitulo()
     {
-
+        SceneManager.LoadScene("testeCarregamento");
     }
 }

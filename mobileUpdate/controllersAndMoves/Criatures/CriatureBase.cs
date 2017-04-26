@@ -83,6 +83,13 @@ public class CriatureBase : ICloneable
         return Y;
     }
 
+    public static void EnergiaEVidaCheia(CriatureBase C)
+    {
+        Atributos A = C.CaracCriature.meusAtributos;
+        A.PV.Corrente = A.PV.Maximo;
+        A.PE.Corrente = A.PE.Maximo;
+    }
+
     public object Clone()
     {
         CriatureBase retorno =

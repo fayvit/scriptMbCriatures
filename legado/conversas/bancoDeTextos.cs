@@ -118,6 +118,21 @@ public class bancoDeTextos{
                     {
                         "A luva de Guarde de <color=yellow>Cesar Corean</color> só pode carregar {0} Criatures. Então <color=orange>{1}</color> nivel {2} foi enviado para o Armagedom"
                     }
+                },
+                {
+                    ChaveDeTexto.primeiroArmagedom,new List<string>()
+                    {
+                       // "Olá Estranho!!\n\r Aqui é o Armagedom de Infinity.",
+                        //"Nos Armagedom's espalhados por Orion você pode curar seus Criatures.",
+                        " Além disso pode substituir os criatures ativos por criatures que estão na sua reserva.",
+                        "No que posso te ajudar estranho?"
+                    }
+                },
+                {
+                    ChaveDeTexto.frasesDeArmagedom,new List<string>()
+                    {
+                        "Seus criatures estão curados, estranho!!"
+                    }
                 }
             }
         }
@@ -2730,5 +2745,7 @@ public enum ChaveDeTexto
     certezaEsquecer,
     naoQueroAprenderEsse,
     aprendeuGolpeEsquecendo,
-    foiParaArmagedom
+    foiParaArmagedom,
+    primeiroArmagedom,
+    frasesDeArmagedom
 }

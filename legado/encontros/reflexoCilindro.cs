@@ -4,7 +4,7 @@ using System.Collections;
 public class reflexoCilindro : MonoBehaviour {
 	public Vector4[] cor = {new Vector4 (75, 172, 204, 255),new Vector4 (255, 75, 204, 255),Vector4.zero};
 	public bool natural = true;
-
+    public float vel = 3;
 	public Transform gambiarraPraConcertarAGambiarra;
 	// Use this for initialization
 	void Start () {
@@ -22,15 +22,15 @@ public class reflexoCilindro : MonoBehaviour {
 		gambiarraPraConcertarAGambiarra.localPosition = new Vector3(V.x,-5.85f,V.z);
 
 		MeshRenderer[] X = GetComponentsInChildren<MeshRenderer> ();
-		if((cor[2]-cor[0]).magnitude>0.05f && natural == true)
+		if((cor[2]-cor[0]).magnitude>0.01f && natural == true)
 		{
-			cor[2] = Vector4.Lerp(cor[2],cor[0],Time.deltaTime);
-		}else if((cor[2] - cor[0]).magnitude<0.05f)
+			cor[2] = Vector4.Lerp(cor[2],cor[0],vel*Time.deltaTime);
+		}else if((cor[2] - cor[0]).magnitude<0.01f)
 			natural = false;
 
-		if (natural == false && (cor [2] - cor [1]).magnitude>0.05f)
-						cor [2] = Vector4.Lerp (cor [2], cor [1], Time.deltaTime);
-				else if ((cor [2] - cor [1]).magnitude<0.05f)
+		if (natural == false && (cor [2] - cor [1]).magnitude>0.01f)
+						cor [2] = Vector4.Lerp (cor [2], cor [1], vel*Time.deltaTime);
+				else if ((cor [2] - cor [1]).magnitude<0.01f)
 						natural = true;
 		//int tempo = (int)(Time.time*20f);
 		//print (tempo);

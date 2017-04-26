@@ -27,9 +27,12 @@ public class SigaOLider
     {
         if (nav)
         {
-            nav.isStopped = false;//nav.Resume();
-            nav.destination = posAlvo;
-            animator.SetFloat("velocidade", Vector3.ProjectOnPlane(nav.velocity, Vector3.up).magnitude);
+            if (nav.enabled)
+            {
+                nav.isStopped = false;//nav.Resume();
+                nav.destination = posAlvo;
+                animator.SetFloat("velocidade", Vector3.ProjectOnPlane(nav.velocity, Vector3.up).magnitude);
+            }
         }
     }
 
