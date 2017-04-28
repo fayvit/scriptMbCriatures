@@ -131,7 +131,13 @@ public class bancoDeTextos{
                 {
                     ChaveDeTexto.frasesDeArmagedom,new List<string>()
                     {
-                        "Seus criatures estão curados, estranho!!"
+                        "Seus criatures estão curados, estranho!!",
+                        "Me desculpe estranho, mas parece que não há criatures teus guardados no armagedom",
+                        "Seus Criatures Armagedados",
+                        "O criature <color=orange>{0}</color> nivel {1} entrou para o seu time",
+                        "Seu time já tem o número máximo de Criatures. Para colocar <color=orange>{0}</color> nivel {1} no time você precisa retirar um Criature do seu time",
+                        "Qual Criature sairá do seu time?",
+                        "O Criature {0} nivel {1} entrou no seu time no lugar do Criature {2} nivel {3}"
                     }
                 }
             }

@@ -12,6 +12,7 @@ public class HudManager
 
     [SerializeField]private BtnsManager btns;
     [SerializeField]private ControladorDaHudEntradaDeCriatures entraCriatures;
+    [SerializeField]private ControladorDaHudEntradaDeCriatures entraCriaturesArmagedados;
     [SerializeField]private MenuDeImagens menuDeI;
 
     [SerializeField]private PainelUmaMensagem umaMensagem;
@@ -54,6 +55,11 @@ public class HudManager
     public ControladorDaHudEntradaDeCriatures EntraCriatures
     {
         get { return entraCriatures; }
+    }
+
+    public ControladorDaHudEntradaDeCriatures EntraCriaturesArmagedados
+    {
+        get { return entraCriaturesArmagedados; }
     }
 
     public MenuDeImagens MenuDeI

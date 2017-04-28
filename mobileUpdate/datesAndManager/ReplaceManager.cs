@@ -23,6 +23,8 @@ public class ReplaceManager
         this.manager = manager;
         List<CriatureBase> lista = manager.Dados.criaturesAtivos;
         CriatureBase temp = lista[0];
+        lista[0] = lista[manager.Dados.criatureSai];
+        lista[manager.Dados.criatureSai] = temp;
 
         manager.Estado = EstadoDePersonagem.parado;
         manager.CriatureAtivo.PararCriatureNoLocal();
@@ -31,9 +33,7 @@ public class ReplaceManager
         GameController.g.HudM.MenuDeI.FinalizarHud();
         PainelMensCriature.p.EsconderMensagem();
 
-        estouTrocandoDeCriature = true;
-        lista[0] = lista[manager.Dados.criatureSai];
-        lista[manager.Dados.criatureSai] = temp;
+        estouTrocandoDeCriature = true;        
         animaB = new AnimaBraco(manager, alvo);
     }
 
@@ -66,5 +66,6 @@ public enum FluxoDeRetorno
     heroi,
     criature,
     menuHeroi,
-    menuCriature
+    menuCriature,
+    armagedom
 }

@@ -30,6 +30,9 @@ public abstract class UiDeOpcoes
 
         itemDoContainer.SetActive(false);
 
+        if (sr != null)
+            if (sr.verticalScrollbar)
+                sr.verticalScrollbar.value = 1;
         GameController.g.StartCoroutine(ScrollPos());
         
     }
@@ -37,9 +40,11 @@ public abstract class UiDeOpcoes
     IEnumerator ScrollPos()
     {
         yield return new WaitForSecondsRealtime(0.01f);
+        
         if (sr != null)
             if (sr.verticalScrollbar)
                 sr.verticalScrollbar.value = 1;
+        
     }
 
     public void FinalizarHud()

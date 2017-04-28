@@ -22,6 +22,14 @@ public class DadosDoPersonagem
              //new CriatureBase(nomesCriatures.PolyCharm)
         };
 
+        criaturesArmagedados = new List<CriatureBase>() {
+             new CriatureBase(nomesCriatures.Urkan,2),
+             new CriatureBase(nomesCriatures.Florest,1),
+             new CriatureBase(nomesCriatures.Arpia,2),
+              new CriatureBase(nomesCriatures.Xuash,1),              
+             new CriatureBase(nomesCriatures.PolyCharm)
+        };
+
         itens = new List<MbItens>()
         {
             PegaUmItem.Retorna(nomeIDitem.maca,1),

@@ -93,9 +93,19 @@ public class PainelStatus : MonoBehaviour
         }
 
         sRect.verticalScrollbar.value = 1;
-        Debug.Log(sRect.verticalScrollbar.value);
+        GameController.g.StartCoroutine(ScrollPos());
+        
         btnAbas[indice].sprite = selecionado;
         indiceDoSelecionado = indice;
+    }
+
+    IEnumerator ScrollPos()
+    {
+        yield return new WaitForSecondsRealtime(0.01f);
+        if (sRect != null)
+            if (sRect.verticalScrollbar)
+                sRect.verticalScrollbar.value = 1;
+
     }
 
     public void AtivarParaItem(System.Action<int> a)

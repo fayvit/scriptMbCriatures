@@ -21,7 +21,7 @@ public class AtivadorDoBotaoArmagedom : AtivadorDeBotao
         
         hudM.DesligaControladores();
         hudM.MenuDeI.FinalizarHud();
-        g.HudM.MenuDeA.Inicia(fotoDoNPC);
+        g.HudM.MenuDeA.Inicia(transform.parent, fotoDoNPC);
         Update();
     }
 }

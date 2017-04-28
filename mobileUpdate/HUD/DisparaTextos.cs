@@ -99,6 +99,20 @@ public class DisparaTexto
         }
     }
 
+    public bool LendoMensagemAteOCheia()
+    {
+        if (LendoMensagem() != FasesDaMensagem.mensagemCheia)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Toque();
+            }
+            return true;
+        }
+        else
+            return false;
+    }
+
     public FasesDaMensagem LendoMensagem()
     {
         contadorDeTempo += Time.deltaTime;

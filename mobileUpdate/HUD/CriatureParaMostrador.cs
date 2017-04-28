@@ -15,7 +15,7 @@ public class CriatureParaMostrador : MonoBehaviour
     [SerializeField]private Text txtStausLabel;
     [SerializeField]private Text txtListaDeStatus;
 
-    private System.Action<int> cliqueDoPersonagem;
+    protected System.Action<int> cliqueDoPersonagem;
 
 
     // Use this for initialization
@@ -43,7 +43,7 @@ public class CriatureParaMostrador : MonoBehaviour
         BtnsManager.ReligarBotoes(transform.parent.gameObject);
     }
 
-    public void FuncaoDoBotao()
+    public virtual void FuncaoDoBotao()
     {
         BtnsManager.DesligarBotoes(transform.parent.gameObject);
 
