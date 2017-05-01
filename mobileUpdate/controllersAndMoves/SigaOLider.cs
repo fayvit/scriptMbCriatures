@@ -8,6 +8,24 @@ public class SigaOLider
     [SerializeField]private NavMeshAgent nav;
     [SerializeField]private Animator animator;
 
+    public SigaOLider() { }
+
+    public SigaOLider(Transform T,float velocidade,float aceleracao)
+    {
+        nav = T.GetComponent<NavMeshAgent>();
+
+        if (nav == null)
+        {
+            nav = T.gameObject.AddComponent<NavMeshAgent>();
+            nav.stoppingDistance = 2.2f;
+            nav.acceleration = aceleracao;
+            nav.speed = velocidade;
+            nav.baseOffset = -0.09f;
+        }
+
+        animator = T.GetComponent<Animator>();
+    }
+
     // Use this for initialization
     public void Start(CreatureManager meuCriature)
     {
@@ -18,6 +36,7 @@ public class SigaOLider
             nav.stoppingDistance = nav.radius < 1 ? 5 : 2 * nav.radius;
             nav.baseOffset = 0;
             nav.speed = 7;//nav.radius < 1 ? 7 : 0;
+            nav.baseOffset = -0.09f;
         }
         animator = meuCriature.GetComponent<Animator>();
     }

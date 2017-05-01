@@ -42,7 +42,7 @@ public class XuashG2
                 CaracCriature = new CaracteristicasDeCriature()
                 {
                     meusTipos = new nomeTipos[1] { nomeTipos.Agua },
-                    distanciaFundamentadora = 0.01f,
+                    distanciaFundamentadora = -0.01f,
                     meusAtributos = {
                     PV = { Taxa = 0.19f,},
                     PE = { Taxa = 0.21f},

@@ -4,10 +4,9 @@ using System.Collections;
 public class AtivadorDeBotao : MonoBehaviour
 {
 
-   [SerializeField]private GameObject btn;
-    private bool estaNoTrigger = false;
-
-    protected float DISTANCIA_PARA_ACIONAR = 4.6f;
+   [SerializeField]protected GameObject btn;
+   [SerializeField]protected float distanciaParaAcionar = 4.6f;
+   private bool estaNoTrigger = false;    
 
     // Use this for initialization
     void Start()
@@ -15,12 +14,28 @@ public class AtivadorDeBotao : MonoBehaviour
 
     }
 
+    protected void FluxoDeBotao()
+    {
+        GameController g = GameController.g;
+        HudManager hudM = g.HudM;
+        AndroidController.a.DesligarControlador();
+        
+
+        g.Manager.Estado = EstadoDePersonagem.parado;
+        g.Manager.transform.rotation = Quaternion.LookRotation(
+            Vector3.ProjectOnPlane(transform.position - g.Manager.transform.position, Vector3.up));
+
+        hudM.DesligaControladores();
+        hudM.MenuDeI.FinalizarHud();
+        Update();
+    }
+
     // Update is called once per frame
     protected void Update()
     {
         if (GameController.g)
             if (GameController.g.Manager)
-                if (Vector3.Distance(GameController.g.Manager.transform.position, transform.position) < DISTANCIA_PARA_ACIONAR
+                if (Vector3.Distance(GameController.g.Manager.transform.position, transform.position) < distanciaParaAcionar
                     &&
                     estaNoTrigger
                     &&
@@ -33,6 +48,10 @@ public class AtivadorDeBotao : MonoBehaviour
                 {
                     btn.SetActive(false);
                 }
+    }
+    protected void SempreEstaNoTrigger()
+    {
+        estaNoTrigger = true;
     }
 
     void OnTriggerEnter(Collider col)

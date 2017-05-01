@@ -173,26 +173,33 @@ public class bancoDeTextos{
 						"A sul daqui, em uma pequena montanha no meio do vale, você pode ver a <color=yellow>fortaleza Stealer</color>",
 						"A muito tempo atrás, antes mesmo de <color=orange>Logan</color> ser imperador, essa planície era o leito do rio Mariinque",
 						"Como o rio Mariinque tinha o leito largo e profundo, e além disso, desagua no mar",
-						"Ele era uma porta aberta para que os conquistadores de outros continentes desembarcassem aqui no coração do nosso continente de Yoro",
+						"Ele era uma porta aberta para que os conquistadores de outros continentes desembarcassem aqui...",
+                        ".. no coração do nosso continente de Yoro",
 						"A Fortaleza Stealer foi construída para defender Yoro desse tipo de ataque",
 						"Hoje ela se tornou mais uma base a serviço dos imperialistas."
 					}},
 				{"infinity4", new List<string>()
 					{
-						"Rezam as lendas de Orion que o imperador é um escolhido dos próprios Deuses para liderar seu povo nos caminhos do Universo.",
+						"Rezam as lendas de Orion que o imperador é um escolhido dos próprios Deuses.",
+                        "Ele foi escolhido para liderar seu povo nos caminhos do Universo.",
 						"E a <color=yellow>Torre da Vida Eterna</color> é uma prova disso",
 						"A Torre da Vida Eterna é uma fortaleza fechada pelo acordo dos Deuses de Orion",
 						"Ao que parece, só existem duas formas de entrar na Torre",
 						"A primeira é ter a permissão do próprio imperador",
 						"A segunda é juntando oito dos medalhões dos Deuses",
 						"Juntando oito dos medalhões dos deuses e colocando os medalhões no painel a frente da Torre da Vida Eterna a porta se abrirá",
-						"Ao menos dizem!! Pois não conheço nenhum possuidor de oito medalhões de Deuses. O máximo que já vi com uma única pessoa foram cinco."
+						"Ao menos dizem!!",
+                        " Pois não conheço nenhum possuidor de oito medalhões de Deuses.",
+                        " O máximo que já vi com uma única pessoa foram cinco."
 					}},
 				{"infinity5", new List<string>()
 					{
 						"Seguindo a oeste da cidade de Ive você irá de encontro com o Rio Mariinque",
-						"Depois da construção da represa o curso do rio foi mudado.\r\n A mudança no curso do rio enfureceu o deus <color=cyan>Drag</color>, deus das águas.",
-						"Para dar uma lição aos mortais que brincaram de deuses mudando o curso de uma obra da natureza, Drag fez com que o novo Rio Mariinque fosse ainda mais profundo que o anterior e sua margem ainda mais ampla.",
+						"Depois da construção da represa o curso do rio foi mudado.",
+                        "A mudança no curso do rio enfureceu o deus <color=cyan>Drag</color>, deus das águas.",
+						"Para dar uma lição aos mortais que brincaram de deuses mudando o curso de uma obra da natureza...",
+                        "... Drag fez com que o novo Rio Mariinque fosse ainda mais profundo que o anterior...",
+                        "... e sua margem ainda mais ampla.",
 						"No fundo do Rio os seguidores de Drag construiram uma arena divina",
 						"Na <color=yellow>Arena divina de Drag</color> você pode conseguir o medalhão das águas."
 					}},
@@ -218,12 +225,15 @@ public class bancoDeTextos{
 					}},
 				{"infinity8",new List<string>()
 					{
-						"O Imperador <color=orange>Logan</color> durante muitos anos (quase todo o seu império) foi um homem justo e que levou o povo da Yoro de Orion a prosperidade",
-						"De alguns anos pra cá que os rumos do império mudaram.",
+						"O Imperador <color=orange>Logan</color> durante muitos anos (quase todo o seu império) foi um homem justo e que levou o povo...",
+                        "  da Yoro de Orion a prosperidade. De alguns anos pra cá que os rumos do império mudaram.",
 						"A obsessão por <color=cyan>gemas Laranges</color> levou Logan a adotar a escravidão como mão de obra nas minas",
-						"A maioria dos prisioneiros foram levados para as minas de <color=yellow>AxeOdion</color>, bandidos, assaltantes, assassinos, todo o tipo de criminoso.",
+						"A maioria dos prisioneiros foram levados para as minas de <color=yellow>AxeOdion</color>,...",
+                        "... bandidos, assaltantes, assassinos, todo o tipo de criminoso.",
 						"Mas isso não sanou a ganancia do imperador.",
-						"Ele aumentou a cobrança dos impostos nas cidades do império.\n\r Isso levou cidadãos a inadimplência, o que os levou a prisão, e mais tarde, alguns foram levados a trabalhos forçados nas minas.",
+						"Ele aumentou a cobrança dos impostos nas cidades do império.",
+                        "Isso levou cidadãos a inadimplência, o que os levou a prisão,...",
+                        " e mais tarde, alguns foram levados a trabalhos forçados nas minas.",
 						"Assim o imperador conseguiu mais escravos.",
 						"Tenho medo de um dia chegar a minha vez!!"
 					}},
@@ -2731,6 +2741,21 @@ public enum idioma
 {
     pt_br,
     en_google
+}
+
+public enum ChaveDeTextoAntiga
+{
+    bomDia,
+    infinity1,
+    infinity2,
+    infinity3,
+    infinity4,
+    infinity5,
+    infinity6,
+    infinity7,
+    infinity8,
+    infinity9,
+    infinity10,
 }
 
 public enum ChaveDeTexto
