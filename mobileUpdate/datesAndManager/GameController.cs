@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
     private CharacterManager manager;
     private MbUsoDeItem usoDeItens;
     private ReplaceManager replace;
+    private KeyVar myKeys;
 
     [SerializeField]private MbEncontros encontros;
     [SerializeField]private HudManager hudM;
@@ -40,6 +41,12 @@ public class GameController : MonoBehaviour
             VerificaSetarManager();
             return manager;
         }
+    }
+
+    public KeyVar MyKeys
+    {
+        get { return myKeys; }
+        set { myKeys = value; }
     }
 
     // Use this for initialization
@@ -77,7 +84,7 @@ public class GameController : MonoBehaviour
                 }
 
                 replace = null;
-                GameController.g.HudM.AtualizaHudHeroi(manager.CriatureAtivo.MeuCriatureBase);
+                HudM.AtualizaHudHeroi(manager.CriatureAtivo.MeuCriatureBase);
             }
     }
 

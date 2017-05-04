@@ -97,6 +97,18 @@ public class MbEncontros
 
     protected virtual bool lugarSeguro()
     {
+        if (
+            /*CIDADE DE INFINITY*/
+            manager.transform.position.z < 804
+            &&
+            manager.transform.position.z > 685
+            &&
+            manager.transform.position.x > 430
+            &&
+            manager.transform.position.x < 570
+            /* FIM DE INFINITY */
+            )
+            return true;
         return false;
     }
 

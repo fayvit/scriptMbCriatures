@@ -58,11 +58,11 @@ public class AplicadorDeCamera : MonoBehaviour
             focoComCharacterController.GetComponent<CharacterController>().height);
     }
 
-    public void InicializaCameraExibicionista(Transform doFoco,float altura)
+    public void InicializaCameraExibicionista(Transform doFoco, float altura, bool contraParedes = false)
     {
         if (cExibe != null)
             cExibe.OnDestroy();
-        cExibe = new CameraExibicionista(transform, doFoco, altura);
+        cExibe = new CameraExibicionista(transform, doFoco, altura,contraParedes);
         estilo = EstiloDeCamera.mostrandoUmCriature;
     }    
 

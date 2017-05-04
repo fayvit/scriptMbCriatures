@@ -16,7 +16,7 @@ public class testeCarregamento : MonoBehaviour
     {
         
         SceneManager.LoadSceneAsync("comunsDeFase",LoadSceneMode.Additive);
-        a2 = SceneManager.LoadSceneAsync("Infinity1", LoadSceneMode.Additive);
+        a2 = SceneManager.LoadSceneAsync("MbInfinity", LoadSceneMode.Additive);
         Time.timeScale = 0;
         SceneManager.sceneLoaded += SetarCenaPrincipal;
     }
@@ -28,7 +28,9 @@ public class testeCarregamento : MonoBehaviour
             podeIr = true;
             InvocarSetScene(scene);
             SceneManager.sceneLoaded -= SetarCenaPrincipal;
-            
+            GameController.g.Manager.transform.position = new Vector3(483,1.2f,755);
+            AplicadorDeCamera.cam.transform.position = new Vector3(483, 12f, 745);
+            GameController.g.Manager.CriatureAtivo.transform.position = new Vector3(483, 1.2f, 756);
         }
     }
 

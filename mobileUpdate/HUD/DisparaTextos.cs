@@ -116,7 +116,7 @@ public class DisparaTexto
     public FasesDaMensagem LendoMensagem()
     {
         contadorDeTempo += Time.deltaTime;
-        if (dispara)
+        if (dispara )
         {
             switch (fase)
             {
@@ -131,29 +131,32 @@ public class DisparaTexto
                         fase = FasesDaMensagem.mensagemEnchendo;
                         contadorDeTempo = 0;
                     }
-                break;
+                    break;
                 case FasesDaMensagem.mensagemEnchendo:
-                    if ((int)(contadorDeTempo * velocidadeDasLetras) <= texto.Length)
+                    if ((int)(contadorDeTempo * velocidadeDasLetras) <= texto.Length  && !texto.Contains("<co"))
                         textoDaUI.text = texto.Substring(0, (int)(contadorDeTempo * velocidadeDasLetras));
                     else
-                        fase = FasesDaMensagem.mensagemCheia;
-                break;
-                case FasesDaMensagem.caixaSaindo:
-                    if (Mathf.Abs(painelDaMens.anchoredPosition.y-Screen.height) > 0.1f)
                     {
-                        painelDaMens.anchoredPosition = Vector2.Lerp(painelDaMens.anchoredPosition, 
-                                                            new Vector2(painelDaMens.anchoredPosition.x,Screen.height), 
+                        fase = FasesDaMensagem.mensagemCheia;
+                        textoDaUI.text = texto;
+                    }
+                    break;
+                case FasesDaMensagem.caixaSaindo:
+                    if (Mathf.Abs(painelDaMens.anchoredPosition.y - Screen.height) > 0.1f)
+                    {
+                        painelDaMens.anchoredPosition = Vector2.Lerp(painelDaMens.anchoredPosition,
+                                                            new Vector2(painelDaMens.anchoredPosition.x, Screen.height),
                                                             Time.deltaTime * velocidadeDaJanela);
                     }
                     else
                     {
                         dispara = false;
-                        fase = FasesDaMensagem.caixaSaiu;                     
+                        fase = FasesDaMensagem.caixaSaiu;
                     }
-                break;
+                    break;
             }
-            
-            
+
+
         }
         return fase;
     }

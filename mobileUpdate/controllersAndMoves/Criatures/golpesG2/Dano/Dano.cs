@@ -71,7 +71,7 @@ public class Dano
 
             UnityEngine.AI.NavMeshAgent nav = a.GetComponent<UnityEngine.AI.NavMeshAgent>();
             if (nav.enabled)
-                nav.isStopped = true;
+                nav.Stop();// nav.isStopped = true;
             
          /*   doAtacado.MudaParaDerrotado();
 

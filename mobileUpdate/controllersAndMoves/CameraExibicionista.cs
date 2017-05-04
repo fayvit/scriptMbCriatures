@@ -9,6 +9,7 @@ public class CameraExibicionista
     [SerializeField]private float alturaDoPersonagem;
 
     private Transform baseDeMovimento;
+    private bool contraParedes = false;
 
     public void OnDestroy()
     {
@@ -16,8 +17,9 @@ public class CameraExibicionista
             MonoBehaviour.Destroy(baseDeMovimento.gameObject);
     }
 
-    public CameraExibicionista(Transform daCamera,Transform doFoco,float altura)
+    public CameraExibicionista(Transform daCamera,Transform doFoco,float altura,bool contraParedes = false)
     {
+        this.contraParedes = contraParedes;
         transform = daCamera;
         foco = doFoco;
         alturaDoPersonagem = altura;
@@ -56,6 +58,9 @@ public class CameraExibicionista
             transform.rotation = Quaternion.LookRotation(
                 Vector3.Lerp(transform.forward, dirAlvo, velocidadeDeFoco * Time.deltaTime)
                 );
+
+            if(contraParedes)
+                cameraPrincipal.contraParedes(transform, foco, alturaDoPersonagem, true);
 
             if (Vector3.Distance(transform.position, posAlvo) < 0.5f && Vector3.Distance(transform.forward, dirAlvo) < 7.5f)
                 return  true;

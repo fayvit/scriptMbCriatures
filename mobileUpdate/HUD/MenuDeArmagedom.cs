@@ -53,6 +53,7 @@ public class MenuDeArmagedom : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(fase);
         switch (fase)
         {            
             case fasesDoArmagedom.mensInicial:

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PegaUmItem
 {
-    public static MbItens Retorna(nomeIDitem nomeItem, int estoque)
+    public static MbItens Retorna(nomeIDitem nomeItem, int estoque = 1)
     {
         MbItens retorno = new MbItens(new ContainerDeCaracteristicasDeItem());
         switch (nomeItem)

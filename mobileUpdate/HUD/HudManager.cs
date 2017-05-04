@@ -24,7 +24,17 @@ public class HudManager
     [SerializeField]private HudTentandoAprenderGolpe hTenta;
     [SerializeField]private DisparaTexto disparaT;
     [SerializeField]private MenuDeArmagedom menuDeA;
+    [SerializeField]private MenuBasico menuBasico;
+    [SerializeField]private PainelMostrarItem mostrarItem;
 
+    public PainelMostrarItem MostrarItem
+    {
+        get { return mostrarItem; }
+    }
+    public MenuBasico Menu_Basico
+    {
+        get { return menuBasico; }
+    }
     public MenuDeArmagedom MenuDeA
     {
         get { return menuDeA; }

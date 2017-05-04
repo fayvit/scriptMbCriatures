@@ -192,41 +192,50 @@ public class cameraPrincipal : MonoBehaviour {
 		}
 	}
 
-	public static bool contraParedes(Transform cameraP,Transform alvo,float escalA, bool suave = false)
-	{
-		RaycastHit raioColisor;
-		Debug.DrawLine(cameraP.position,alvo.position+escalA*Vector3.up,Color.blue );
+    public static bool contraParedes(Transform cameraP, Vector3 alvo, float escalA, bool suave = false)
+    {
+        RaycastHit raioColisor;
+
+        Debug.DrawLine(cameraP.position, alvo + escalA * Vector3.up, Color.blue);
 
 
-		Debug.DrawLine(alvo.position+2*Vector3.up,alvo.position-
-		               Vector3.Project(alvo.position-cameraP.position,alvo.forward)+2*Vector3.up,
-		               Color.green);
+        
 
-		if (Physics.Linecast (alvo.position+escalA*Vector3.up, cameraP.position ,out raioColisor,9)) {
-			Debug.DrawLine(cameraP.position,raioColisor.point,Color.red );
-			
-			if(raioColisor.transform.tag != "Player" 
-			   && 
-			   raioColisor.transform.tag != "Criature" 
-			   &&
-			   raioColisor.transform.tag != "desvieCamera"
-			   )
-			{
-				if(suave)
-				{
-					cameraP.position = Vector3.Lerp(cameraP.position,
-						raioColisor.point+cameraP.forward*0.2f,12*Time.deltaTime);
-				}else
-				cameraP.position = //Vector3.Lerp(cameraP.position,
-					raioColisor.point+cameraP.forward*0.2f;
+        if (Physics.Linecast(alvo + escalA * Vector3.up, cameraP.position, out raioColisor, 9))
+        {
+            Debug.DrawLine(cameraP.position, raioColisor.point, Color.red);
+
+            if (raioColisor.transform.tag != "Player"
+               &&
+               raioColisor.transform.tag != "Criature"
+               &&
+               raioColisor.transform.tag != "desvieCamera"
+               )
+            {
+                if (suave)
+                {
+                    cameraP.position = Vector3.Lerp(cameraP.position,
+                        raioColisor.point + cameraP.forward * 0.2f, 12 * Time.deltaTime);
+                }
+                else
+                    cameraP.position = //Vector3.Lerp(cameraP.position,
+                        raioColisor.point + cameraP.forward * 0.2f;
                 //           50*Time.deltaTime);
                 //					doMovimento = true;
 
                 return true;
-			}
-			
-		}
+            }
+
+        }
         return false;
+    }
+
+    public static bool contraParedes(Transform cameraP,Transform alvo,float escalA, bool suave = false)
+	{
+        Debug.DrawLine(alvo.position + 2 * Vector3.up, alvo.position -
+                       Vector3.Project(alvo.position - cameraP.position, alvo.forward) + 2 * Vector3.up,
+                       Color.green);
+        return contraParedes(cameraP,alvo.position,escalA,suave);
 	}
 	
 

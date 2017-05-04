@@ -16,9 +16,9 @@ public class DadosDoPersonagem
     {
         criaturesAtivos = new List<CriatureBase>() {
              //new CriatureBase(nomesCriatures.Urkan,2),
-             new CriatureBase(nomesCriatures.Florest,1),
-             new CriatureBase(nomesCriatures.Arpia,2),
-              new CriatureBase(nomesCriatures.Xuash,1),              
+             new CriatureBase(nomesCriatures.Xuash,1),
+             //new CriatureBase(nomesCriatures.Arpia,2),
+              //new CriatureBase(nomesCriatures.Florest,1),              
              //new CriatureBase(nomesCriatures.PolyCharm)
         };
 
@@ -33,7 +33,7 @@ public class DadosDoPersonagem
         itens = new List<MbItens>()
         {
             PegaUmItem.Retorna(nomeIDitem.maca,1),
-            PegaUmItem.Retorna(nomeIDitem.cartaLuva,11),
+            //PegaUmItem.Retorna(nomeIDitem.cartaLuva,11),
             PegaUmItem.Retorna(nomeIDitem.maca,2),
             PegaUmItem.Retorna(nomeIDitem.maca,3),
             PegaUmItem.Retorna(nomeIDitem.maca,93),
@@ -70,6 +70,64 @@ public class DadosDoPersonagem
         for (int i = 0; i < criaturesAtivos.Count; i++)
         {
             CriatureBase.EnergiaEVidaCheia(criaturesAtivos[i]);
+        }
+    }
+
+    public int TemItem(nomeIDitem nome)
+    {
+        int tanto = 0;
+        for (int i = 0; i < itens.Count; i++)
+        {
+            if (itens[i].ID == nome)
+                tanto += itens[i].Estoque;
+        }
+
+        return tanto;
+    }
+
+    public void AdicionaItem(nomeIDitem nomeItem, int quantidade)
+    {
+        for (int i = 0; i < quantidade; i++)
+        {
+            AdicionaItem(nomeItem);
+        }
+    }
+
+    public void AdicionaItem(nomeIDitem nomeItem)
+    {
+        MbItens I = PegaUmItem.Retorna(nomeItem);
+        bool foi = false;
+        if (I.Acumulavel > 1)
+        {
+
+            int ondeTem = -1;
+            for (int i = 0; i < itens.Count; i++)
+            {
+                if (itens[i].ID == I.ID)
+                {
+                    if (itens[i].Estoque < itens[i].Acumulavel)
+                    {
+                        if (!foi)
+                        {
+                            ondeTem = i;
+                            foi = true;
+                        }
+                    }
+                }
+            }
+
+            if (foi)
+            {
+                itens[ondeTem].Estoque++;
+            }
+            else
+            {
+                itens.Add(PegaUmItem.Retorna(nomeItem));
+            }
+        }
+        else
+        {
+            itens.Add(PegaUmItem.Retorna(nomeItem));
         }
     }
 }
