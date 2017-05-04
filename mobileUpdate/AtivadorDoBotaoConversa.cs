@@ -3,11 +3,19 @@ using System.Collections;
 
 public class AtivadorDoBotaoConversa : AtivadorDeBotao
 {
+<<<<<<< HEAD
     [SerializeField]protected NPCdeConversa npc;
     private Vector3 forwardInicialDoBotao;
 
     // Use this for initialization
     protected void Start()
+=======
+    [SerializeField]private NPCdeConversa npc;
+    private Vector3 forwardInicialDoBotao;
+
+    // Use this for initialization
+    void Start()
+>>>>>>> origin/master
     {
         npc.Start(transform);
         forwardInicialDoBotao = btn.transform.parent.forward;
@@ -38,10 +46,14 @@ public class AtivadorDoBotaoConversa : AtivadorDeBotao
         Transform T = new GameObject().transform;
         npc.IniciaConversa(T);
         T.position = transform.position + 0.5f * dir+2*Vector3.up;
+<<<<<<< HEAD
         Vector3 cross = Vector3.Cross(Vector3.up, dir);
         if (Vector3.Dot(cross, -Vector3.forward) < 0)
             cross *= -1;
         T.rotation = Quaternion.LookRotation(cross);
+=======
+        T.rotation = Quaternion.LookRotation(-Vector3.Cross(Vector3.up,dir));
+>>>>>>> origin/master
         AplicadorDeCamera.cam.InicializaCameraExibicionista(T, 1,true);
     }
 }
