@@ -56,7 +56,7 @@ public class ApresentaDerrota
                     if (manager.Dados.TemCriatureVivo())
                     {
                         PainelMensCriature.p.AtivarNovaMens(textos[1], 20);
-                        GameController.g.HudM.EntraCriatures.IniciarEssaHUD(manager.Dados.criaturesAtivos.ToArray(),AoEscolherUmCriature);
+                        GameController.g.HudM.EntraCriatures.IniciarEssaHUD(manager.Dados.CriaturesAtivos.ToArray(),AoEscolherUmCriature);
                         fase = FaseDaDerrota.emEspera;
                     }
                     else
@@ -81,7 +81,7 @@ public class ApresentaDerrota
 
     public void AoEscolherUmCriature(int qual)
     {
-        manager.Dados.criatureSai = qual;
+        manager.Dados.CriatureSai = qual;
         fase = FaseDaDerrota.entrandoUmNovo;        
         replace = new ReplaceManager(manager,manager.CriatureAtivo.transform,FluxoDeRetorno.criature);
         GameController.g.HudM.EntraCriatures.FinalizarHud();

@@ -4,17 +4,48 @@ using System.Collections.Generic;
 [System.Serializable]
 public class DadosDoPersonagem
 {
-    public List<CriatureBase> criaturesAtivos = new List<CriatureBase>();
-    public List<CriatureBase> criaturesArmagedados = new List<CriatureBase>();
-    public List<MbItens> itens = new List<MbItens>();
-    public int criatureSai = 1;
+    private List<CriatureBase> criaturesAtivos = new List<CriatureBase>();
+    private List<CriatureBase> criaturesArmagedados = new List<CriatureBase>();
+    private List<MbItens> itens = new List<MbItens>();
+    private int criatureSai = 1;
     public int itemSai = 0;
     public int cristais = 1021;
     public int maxCarregaveis = 5;
 
+    public List<CriatureBase> CriaturesAtivos
+    {
+        get { return criaturesAtivos; }
+        set { criaturesAtivos = value; }
+    }
+
+    public List<CriatureBase> CriaturesArmagedados
+    {
+        get { return criaturesArmagedados; }
+        set { criaturesArmagedados = value; }
+    }
+
+    public List<MbItens> Itens
+    {
+        get { return itens; }
+        set { itens = value; }
+    }
+
+    public int CriatureSai
+    {
+        get
+        {
+            return criatureSai;
+        }
+
+        set
+        {
+            criatureSai = value;
+        }
+    }
+
     public void InicializadorDosDados()
     {
-        criaturesAtivos = new List<CriatureBase>() {
+        CriaturesAtivos = new List<CriatureBase>() {
              //new CriatureBase(nomesCriatures.Urkan,2),
              new CriatureBase(nomesCriatures.Xuash,1),
              //new CriatureBase(nomesCriatures.Arpia,2),
@@ -22,7 +53,7 @@ public class DadosDoPersonagem
              //new CriatureBase(nomesCriatures.PolyCharm)
         };
 
-        criaturesArmagedados = new List<CriatureBase>() {
+        CriaturesArmagedados = new List<CriatureBase>() {
              new CriatureBase(nomesCriatures.Urkan,2),
              new CriatureBase(nomesCriatures.Florest,1),
              new CriatureBase(nomesCriatures.Arpia,2),
@@ -30,7 +61,7 @@ public class DadosDoPersonagem
              new CriatureBase(nomesCriatures.PolyCharm)
         };
 
-        itens = new List<MbItens>()
+        Itens = new List<MbItens>()
         {
             PegaUmItem.Retorna(nomeIDitem.maca,1),
             //PegaUmItem.Retorna(nomeIDitem.cartaLuva,11),
@@ -56,9 +87,9 @@ public class DadosDoPersonagem
     public bool TemCriatureVivo()
     {
         bool retorno = false;
-        for (int i = 0; i < criaturesAtivos.Count; i++)
+        for (int i = 0; i < CriaturesAtivos.Count; i++)
         {
-            if (criaturesAtivos[i].CaracCriature.meusAtributos.PV.Corrente > 0)
+            if (CriaturesAtivos[i].CaracCriature.meusAtributos.PV.Corrente > 0)
                 retorno = true;
         }
 
@@ -67,19 +98,19 @@ public class DadosDoPersonagem
 
     public void TodosCriaturesPerfeitos()
     {
-        for (int i = 0; i < criaturesAtivos.Count; i++)
+        for (int i = 0; i < CriaturesAtivos.Count; i++)
         {
-            CriatureBase.EnergiaEVidaCheia(criaturesAtivos[i]);
+            CriatureBase.EnergiaEVidaCheia(CriaturesAtivos[i]);
         }
     }
 
     public int TemItem(nomeIDitem nome)
     {
         int tanto = 0;
-        for (int i = 0; i < itens.Count; i++)
+        for (int i = 0; i < Itens.Count; i++)
         {
-            if (itens[i].ID == nome)
-                tanto += itens[i].Estoque;
+            if (Itens[i].ID == nome)
+                tanto += Itens[i].Estoque;
         }
 
         return tanto;
@@ -101,11 +132,11 @@ public class DadosDoPersonagem
         {
 
             int ondeTem = -1;
-            for (int i = 0; i < itens.Count; i++)
+            for (int i = 0; i < Itens.Count; i++)
             {
-                if (itens[i].ID == I.ID)
+                if (Itens[i].ID == I.ID)
                 {
-                    if (itens[i].Estoque < itens[i].Acumulavel)
+                    if (Itens[i].Estoque < Itens[i].Acumulavel)
                     {
                         if (!foi)
                         {
@@ -118,16 +149,16 @@ public class DadosDoPersonagem
 
             if (foi)
             {
-                itens[ondeTem].Estoque++;
+                Itens[ondeTem].Estoque++;
             }
             else
             {
-                itens.Add(PegaUmItem.Retorna(nomeItem));
+                Itens.Add(PegaUmItem.Retorna(nomeItem));
             }
         }
         else
         {
-            itens.Add(PegaUmItem.Retorna(nomeItem));
+            Itens.Add(PegaUmItem.Retorna(nomeItem));
         }
     }
 }

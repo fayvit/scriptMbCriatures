@@ -33,6 +33,7 @@ public class MenuDeArmagedom : MonoBehaviour
         fazendoUmaTroca,
         mensDetrocaAberta
     }
+
     // Use this for initialization
     void Start()
     {
@@ -65,7 +66,6 @@ public class MenuDeArmagedom : MonoBehaviour
                 {
                     EntraFrasePossoAjudar();
                     LigarMenu();
-                    fase = fasesDoArmagedom.escolhaInicial;
                 }
             break;
             case fasesDoArmagedom.escolhaInicial:
@@ -141,7 +141,7 @@ public class MenuDeArmagedom : MonoBehaviour
         GameObject animaVida = elementosDoJogo.el.retorna(DoJogo.acaoDeCura1);
         GameObject animaVida2;
 
-        for (int i = 0; i < manager.Dados.criaturesAtivos.Count; i++)
+        for (int i = 0; i < manager.Dados.CriaturesAtivos.Count; i++)
         {
             if (i < Vs.Length)
             {
@@ -157,18 +157,18 @@ public class MenuDeArmagedom : MonoBehaviour
         GameController g = GameController.g;
         DadosDoPersonagem dados = g.Manager.Dados;
         HudManager hudM = g.HudM;
-        if (dados.criaturesAtivos.Count < dados.maxCarregaveis)
+        if (dados.CriaturesAtivos.Count < dados.maxCarregaveis)
         {
-            CriatureBase C = dados.criaturesArmagedados[indice];
+            CriatureBase C = dados.CriaturesArmagedados[indice];
             hudM.UmaMensagem.ConstroiPainelUmaMensagem(VoltarDoEntraArmagedado,
                 string.Format(frasesDeArmagedom[3], C.NomeEmLinguas, C.CaracCriature.mNivel.Nivel)
                 );
-            dados.criaturesArmagedados.Remove(C);
-            dados.criaturesAtivos.Add(C);
+            dados.CriaturesArmagedados.Remove(C);
+            dados.CriaturesAtivos.Add(C);
         }
         else
         {
-            CriatureBase C = dados.criaturesArmagedados[indice];
+            CriatureBase C = dados.CriaturesArmagedados[indice];
             indiceDoSubstituido = indice;
             hudM.UmaMensagem.ConstroiPainelUmaMensagem(MostraOsQueSaem,
                 string.Format(frasesDeArmagedom[4], C.NomeEmLinguas, C.CaracCriature.mNivel.Nivel)
@@ -181,26 +181,26 @@ public class MenuDeArmagedom : MonoBehaviour
     {
         PainelMensCriature.p.AtivarNovaMens(frasesDeArmagedom[5],30);
         GameController.g.HudM.EntraCriaturesArmagedados
-            .IniciarEssaHUD(GameController.g.Manager.Dados.criaturesAtivos.ToArray(), SubstituiArmagedado);
+            .IniciarEssaHUD(GameController.g.Manager.Dados.CriaturesAtivos.ToArray(), SubstituiArmagedado);
     }
 
     void SubstituiArmagedado(int indice)
     {
         GameController g = GameController.g;
         DadosDoPersonagem dados = g.Manager.Dados;
-        CriatureBase temp = dados.criaturesArmagedados[indiceDoSubstituido];
+        CriatureBase temp = dados.CriaturesArmagedados[indiceDoSubstituido];
 
-        dados.criaturesArmagedados[indiceDoSubstituido] = dados.criaturesAtivos[indice];
-        dados.criaturesAtivos[indice] = temp;
+        dados.CriaturesArmagedados[indiceDoSubstituido] = dados.CriaturesAtivos[indice];
+        dados.CriaturesAtivos[indice] = temp;
 
         tempString = string.Format(frasesDeArmagedom[6], temp.NomeEmLinguas, temp.CaracCriature.mNivel.Nivel,
-                dados.criaturesArmagedados[indiceDoSubstituido].NomeEmLinguas,
-                dados.criaturesArmagedados[indiceDoSubstituido].CaracCriature.mNivel.Nivel
+                dados.CriaturesArmagedados[indiceDoSubstituido].NomeEmLinguas,
+                dados.CriaturesArmagedados[indiceDoSubstituido].CaracCriature.mNivel.Nivel
                 );
 
         if (indice == 0)
         {
-            dados.criatureSai = 0;
+            dados.CriatureSai = 0;
             g.HudM.EntraCriaturesArmagedados.FinalizarHud();
             PainelMensCriature.p.EsconderMensagem();
             replace = new ReplaceManager(g.Manager,g.Manager.CriatureAtivo.transform,FluxoDeRetorno.armagedom);
@@ -225,7 +225,7 @@ public class MenuDeArmagedom : MonoBehaviour
         GameController g = GameController.g;
         ApagarMenu();
         dispara.DesligarPaineis();
-        CriatureBase[] armagedados = g.Manager.Dados.criaturesArmagedados.ToArray();
+        CriatureBase[] armagedados = g.Manager.Dados.CriaturesArmagedados.ToArray();
         if (armagedados.Length > 0)
         {
             g.HudM.EntraCriaturesArmagedados.IniciarEssaHUD(armagedados, EscolhidoDoArmagedom);

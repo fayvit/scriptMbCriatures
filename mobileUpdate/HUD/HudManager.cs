@@ -26,7 +26,18 @@ public class HudManager
     [SerializeField]private MenuDeArmagedom menuDeA;
     [SerializeField]private MenuBasico menuBasico;
     [SerializeField]private PainelMostrarItem mostrarItem;
+    [SerializeField]private ShopManager shop_Manager;
+    [SerializeField]private BotaoZaoExterno botaozao;
 
+
+    public BotaoZaoExterno Botaozao
+    {
+        get { return botaozao; }
+    }
+    public ShopManager Shop_Manager
+    {
+        get { return shop_Manager; }
+    }
     public PainelMostrarItem MostrarItem
     {
         get { return mostrarItem; }
@@ -135,7 +146,7 @@ public class HudManager
     {
         DesligaContainerDoInimigo();
         btns.BotoesDoHeroi(manager);
-        AtualizaDadosDaHud(HudCriatureAtivo, manager.Dados.criaturesAtivos[0]);
+        AtualizaDadosDaHud(HudCriatureAtivo, manager.Dados.CriaturesAtivos[0]);
     }
 
     public void InicializaHudDeLuta(CriatureBase inimigo)
@@ -147,7 +158,7 @@ public class HudManager
     public void AtualizeHud(CharacterManager manager,CriatureBase inimigo)
     {
         AtualizaDadosDaHud(hudInimigo, inimigo);
-        AtualizaDadosDaHud(HudCriatureAtivo, manager.Dados.criaturesAtivos[0]);
+        AtualizaDadosDaHud(HudCriatureAtivo, manager.Dados.CriaturesAtivos[0]);
     }
 
     public void AtualizaHudHeroi()

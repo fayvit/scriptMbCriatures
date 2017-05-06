@@ -79,6 +79,7 @@ public class PauseMenu : MonoBehaviour
 
     public void VoltarAoTitulo()
     {
+        pausaJogo.pause = false;
         SceneManager.LoadScene("testeCarregamento");
     }
 }

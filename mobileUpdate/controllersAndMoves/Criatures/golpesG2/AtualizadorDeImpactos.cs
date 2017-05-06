@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 public class AtualizadorDeImpactos
 {
     private bool procurouAlvo = false;
     private bool addView = false;
     private float tempoDecorrido = 0;
-    private Transform alvoProcurado;
-    private CharacterController controle;
+    [System.NonSerialized]private Transform alvoProcurado;
+    [System.NonSerialized]private CharacterController controle;
 
     public void ReiniciaAtualizadorDeImpactos()
     {
@@ -63,6 +64,7 @@ public class AtualizadorDeImpactos
     }
 }
 
+[System.Serializable]
 public struct CaracteristicasDeImpacto
 {
     public string nomeTrail;

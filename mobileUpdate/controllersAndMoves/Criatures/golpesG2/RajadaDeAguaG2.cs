@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+
+[System.Serializable]
 public class RajadaDeAguaG2 : GolpeBase
 {
     public RajadaDeAguaG2() : base(new ContainerDeCaracteristicasDeGolpe()
@@ -27,11 +29,11 @@ public class RajadaDeAguaG2 : GolpeBase
         Essas variaveis são relacionadas com a ação de Golpe
 
     */
-    private Vector3 posInicial;
+    [System.NonSerialized]private Vector3 posInicial;
     private float tempoDecorrido = 0;
     private int impactos = 0;
     private bool addView = false;
-    private RaycastHit hit;
+    [System.NonSerialized]private RaycastHit hit;
 
     /********************************************************/
     public override void IniciaGolpe(GameObject G)

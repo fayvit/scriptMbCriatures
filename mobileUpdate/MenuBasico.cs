@@ -6,6 +6,16 @@ public class MenuBasico : UiDeOpcoes
     private string[] opcoes;
     private System.Action<int> acao;
 
+    protected System.Action<int> Acao
+    {
+        get { return acao; }
+    }
+
+    protected string[] Opcoes
+    {
+        get { return opcoes; }
+    }
+
     public void IniciarHud(
         System.Action<int> acao,
         string[] txDeOpcoes,

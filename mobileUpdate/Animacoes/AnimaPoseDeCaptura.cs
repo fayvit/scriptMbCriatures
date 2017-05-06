@@ -25,14 +25,14 @@ public class AnimaPoseDeCaptura
 
         DadosDoPersonagem dados = GameController.g.Manager.Dados;
 
-        if (dados.criaturesAtivos.Count < dados.maxCarregaveis)
+        if (dados.CriaturesAtivos.Count < dados.maxCarregaveis)
         {
-            dados.criaturesAtivos.Add(oCapturado);
+            dados.CriaturesAtivos.Add(oCapturado);
             foiParaArmagedom = false;
         }
         else
         {
-            dados.criaturesArmagedados.Add(oCapturado);
+            dados.CriaturesArmagedados.Add(oCapturado);
             /*
 			linhas para encher a vida e retirar status quando o Criature for para o Armagedom
 			 */

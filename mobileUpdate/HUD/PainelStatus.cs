@@ -34,7 +34,7 @@ public class PainelStatus : MonoBehaviour
 
     void OnEnable()
     {
-        CriatureBase[] ativos = GameController.g.Manager.Dados.criaturesAtivos.ToArray();
+        CriatureBase[] ativos = GameController.g.Manager.Dados.CriaturesAtivos.ToArray();
 
         for (int i = 0; i < abas.Length; i++)
         {
@@ -132,7 +132,7 @@ public class PainelStatus : MonoBehaviour
 
     public void BtnMeuOutro(int indice)
     {
-        InserirDadosNoPainelPrincipal(GameController.g.Manager.Dados.criaturesAtivos[indice]);
+        InserirDadosNoPainelPrincipal(GameController.g.Manager.Dados.CriaturesAtivos[indice]);
         AbaSelecionada(indice);
     }
 

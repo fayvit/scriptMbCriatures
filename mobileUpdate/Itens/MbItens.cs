@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
+
 public class MbItens:System.ICloneable
 {
     [SerializeField]private nomeIDitem nomeID;
@@ -10,10 +12,11 @@ public class MbItens:System.ICloneable
     [SerializeField]private int valor;
 
     //private GameObject gAlvoDoItem;
-    private CharacterManager manager;
+    [System.NonSerialized]private CharacterManager manager;
+    [System.NonSerialized]private AnimaBraco animaB;
     private FluxoDeRetorno fluxo;
     private EstadoDeUsoDeItem estado = EstadoDeUsoDeItem.nulo;
-    private AnimaBraco animaB;
+    
     private float tempoDecorrido = 0;
 
     public MbItens(ContainerDeCaracteristicasDeItem cont)
@@ -112,14 +115,14 @@ public class MbItens:System.ICloneable
         int quantidade = 1,
         FluxoDeRetorno fluxo = FluxoDeRetorno.heroi)
     {
-        int indice = gerente.Dados.itens.IndexOf(nomeItem);
+        int indice = gerente.Dados.Itens.IndexOf(nomeItem);
         if (indice > -1)
-            if (gerente.Dados.itens[indice].Estoque >= quantidade)
+            if (gerente.Dados.Itens[indice].Estoque >= quantidade)
             {
-                gerente.Dados.itens[indice].Estoque -= quantidade;
-                if (gerente.Dados.itens[indice].Estoque == 0)
+                gerente.Dados.Itens[indice].Estoque -= quantidade;
+                if (gerente.Dados.Itens[indice].Estoque == 0)
                 {
-                    gerente.Dados.itens.Remove(gerente.Dados.itens[indice]);
+                    gerente.Dados.Itens.Remove(gerente.Dados.Itens[indice]);
 
                     if (fluxo == FluxoDeRetorno.menuCriature || fluxo == FluxoDeRetorno.menuHeroi)
                     {

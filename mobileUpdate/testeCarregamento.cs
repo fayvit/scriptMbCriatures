@@ -8,7 +8,8 @@ public class testeCarregamento : MonoBehaviour
     [SerializeField]private Image img;
     private float tempo = 0;
     private bool podeIr = false;
-    private AsyncOperation a2;
+    private AsyncOperation[] a2;
+    private SaveDates S;
 
     private const float tempoMin = 1;
     // Use this for initialization
@@ -16,21 +17,63 @@ public class testeCarregamento : MonoBehaviour
     {
         
         SceneManager.LoadSceneAsync("comunsDeFase",LoadSceneMode.Additive);
-        a2 = SceneManager.LoadSceneAsync("MbInfinity", LoadSceneMode.Additive);
+        S = new LoadAndSaveGame().Load(0);
+        if (S == null)
+        {
+            a2 = new AsyncOperation[1];
+            a2[0] = SceneManager.LoadSceneAsync("MbInfinity", LoadSceneMode.Additive);
+        }
+        else
+        {
+            
+            a2 = new AsyncOperation[S.VariaveisChave.CenasAtivas.Count];
+            for (int i = 0; i < a2.Length; i++)
+            {
+                a2[i] = SceneManager.LoadSceneAsync(S.VariaveisChave.CenasAtivas[i].ToString(), LoadSceneMode.Additive);
+            }
+        }
         Time.timeScale = 0;
         SceneManager.sceneLoaded += SetarCenaPrincipal;
     }
 
     void SetarCenaPrincipal(Scene scene, LoadSceneMode mode)
     {
+        if (S != null)
+        {
+            if (scene.name == S.VariaveisChave.CenaAtiva.ToString())
+            {
+                podeIr = true;
+                InvocarSetScene(scene);
+                SceneManager.sceneLoaded -= SetarCenaPrincipal;
+
+                CharacterManager manager = GameController.g.Manager;
+                AplicadorDeCamera.cam.transform.position = S.Posicao + new Vector3(0, 12, -10);//new Vector3(483, 12f, 745);
+                manager.transform.position = S.Posicao;//new Vector3(483,1.2f,755);  
+                manager.transform.rotation = S.Rotacao;
+                GameController.g.ReiniciarContadorDeEncontro();
+                Destroy(manager.CriatureAtivo.gameObject);
+                manager.Dados = S.Dados;
+                manager.InserirCriatureEmJogo();
+                manager.CriatureAtivo.transform.position = S.Posicao + new Vector3(0, 0, 1);//new Vector3(483, 1.2f, 756);
+
+                GameController.g.MyKeys = S.VariaveisChave;
+            }
+        }else
         if (scene.name != "comunsDeFase")
         {
             podeIr = true;
             InvocarSetScene(scene);
             SceneManager.sceneLoaded -= SetarCenaPrincipal;
-            GameController.g.Manager.transform.position = new Vector3(483,1.2f,755);
+
+            
+            CharacterManager manager = GameController.g.Manager;
             AplicadorDeCamera.cam.transform.position = new Vector3(483, 12f, 745);
-            GameController.g.Manager.CriatureAtivo.transform.position = new Vector3(483, 1.2f, 756);
+            manager.transform.position = new Vector3(483,1.2f,755);  
+            GameController.g.ReiniciarContadorDeEncontro();          
+            Destroy(manager.CriatureAtivo.gameObject);
+            manager.InserirCriatureEmJogo();
+            manager.CriatureAtivo.transform.position = new Vector3(483, 1.2f, 756);
+            
         }
     }
 
@@ -53,7 +96,16 @@ public class testeCarregamento : MonoBehaviour
     {
         tempo += Time.fixedDeltaTime;
 
-        img.fillAmount = Mathf.Min(a2.progress,tempo/tempoMin,1);
+        float progresso = 0;
+
+        for (int i = 0; i < a2.Length; i++)
+        {
+            progresso += a2[i].progress;
+        }
+
+        progresso /= a2.Length;
+
+        img.fillAmount = Mathf.Min(progresso,tempo/tempoMin,1);
 
         if (podeIr && tempo >= tempoMin)
         {

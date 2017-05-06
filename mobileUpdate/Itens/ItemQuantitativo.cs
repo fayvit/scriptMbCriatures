@@ -41,7 +41,7 @@ public class ItemQuantitativo
             );
 
         ps.DesligarMeusBotoes();
-        ps.BtnMeuOutro(manager.Dados.criaturesAtivos.IndexOf(C));
+        ps.BtnMeuOutro(manager.Dados.CriaturesAtivos.IndexOf(C));
     }
 }
 

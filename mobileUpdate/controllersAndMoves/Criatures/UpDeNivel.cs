@@ -101,7 +101,7 @@
 
     static void atualizaAtributos(float[] pontinhos, Atributos A, bool total = false)
     {
-        UnityEngine.Debug.Log(pontinhos[0]+": "+pontinhos[1]);
+        //UnityEngine.Debug.Log(pontinhos[0]+": "+pontinhos[1]);
 
         if (total)
         {

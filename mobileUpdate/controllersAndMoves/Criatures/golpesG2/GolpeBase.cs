@@ -6,7 +6,7 @@ using System;
 public class GolpeBase : IGolpeBase
 {
     [SerializeField] private ContainerDeCaracteristicasDeGolpe container;
-    private Vector3 dirDeREpulsao = Vector3.zero;
+    [System.NonSerialized]private Vector3 dirDeREpulsao = Vector3.zero;
 
     public GolpeBase(ContainerDeCaracteristicasDeGolpe container)
     {

@@ -41,18 +41,18 @@ public class DadoDaHudRapida : MonoBehaviour
         switch (tipo)
         {
             case TipoDeDado.item:
-                imgDoDado.texture = elementosDoJogo.el.RetornaMini(dados.itens[indice].ID);
-                txtDoDado.text = item.nomeEmLinguas(dados.itens[indice].ID);
-                quantidade.text = dados.itens[indice].Estoque.ToString();
+                imgDoDado.texture = elementosDoJogo.el.RetornaMini(dados.Itens[indice].ID);
+                txtDoDado.text = item.nomeEmLinguas(dados.Itens[indice].ID);
+                quantidade.text = dados.Itens[indice].Estoque.ToString();
             break;
             case TipoDeDado.golpe:
-                nomesGolpes nomeG = dados.criaturesAtivos[0].GerenteDeGolpes.meusGolpes[indice].Nome;
+                nomesGolpes nomeG = dados.CriaturesAtivos[0].GerenteDeGolpes.meusGolpes[indice].Nome;
                 SetarGolpe(nomeG);
             break;
             case TipoDeDado.criature:
                 containerDaQuantidade.SetActive(false);
-                imgDoDado.texture = elementosDoJogo.el.RetornaMini(dados.criaturesAtivos[indice+1].NomeID);
-                txtDoDado.text = dados.criaturesAtivos[indice+1].NomeEmLinguas;
+                imgDoDado.texture = elementosDoJogo.el.RetornaMini(dados.CriaturesAtivos[indice+1].NomeID);
+                txtDoDado.text = dados.CriaturesAtivos[indice+1].NomeEmLinguas;
             break;
         }
     }

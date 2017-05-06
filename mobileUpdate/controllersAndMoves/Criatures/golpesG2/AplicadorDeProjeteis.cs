@@ -40,9 +40,10 @@ public class AplicadorDeProjeteis
     }
 }
 
+[System.Serializable]
 public struct CaracteristicasDeProjetil
 {
-    public Vector3 posInicial;
+    [System.NonSerialized]public Vector3 posInicial;
     public TipoDoProjetil tipo;
     public NoImpacto noImpacto;
 }

@@ -91,7 +91,7 @@ public class AnimaBraco
                 if (tempoDecorrido > TEMPO_PARA_INSTANCIAR_CRIATURE)
                 {
                     if (oInstanciado == null && manager != null)
-                        oInstanciado = manager.Dados.criaturesAtivos[0];
+                        oInstanciado = manager.Dados.CriaturesAtivos[0];
 
                     C = elementosDoJogo.el.retorna(oInstanciado.NomeID);
                     posCriature = MelhoraInstancia.ProcuraPosNoMapa(posCriature);

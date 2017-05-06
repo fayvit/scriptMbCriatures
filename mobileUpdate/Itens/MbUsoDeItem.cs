@@ -21,7 +21,7 @@ public class MbUsoDeItem
         retorno = false;
         retornoDeFora = true;
         gerente = manager;
-        esseItem = gerente.Dados.itens[gerente.Dados.itemSai];
+        esseItem = gerente.Dados.Itens[gerente.Dados.itemSai];
         this.fluxo = fluxo;
 
         switch (fluxo)

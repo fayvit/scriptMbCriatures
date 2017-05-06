@@ -2516,5 +2516,8 @@ public enum ChaveDeTexto
     infinity10,
     infinity11,
     infinity12,
-    infinity12respostas
+    infinity12respostas,
+    shopBasico,
+    frasesDeShoping,
+    comprarOuVender
 }

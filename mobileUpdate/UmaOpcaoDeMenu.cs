@@ -6,16 +6,27 @@ public class UmaOpcaoDeMenu : MonoBehaviour
 {
     [SerializeField]private Text textoOpcao;
     private System.Action<int> acao;
-    
 
-    public void SetarOpcao(System.Action<int> acaoDaOpcao,string txtDaOpcao)
+    protected Text TextoOpcao
     {
-        acao += acaoDaOpcao;
-        textoOpcao.text = txtDaOpcao;
+        get { return textoOpcao; }
+        set { textoOpcao = value; }
+    }
+
+    protected System.Action<int> Acao
+    {
+        get { return acao; }
+        set { acao = value; }
+    }
+
+    public virtual void SetarOpcao(System.Action<int> acaoDaOpcao,string txtDaOpcao)
+    {
+        Acao += acaoDaOpcao;
+        TextoOpcao.text = txtDaOpcao;
     }
 
     public void FuncaoDoBotao()
     {
-        acao(transform.GetSiblingIndex() - 1);
+        Acao(transform.GetSiblingIndex() - 1);
     }
 }

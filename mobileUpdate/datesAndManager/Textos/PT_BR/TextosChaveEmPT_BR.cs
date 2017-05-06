@@ -136,6 +136,11 @@ public static class TextosChaveEmPT_BR
                         "Sim",
                         "Não"
                     }},
+                {ChaveDeTexto.comprarOuVender,new List<string>()
+                    {
+                        "Comprar",
+                        "Vender"
+                    }},
                 {
                     ChaveDeTexto.frasesDeArmagedom,new List<string>()
                     {
@@ -146,6 +151,20 @@ public static class TextosChaveEmPT_BR
                         "Seu time já tem o número máximo de Criatures. Para colocar <color=orange>{0}</color> nivel {1} no time você precisa retirar um Criature do seu time",
                         "Qual Criature sairá do seu time?",
                         "O Criature {0} nivel {1} entrou no seu time no lugar do Criature {2} nivel {3}"
+                    }
+                },
+                {
+                    ChaveDeTexto.shopBasico,new List<string>()
+                    {
+                        "Seja muito bem vindo a  minha loja estranho.",
+                        "No que posso te ajudar??"
+                    }
+                },
+                {
+                    ChaveDeTexto.frasesDeShoping,new List<string>()
+                    {
+                        "Tenho excelentes produtos pra você estranho. Gostaria de comprar algo?",
+                        "O que você gostaria de vender? estranho..."
                     }
                 }
             };

@@ -18,7 +18,7 @@ public class InicializadorDoJogo
         G.name = "CriatureAtivo";
         CreatureManager C = G.GetComponent<CreatureManager>();
         C.TDono = este.transform;
-        C.MeuCriatureBase = este.Dados.criaturesAtivos[0];
+        C.MeuCriatureBase = este.Dados.CriaturesAtivos[0];
     }
 
     /*

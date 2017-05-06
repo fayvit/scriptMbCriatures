@@ -21,10 +21,10 @@ public class ReplaceManager
     {
         this.fluxo = fluxo;
         this.manager = manager;
-        List<CriatureBase> lista = manager.Dados.criaturesAtivos;
+        List<CriatureBase> lista = manager.Dados.CriaturesAtivos;
         CriatureBase temp = lista[0];
-        lista[0] = lista[manager.Dados.criatureSai];
-        lista[manager.Dados.criatureSai] = temp;
+        lista[0] = lista[manager.Dados.CriatureSai];
+        lista[manager.Dados.CriatureSai] = temp;
 
         manager.Estado = EstadoDePersonagem.parado;
         manager.CriatureAtivo.PararCriatureNoLocal();

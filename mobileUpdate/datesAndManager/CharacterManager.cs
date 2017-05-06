@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class CharacterManager : MonoBehaviour {
     [SerializeField]private CaracteristicasDeMovimentacao caracMov;
     [SerializeField]private ElementosDeMovimentacao elementos;
@@ -50,11 +51,16 @@ public class CharacterManager : MonoBehaviour {
         {
             dados.InicializadorDosDados();
 
-            GameObject G = InicializadorDoJogo.InstanciaCriature(transform, dados.criaturesAtivos[0]);
-            InicializadorDoJogo.InsereCriatureEmJogo(G, this);
-            GameController.g.HudM.InicializaPaineisCriature(this);
+            InserirCriatureEmJogo();
             Estado = EstadoDePersonagem.aPasseio;
         }
+    }
+
+    public void InserirCriatureEmJogo()
+    {
+        GameObject G = InicializadorDoJogo.InstanciaCriature(transform, dados.CriaturesAtivos[0]);
+        InicializadorDoJogo.InsereCriatureEmJogo(G, this);
+        GameController.g.HudM.InicializaPaineisCriature(this);
     }
 
     // Update is called once per frame

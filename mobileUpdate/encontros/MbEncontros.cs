@@ -36,9 +36,9 @@ public class MbEncontros
     // Update is called once per frame
     public void Update()
     {
+        
         if (!pausaJogo.pause)
         {
-            
             if (!luta)
                 posHeroi = manager.transform.position;
 
@@ -58,7 +58,8 @@ public class MbEncontros
             }
 
             if (gerenteDeEncontro.Update() && luta)
-            {                
+            {
+                GameController.g.Salvador.SalvarAgora();         
                 RetornaParaModoPasseio();
             }
 
@@ -150,6 +151,13 @@ public class MbEncontros
         }
 
         return encontraveis[retorno];
+    }
+
+    public void ZeraPosAnterior()
+    {
+        posAnterior = manager.transform.position;
+        posHeroi = manager.transform.position;
+        andado = 0;
     }
 
 

@@ -30,14 +30,14 @@ public class BtnsManager
         btnAtaque.gameObject.SetActive(!heroi);
 
         bool aparece = true;
-        if (manager.Dados.itens.Count > 0)
+        if (manager.Dados.Itens.Count > 0)
             aparece = true;
         else
             aparece = false;
 
         btnItens.gameObject.SetActive(aparece);
 
-        if (manager.Dados.criaturesAtivos.Count > 1)
+        if (manager.Dados.CriaturesAtivos.Count > 1)
             aparece = true;
         else
             aparece = false;

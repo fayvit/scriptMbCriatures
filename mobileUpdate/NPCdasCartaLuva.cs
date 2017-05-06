@@ -68,7 +68,7 @@ public class NPCdasCartaLuva : NPCdeConversa
     {
         GameController g = GameController.g;
         DadosDoPersonagem dados = g.Manager.Dados;
-        CriatureBase[] criatures = dados.criaturesAtivos.ToArray();
+        CriatureBase[] criatures = dados.CriaturesAtivos.ToArray();
         int indiceDaResposta = -1;
 
         estadoInterno = EstadoDoCartaLuva.respondendo;

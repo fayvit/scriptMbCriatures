@@ -39,7 +39,7 @@ public class PainelDeItens : MonoBehaviour
 
     void SetarMenuDeIetns()
     {
-        meusItens = GameController.g.Manager.Dados.itens.ToArray();
+        meusItens = GameController.g.Manager.Dados.Itens.ToArray();
         insereI.IniciarHud(GameController.g.Manager.Dados,
             TipoDeDado.item, meusItens.Length, AoClique, 0, TipoDeRedimensionamento.emGrade
             );
@@ -94,8 +94,8 @@ public class PainelDeItens : MonoBehaviour
         meusItens[a] = (MbItens)meusItens[b].Clone();
         meusItens[b] = temp;
 
-        GameController.g.Manager.Dados.itens = new System.Collections.Generic.List<MbItens>();
-        GameController.g.Manager.Dados.itens.AddRange(meusItens);
+        GameController.g.Manager.Dados.Itens = new System.Collections.Generic.List<MbItens>();
+        GameController.g.Manager.Dados.Itens.AddRange(meusItens);
     }
 
     public void AtualizaHudDeItens()

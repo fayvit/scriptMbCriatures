@@ -127,7 +127,7 @@ public class AndroidController:MonoBehaviour
     {
         if (jId > ((PointerEventData)eventData).pointerId)
         {
-            print(((PointerEventData)eventData).pointerId);
+           // print(((PointerEventData)eventData).pointerId);
             jId--;
         }
         
@@ -136,6 +136,7 @@ public class AndroidController:MonoBehaviour
     public void DesligarControlador()
     {
         pai.gameObject.SetActive(false);
+        OnJoyTouchExit();
     }
 
     public void LigarControlador()

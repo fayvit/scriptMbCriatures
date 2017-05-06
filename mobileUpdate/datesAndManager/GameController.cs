@@ -7,7 +7,8 @@ public class GameController : MonoBehaviour
     private CharacterManager manager;
     private MbUsoDeItem usoDeItens;
     private ReplaceManager replace;
-    private KeyVar myKeys;
+    private KeyVar myKeys = new KeyVar();
+    private SaveManager salvador = new SaveManager();
 
     [SerializeField]private MbEncontros encontros;
     [SerializeField]private HudManager hudM;
@@ -23,6 +24,11 @@ public class GameController : MonoBehaviour
     public bool estaEmLuta
     {
         get { return encontros.Luta; }
+    }
+
+    public SaveManager Salvador
+    {
+        get { return salvador; }
     }
 
     public HudManager HudM
@@ -64,28 +70,38 @@ public class GameController : MonoBehaviour
         usoDeItens.Update();
         encontros.Update();
         HudM.MenuDeI.Update();
+        hudM.Shop_Manager.Update();
+
+        if (manager.Estado == EstadoDePersonagem.aPasseio)
+            salvador.Update();
 
         if (replace != null)
             if (replace.Update())
             {
-                if (replace.Fluxo == FluxoDeRetorno.criature || replace.Fluxo==FluxoDeRetorno.menuCriature)
-                {
-                    if (estaEmLuta)
-                        encontros.InimigoAtivo.Estado = CreatureManager.CreatureState.selvagem;
-
-                    manager.AoCriature(encontros.InimigoAtivo);                    
-                    
-                }
-
-                if (replace.Fluxo == FluxoDeRetorno.menuCriature || replace.Fluxo == FluxoDeRetorno.menuHeroi)
-                {
-                    hudM.PauseM.PausarJogo();
-                    hudM.PauseM.BotaoCriature();
-                }
-
-                replace = null;
-                HudM.AtualizaHudHeroi(manager.CriatureAtivo.MeuCriatureBase);
+                RetornoDeReplace();
             }
+    }
+
+    void RetornoDeReplace()
+    {
+
+        if (replace.Fluxo == FluxoDeRetorno.criature || replace.Fluxo == FluxoDeRetorno.menuCriature)
+        {
+            if (estaEmLuta)
+                encontros.InimigoAtivo.Estado = CreatureManager.CreatureState.selvagem;
+
+            manager.AoCriature(encontros.InimigoAtivo);
+
+        }
+
+        if (replace.Fluxo == FluxoDeRetorno.menuCriature || replace.Fluxo == FluxoDeRetorno.menuHeroi)
+        {
+            hudM.PauseM.PausarJogo();
+            hudM.PauseM.BotaoCriature();
+        }
+
+        replace = null;
+        HudM.AtualizaHudHeroi(manager.CriatureAtivo.MeuCriatureBase);
     }
 
     void VerificaSetarManager()
@@ -134,10 +150,10 @@ public class GameController : MonoBehaviour
         if (PodeAbrirMenuDeImagem(TipoDeDado.golpe))
         {
             VerificaSetarManager();
-            hudM.MenuDeI.IniciarHud(manager.Dados, TipoDeDado.golpe, manager.Dados.criaturesAtivos[0].GerenteDeGolpes.meusGolpes.Count,
+            hudM.MenuDeI.IniciarHud(manager.Dados, TipoDeDado.golpe, manager.Dados.CriaturesAtivos[0].GerenteDeGolpes.meusGolpes.Count,
                 (int i) =>
                 {
-                    manager.Dados.criaturesAtivos[0].GerenteDeGolpes.golpeEscolhido = i;
+                    manager.Dados.CriaturesAtivos[0].GerenteDeGolpes.golpeEscolhido = i;
                     hudM.MenuDeI.FinalizarHud();
                     hudM.Btns.ImagemDoAtaque(manager);
                 },5
@@ -157,7 +173,7 @@ public class GameController : MonoBehaviour
         if (PodeAbrirMenuDeImagem(TipoDeDado.item))
         {
             VerificaSetarManager();
-            hudM.MenuDeI.IniciarHud(manager.Dados, TipoDeDado.item, manager.Dados.itens.Count,FuncaoDoUseiItem, 15);
+            hudM.MenuDeI.IniciarHud(manager.Dados, TipoDeDado.item, manager.Dados.Itens.Count,FuncaoDoUseiItem, 15);
         }
     }
 
@@ -169,7 +185,7 @@ public class GameController : MonoBehaviour
             hudM.MenuDeI.IniciarHud(
                 manager.Dados, 
                 TipoDeDado.criature, 
-                manager.Dados.criaturesAtivos.Count - 1,
+                manager.Dados.CriaturesAtivos.Count - 1,
                 FuncaoTrocarCriatureSemMenu, 5);
         }
     }
@@ -213,7 +229,7 @@ public class GameController : MonoBehaviour
                 encontros.InimigoAtivo.PararCriatureNoLocal();
             }
 
-            manager.Dados.criatureSai = indice;
+            manager.Dados.CriatureSai = indice;
             
             replace = new ReplaceManager(manager, manager.CriatureAtivo.transform, fluxo);
         }
@@ -248,6 +264,11 @@ public class GameController : MonoBehaviour
         FuncaoDoUseiItem(indice, fluxo);
     }
 
+    public void ReiniciarContadorDeEncontro()
+    {
+        encontros.ZeraPosAnterior();
+    }
+
     #region botões de teste
     public void EncontroAgora()
     {
@@ -261,24 +282,29 @@ public class GameController : MonoBehaviour
 
     public void MeuCriatureComUmPV()
     {
-        Manager.Dados.criaturesAtivos[0].CaracCriature.meusAtributos.PV.Corrente = 1;
-        hudM.AtualizaHudHeroi(manager.Dados.criaturesAtivos[0]);
+        Manager.Dados.CriaturesAtivos[0].CaracCriature.meusAtributos.PV.Corrente = 1;
+        hudM.AtualizaHudHeroi(manager.Dados.CriaturesAtivos[0]);
     }
     public void MeuCriatureComUZeroPE()
     {
-        Manager.Dados.criaturesAtivos[0].CaracCriature.meusAtributos.PE.Corrente = 0;
-        hudM.AtualizaHudHeroi(manager.Dados.criaturesAtivos[0]);
+        Manager.Dados.CriaturesAtivos[0].CaracCriature.meusAtributos.PE.Corrente = 0;
+        hudM.AtualizaHudHeroi(manager.Dados.CriaturesAtivos[0]);
     }
 
     public void UmXpParaNivel()
     {
-        IGerenciadorDeExperiencia gXP = Manager.Dados.criaturesAtivos[0].CaracCriature.mNivel;
+        IGerenciadorDeExperiencia gXP = Manager.Dados.CriaturesAtivos[0].CaracCriature.mNivel;
         gXP.XP = gXP.ParaProxNivel - 1;
+    }
+
+    public void TesteSave()
+    {
+        salvador.SalvarAgora();
     }
 
     public void ColocaQuatroGolpesNosCriatures()
     {
-        CriatureBase[] Cs = Manager.Dados.criaturesAtivos.ToArray();
+        CriatureBase[] Cs = Manager.Dados.CriaturesAtivos.ToArray();
 
         for (int i = 0; i < Cs.Length; i++)
         {

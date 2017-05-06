@@ -46,7 +46,6 @@ public class TriggerGerenciadorDeCena : MonoBehaviour
     void SetarCenaPrincipalNoDescarregamento(Scene cena)
     {
         Scene cenaParaAtivars = SceneManager.GetSceneByName(cenaAtivaNoDesligar.ToString());
-        GameController.g.MyKeys.RemoverCenaAtiva(cena);
         if (cenaParaAtivars.isLoaded)
         {
             InvocarSetScene(cenaParaAtivars);
@@ -60,7 +59,6 @@ public class TriggerGerenciadorDeCena : MonoBehaviour
     {
         if (scene.name != "comunsDeFase")
         {
-            GameController.g.MyKeys.AdicioneCenaAtiva(scene);
             InvocarSetScene(scene);
             SceneManager.sceneLoaded -= SetarCenaPrincipal;
         }
@@ -84,5 +82,7 @@ public enum NomesCenas
 {
     MbInfinity,
     MbFlorestaOesteDeInfinity,
-    MbFlorestaLesteDeInfinity
+    MbFlorestaLesteDeInfinity,
+    FlorestaLesteDeIve,
+    MbFlorestaOesteDeIve
 }

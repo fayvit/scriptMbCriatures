@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 /// <summary>
 /// Classe responsavel pelo uso da maçã
 /// </summary>
 public class MbMaca : MbItens
 {
-    private CreatureManager CriatureAlvoDoItem;
+    [System.NonSerialized]private CreatureManager CriatureAlvoDoItem;
     private const float TEMPO_DE_ANIMA_CURA_1 = 1.5f;
 
     public MbMaca(int estoque = 1) : base(new ContainerDeCaracteristicasDeItem(nomeIDitem.maca)
@@ -30,7 +31,7 @@ public class MbMaca : MbItens
     void EscolhiEmQuemUsar(int indice)
     {
         CharacterManager manager = GameController.g.Manager;
-        CriatureBase C = manager.Dados.criaturesAtivos[indice];
+        CriatureBase C = manager.Dados.CriaturesAtivos[indice];
         Atributos A = C.CaracCriature.meusAtributos;
 
         if (ItemQuantitativo.UsaItemDeRecuperacao(C))

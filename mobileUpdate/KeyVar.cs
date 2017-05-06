@@ -2,24 +2,40 @@
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
+[System.Serializable]
 public class KeyVar
 {
-
     private Dictionary<KeyShift, bool> shift = new Dictionary<KeyShift, bool>();
     private Dictionary<KeyCont, int> contadorChave = new Dictionary<KeyCont, int>();
     private Dictionary<nomesCriatures, bool> visto = new Dictionary<nomesCriatures, bool>();
     private Dictionary<nomesCriatures, bool> colecionado = new Dictionary<nomesCriatures, bool>();
-    private List<Scene> cenasAtivas = new List<Scene>();
+    private List<NomesCenas> cenasAtivas = new List<NomesCenas>();
+    private NomesCenas cenaAtiva = NomesCenas.MbInfinity;
 
-    public void AdicioneCenaAtiva(Scene cena)
+    public NomesCenas CenaAtiva
     {
-        if(!cenasAtivas.Contains(cena))
-            cenasAtivas.Add(cena);
+        get { return cenaAtiva; }
     }
 
-    public void RemoverCenaAtiva(Scene cena)
+    public List<NomesCenas> CenasAtivas
     {
-        cenasAtivas.Remove(cena);
+        get { return cenasAtivas; }
+    }
+
+    public void SetarCenasAtivas()
+    {
+        NomesCenas[] nomesDeCenas = (NomesCenas[])(System.Enum.GetValues(typeof(NomesCenas)));
+        cenasAtivas = new List<NomesCenas>();
+
+        for (int i = 0; i < nomesDeCenas.Length; i++)
+        {
+            if (SceneManager.GetSceneByName(nomesDeCenas[i].ToString()).isLoaded)
+            {
+                cenasAtivas.Add(nomesDeCenas[i]);
+            }
+        }
+
+        cenaAtiva = (NomesCenas)System.Enum.Parse(typeof(NomesCenas),SceneManager.GetActiveScene().name);
     }
 
     void MudaDic<T1,T2>(Dictionary<T1,T2> dic, T1 key, T2 val)
