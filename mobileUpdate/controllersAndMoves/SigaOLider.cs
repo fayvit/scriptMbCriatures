@@ -48,10 +48,10 @@ public class SigaOLider
         {
             if (nav.enabled)
             {
-                if(!nav.isActiveAndEnabled)
+                //if(!nav.isActiveAndEnabled)
                     nav.Resume();
 
-                if(nav.isActiveAndEnabled)
+               // if(nav.isActiveAndEnabled)
                     nav.destination = posAlvo;
                 animator.SetFloat("velocidade", Vector3.ProjectOnPlane(nav.velocity, Vector3.up).magnitude);
             }

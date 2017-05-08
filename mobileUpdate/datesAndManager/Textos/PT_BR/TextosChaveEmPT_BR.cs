@@ -44,7 +44,7 @@ public static class TextosChaveEmPT_BR
                     ChaveDeTexto.criatureParaMostrador,new List<string>()
                     {
                         "Você tem certeza que quer colocar <color=orange>{0}</color> para continuar a luta?",
-                        "O criature {0} não está em condições para entrar na luta"
+                        "O criature <color=orange>{0}</color> não está em condições para entrar na luta",
                     }
                 },
                 {
@@ -164,8 +164,24 @@ public static class TextosChaveEmPT_BR
                     ChaveDeTexto.frasesDeShoping,new List<string>()
                     {
                         "Tenho excelentes produtos pra você estranho. Gostaria de comprar algo?",
-                        "O que você gostaria de vender? estranho..."
+                        "O que você gostaria de vender? estranho...",
                     }
-                }
+                },
+        {
+            ChaveDeTexto.textosParaQuantidadesEmShop,new List<string>()
+            {
+                "CRISTAIS: ",
+                "valor a pagar",
+                "valor a receber",
+                "Você quer comprar qual quantidade de {0} ??",
+                "Você quer vender qual quantidade de {0} ??",
+                "Comprar",
+                "Vender",
+                "Infelizmente os cristais que você carrega só lhe permitem comprar {0} {1}.",
+                "Infelizmente você só possui {0} {1} para vender.",
+                "A quantidade mínima que você pode comprar é 1",
+                "A quantidade mínima que você pode vender é 1"
+            }
+        }
             };
 }

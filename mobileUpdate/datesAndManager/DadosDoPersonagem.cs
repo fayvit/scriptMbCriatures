@@ -46,12 +46,15 @@ public class DadosDoPersonagem
     public void InicializadorDosDados()
     {
         CriaturesAtivos = new List<CriatureBase>() {
-             //new CriatureBase(nomesCriatures.Urkan,2),
+             new CriatureBase(nomesCriatures.Urkan,2),
              new CriatureBase(nomesCriatures.Xuash,1),
-             //new CriatureBase(nomesCriatures.Arpia,2),
+             new CriatureBase(nomesCriatures.Arpia,2),
               //new CriatureBase(nomesCriatures.Florest,1),              
              //new CriatureBase(nomesCriatures.PolyCharm)
         };
+
+        CriaturesAtivos[1].CaracCriature.meusAtributos.PV.Corrente = 0;
+        CriaturesAtivos[2].CaracCriature.meusAtributos.PV.Corrente = 2;
 
         CriaturesArmagedados = new List<CriatureBase>() {
              new CriatureBase(nomesCriatures.Urkan,2),

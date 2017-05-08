@@ -7,6 +7,7 @@ using System.Collections.Generic;
 public class ShopManager
 {
     [SerializeField]private MenuDeShop menuDeShop;
+    [SerializeField]private PainelQuantidadesParaShop painelQuantidades;
 
     private Sprite fotoDoNPC;
     private DisparaTexto dispara;
@@ -24,6 +25,7 @@ public class ShopManager
         esperandoEscolha,
         fraseDeVenda,
         fraseDeCompra,
+        quantidadesAbertas
     }
     public void Update()
     {
@@ -66,13 +68,26 @@ public class ShopManager
                     fase = FasesDoShop.esperandoEscolha;
                     List<string> opcoes2 = new List<string>();
                     List<MbItens> meusItens = GameController.g.Manager.Dados.Itens;
+
                     for (int i = 0; i < meusItens.Count; i++)
                     {
                         if (meusItens[i].Valor > 0)
                             opcoes2.Add(meusItens[i].ID.ToString());
                     }
-                    menuDeShop.IniciarHud(false,OpcaoEscolhidaParaCompra,opcoes2.ToArray());
+                    menuDeShop.IniciarHud(false,OpcaoEscolhidaParaVenda,opcoes2.ToArray());
                     menuDeShop.SetActive(true);
+                }
+            break;
+            case FasesDoShop.quantidadesAbertas:
+                if (!painelQuantidades.gameObject.activeSelf)
+                {
+                    menuDeShop.FinalizarHud();
+                    if (painelQuantidades.Comprar)
+                    {
+                        ComprarVender(0);
+                    }
+                    else
+                        ComprarVender(1);
                 }
             break;
         }
@@ -91,6 +106,10 @@ public class ShopManager
             dispara.Dispara(frasesDeShoping[1], fotoDoNPC);
             fase = FasesDoShop.fraseDeCompra;
         }
+
+        BotaoZaoExterno btn = GameController.g.HudM.Botaozao;
+        btn.FinalizarBotao();
+        btn.IniciarBotao(VoltarParaAPerguntaInicial);
 
         menuBasico.FinalizarHud();
     }
@@ -115,29 +134,55 @@ public class ShopManager
         dispara = GameController.g.HudM.DisparaT;
         menuBasico = GameController.g.HudM.Menu_Basico;
         dispara.IniciarDisparadorDeTextos();
-        Debug.Log(t+" : "+t.Length);
+        
+    }
+
+    void DesligarQuantidades()
+    {
+        painelQuantidades.gameObject.SetActive(false);
+        GameController.g.HudM.Botaozao.FinalizarBotao();
     }
 
     void OpcaoEscolhidaParaCompra(int qual)
     {
-
+        painelQuantidades.IniciarEssaHud(PegaUmItem.Retorna(itensAVenda[qual]));
+        BtnsManager.DesligarBotoes(menuDeShop.gameObjectDoMenu);
+        GameController.g.HudM.Botaozao.FinalizarBotao();
+        GameController.g.HudM.Botaozao.IniciarBotao(DesligarQuantidades);
+        fase = FasesDoShop.quantidadesAbertas;
     }
 
     void OpcaoEscolhidaParaVenda(int qual)
     {
+        painelQuantidades.IniciarEssaHud(PegaUmItem.Retorna(GameController.g.Manager.Dados.Itens[qual].ID),false);
+        BtnsManager.DesligarBotoes(menuDeShop.gameObjectDoMenu);
+        GameController.g.HudM.Botaozao.FinalizarBotao();
+        GameController.g.HudM.Botaozao.IniciarBotao(DesligarQuantidades);
+        fase = FasesDoShop.quantidadesAbertas;
+    }
 
+    void VoltarParaAPerguntaInicial()
+    {
+        BotaoZaoExterno btn = GameController.g.HudM.Botaozao;
+        btn.FinalizarBotao();
+        btn.IniciarBotao(SairDoShop);
+        menuDeShop.FinalizarHud();
+        menuBasico.FinalizarHud();
+        EntraFrasePossoAjudar();
     }
 
     void SairDoShop()
     {
         GameController g = GameController.g;
         AndroidController.a.LigarControlador();
+        fase = FasesDoShop.emEspera;
         menuBasico.FinalizarHud();
         menuDeShop.FinalizarHud();
 
         g.Manager.AoHeroi();
         g.HudM.ligarControladores();
         dispara.DesligarPaineis();
-        fase = FasesDoShop.emEspera;
+        g.HudM.Botaozao.FinalizarBotao();
+        
     }
 }

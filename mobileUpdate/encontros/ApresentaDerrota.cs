@@ -62,6 +62,7 @@ public class ApresentaDerrota
                     else
                     {
                         // Aqui vamos de volta para o armagedom
+                        //return RetornoDaDerrota.deVoltaAoArmagedom;
                     }
                 }
             break;

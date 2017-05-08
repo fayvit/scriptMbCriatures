@@ -108,20 +108,48 @@ public class MbItens:System.ICloneable
         throw new System.NotImplementedException();
     }
 
+    public static bool RetirarUmItem(
+        CharacterManager gerente,
+        MbItens nomeItem,
+        int quantidade = 1,
+        FluxoDeRetorno fluxo = FluxoDeRetorno.heroi)
+    {
+        bool retorno = true;
+        for (int i = 0; i < quantidade; i++)
+        {
+            retorno &= RetirarUmItem(gerente,ProcuraItemNaLista(nomeItem.ID),fluxo);
+            
+        }
+
+        return retorno;
+    }
+
+    static MbItens ProcuraItemNaLista(nomeIDitem nome)
+    {
+        MbItens retorno = new MbItens(new ContainerDeCaracteristicasDeItem());
+        for (int i = GameController.g.Manager.Dados.Itens.Count - 1; i > -1;i--)
+        {
+            if (GameController.g.Manager.Dados.Itens[i].ID == nome)
+                retorno = GameController.g.Manager.Dados.Itens[i];
+        }
+        return retorno;
+
+    }
 
     public static bool RetirarUmItem(
         CharacterManager gerente, 
         MbItens nomeItem, 
-        int quantidade = 1,
         FluxoDeRetorno fluxo = FluxoDeRetorno.heroi)
     {
         int indice = gerente.Dados.Itens.IndexOf(nomeItem);
         if (indice > -1)
-            if (gerente.Dados.Itens[indice].Estoque >= quantidade)
+            if (gerente.Dados.Itens[indice].Estoque >= 1)
             {
-                gerente.Dados.Itens[indice].Estoque -= quantidade;
+                gerente.Dados.Itens[indice].Estoque--;
+                Debug.Log("remove ai vai");
                 if (gerente.Dados.Itens[indice].Estoque == 0)
                 {
+                    Debug.Log("Tira daí");
                     gerente.Dados.Itens.Remove(gerente.Dados.Itens[indice]);
 
                     if (fluxo == FluxoDeRetorno.menuCriature || fluxo == FluxoDeRetorno.menuHeroi)

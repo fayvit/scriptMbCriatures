@@ -7,6 +7,7 @@ public class UmaOpcaoDeShop : UmaOpcaoDeMenu
     [SerializeField] private RawImage imgDoItem;
     [SerializeField] private Text precoDoItem;
 
+
     public void SetarOpcao(System.Action<int> acaoDaOpcao, string txtDaOpcao,bool comprar = true)
     {
         

@@ -66,15 +66,16 @@ public class TriggerGerenciadorDeCena : MonoBehaviour
 
     static IEnumerator setarScene(Scene scene)
     {
+        SceneManager.SetActiveScene(scene);
         yield return new WaitForSeconds(0.5f);
         InvocarSetScene(scene);
     }
     public static void InvocarSetScene(Scene scene)
     {
         //Debug.Log(scene.name);
-        if (!SceneManager.SetActiveScene(scene))
+        if (SceneManager.GetActiveScene()!=scene)
             GameController.g.StartCoroutine(setarScene(scene));
-        Debug.Log("nomeAtiva: " + SceneManager.GetActiveScene().name);
+        Debug.Log("nomeAtiva: " + SceneManager.GetActiveScene().name+" : "+scene.name);
     }
 }
 

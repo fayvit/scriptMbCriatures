@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 /// <summary>
 /// Classe responsavel pelo uso da maçã
 /// </summary>
 public class MbCartaLuva : MbItens
 {
-    private AnimandoCaptura animaCap;
+    [System.NonSerialized]private AnimandoCaptura animaCap;
     private bool captura;
     public MbCartaLuva(int estoque = 1) : base(new ContainerDeCaracteristicasDeItem(nomeIDitem.cartaLuva)
     {
-        valor = 10
+        valor = 12
     }
         )
     {

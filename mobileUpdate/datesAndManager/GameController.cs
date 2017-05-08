@@ -216,8 +216,19 @@ public class GameController : MonoBehaviour
 
     void FuncaoTrocarCriatureSemMenu(int indice)
     {
-        FluxoDeRetorno fluxo = manager.Estado == EstadoDePersonagem.comMeuCriature ? FluxoDeRetorno.criature : FluxoDeRetorno.heroi;
-        FuncaoTrocarCriature(indice+1, fluxo);
+        if (Manager.Dados.CriaturesAtivos[indice + 1].CaracCriature.meusAtributos.PV.Corrente > 0)
+        {
+            FluxoDeRetorno fluxo = manager.Estado == EstadoDePersonagem.comMeuCriature ? FluxoDeRetorno.criature : FluxoDeRetorno.heroi;
+            FuncaoTrocarCriature(indice + 1, fluxo);
+        }
+        else
+        {
+            PainelMensCriature.p.AtivarNovaMens(string.Format(
+                bancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.criatureParaMostrador)[1],
+                Manager.Dados.CriaturesAtivos[indice + 1].NomeEmLinguas
+                ),30,5);
+            HudM.MenuDeI.FinalizarHud();
+        }
     }
 
     public void FuncaoTrocarCriature(int indice, FluxoDeRetorno fluxo, bool bugDoTesteChao = false)
